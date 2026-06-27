@@ -77,7 +77,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           transition={{ duration: 1, delay: 1.2 }}
           className="text-[9px] uppercase tracking-[0.4em] text-gray-400 font-light"
         >
-          Interior & Aluminium Studio
+          Aluminium & Glass Fabrication
         </motion.p>
       </div>
 

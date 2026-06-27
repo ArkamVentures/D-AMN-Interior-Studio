@@ -36,10 +36,10 @@ export const Contact: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-2xl font-serif font-bold text-primary dark:text-white mb-6">
-              Let's Create Something Beautiful Together
+              Book Your Free Site Visit & Quotation Today
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-              Ready to transform your space? Reach out for a free consultation. Our team is excited to bring your vision to life.
+              Ready to transform your space with premium aluminium and glass solutions? Reach out for a free site visit and quotation. Best price guaranteed!
             </p>
 
             <div className="space-y-6 mb-8">
@@ -49,7 +49,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-primary dark:text-white mb-1">Visit Us</h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">123 Design Avenue, Suite 500<br />New York, NY 10001</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">83/2, Zahira Road<br />Dharga Town, Sri Lanka</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -58,7 +58,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-primary dark:text-white mb-1">Call Us</h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">+1 (212) 555-1234</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">+94 77 372 4849</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -66,8 +66,8 @@ export const Contact: React.FC = () => {
                   <Mail className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-primary dark:text-white mb-1">Email Us</h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">hello@celineinterior.com</p>
+                  <h4 className="font-semibold text-primary dark:text-white mb-1">Facebook</h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">D-AMN Aluminium Fabrication</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -76,7 +76,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-primary dark:text-white mb-1">Business Hours</h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">Mon - Fri: 9:00 AM - 6:00 PM<br />Sat: 10:00 AM - 4:00 PM</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">Mon - Sat: 8:00 AM - 6:00 PM<br />Sun: By Appointment</p>
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@ export const Contact: React.FC = () => {
                 <div className="text-center py-12">
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-primary dark:text-white mb-2">Thank You!</h3>
-                  <p className="text-gray-600 dark:text-gray-400">We'll be in touch within 24 hours.</p>
+                  <p className="text-gray-600 dark:text-gray-400">We'll contact you shortly to arrange your free site visit.</p>
                 </div>
               ) : (
                 <>
@@ -105,32 +105,32 @@ export const Contact: React.FC = () => {
                         type="text"
                         required
                         className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
-                        placeholder="John Doe"
+                        placeholder="Your name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-primary dark:text-white mb-2">Email</label>
+                      <label className="block text-sm font-medium text-primary dark:text-white mb-2">Phone</label>
                       <input
-                        type="email"
+                        type="tel"
                         required
                         className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
-                        placeholder="john@example.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="+94 7X XXX XXXX"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       />
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label className="block text-sm font-medium text-primary dark:text-white mb-2">Phone</label>
+                      <label className="block text-sm font-medium text-primary dark:text-white mb-2">Email (Optional)</label>
                       <input
-                        type="tel"
+                        type="email"
                         className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
-                        placeholder="+1 (555) 000-0000"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        placeholder="your@email.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       />
                     </div>
                     <div>
@@ -141,9 +141,9 @@ export const Contact: React.FC = () => {
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                       >
                         <option value="">Select a service</option>
-                        <option value="kitchen">Kitchen Cabinets</option>
-                        <option value="luxury">Luxury Interiors</option>
-                        <option value="budget">Budget Solutions</option>
+                        <option value="aluminium-doors-windows">Aluminium Doors & Windows</option>
+                        <option value="kitchen-cabinets">Modern Kitchen Cabinets</option>
+                        <option value="tempered-glass">Tempered Glass Works</option>
                         <option value="other">Other</option>
                       </select>
                     </div>
@@ -163,7 +163,7 @@ export const Contact: React.FC = () => {
                     className="w-full flex items-center justify-center px-6 py-4 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors shadow-lg shadow-accent/25"
                   >
                     <Send className="w-4 h-4 mr-2" />
-                    Send Message
+                    Book Free Site Visit
                   </button>
                 </>
               )}

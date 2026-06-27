@@ -12,8 +12,8 @@ export const Hero: React.FC = () => {
           initial={{ scale: 1.15, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.55 }}
           transition={{ duration: 2.5, ease: 'easeOut' }}
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
-          alt="Luxury living space"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1920&q=80"
+          alt="Premium aluminium doors and windows"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/30 to-black/40" />
@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xs md:text-sm font-semibold tracking-[0.3em] text-accent uppercase block mb-4"
         >
-          D-AMN Interior Studio
+          D-AMN Aluminium Fabrication
         </motion.span>
         
         <motion.h1
@@ -36,8 +36,8 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.9, delay: 0.4 }}
           className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold leading-tight mb-6"
         >
-          Transforming Spaces Into<br />
-          <span className="text-accent italic font-normal">Timeless Masterpieces</span>
+          Open Up With Style —<br />
+          <span className="text-accent italic font-normal">Premium Aluminium & Glass Solutions</span>
         </motion.h1>
 
         <motion.p
@@ -46,7 +46,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed"
         >
-          Experience premium interior design and aluminium solutions crafted with innovation, precision, and elegance. From modern homes to commercial spaces, we bring your vision to life.
+          Premium aluminium doors, windows, kitchen cabinets, and tempered glass installations crafted with precision for modern homes and commercial spaces across Sri Lanka.
         </motion.p>
 
         <motion.div
@@ -59,14 +59,14 @@ export const Hero: React.FC = () => {
             to="/portfolio"
             className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-primary font-semibold rounded-lg shadow-lg shadow-accent/25 transition-all group"
           >
-            Explore Projects
+            View Our Work
             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
             to="/contact"
             className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-white/30 hover:border-white text-white font-semibold rounded-lg backdrop-blur-sm hover:bg-white/5 transition-all"
           >
-            Request Consultation
+            Book Free Site Visit
           </Link>
         </motion.div>
       </div>

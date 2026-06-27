@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Instagram, Linkedin } from 'lucide-react';
+import { Menu, X, Sun, Moon, Facebook, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LayoutProps {
@@ -144,11 +144,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 D-AMN<span className="text-accent">.</span>
               </span>
               <p className="text-sm text-gray-400 leading-relaxed mb-6">
-                D-AMN Interior Studio is a premier interior design and aluminium fabrication company dedicated to transforming spaces into modern masterpieces.
+                D-AMN Aluminium Fabrication specializes in crafting premium aluminium doors, windows, kitchen cabinets, and tempered glass installations. Based in Dharga Town, Sri Lanka.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="hover:text-accent transition-colors"><Instagram className="w-5 h-5" /></a>
-                <a href="#" className="hover:text-accent transition-colors"><Linkedin className="w-5 h-5" /></a>
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors"><Facebook className="w-5 h-5" /></a>
+                <a href="tel:+94773724849" className="hover:text-accent transition-colors"><Phone className="w-5 h-5" /></a>
               </div>
             </div>
 
@@ -170,39 +170,28 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div>
               <h4 className="text-white text-xs uppercase tracking-[0.2em] font-semibold mb-4">Services</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to="/services" className="hover:text-accent transition-colors">Interior Design</Link></li>
-                <li><Link to="/services" className="hover:text-accent transition-colors">Aluminium Fabrication</Link></li>
-                <li><Link to="/services" className="hover:text-accent transition-colors">Modern Kitchens</Link></li>
-                <li><Link to="/services" className="hover:text-accent transition-colors">Gypsum Ceilings</Link></li>
-                <li><Link to="/services" className="hover:text-accent transition-colors">Aluminium Partitions</Link></li>
+                <li><Link to="/services" className="hover:text-accent transition-colors">Aluminium Doors & Windows</Link></li>
+                <li><Link to="/services" className="hover:text-accent transition-colors">Modern Kitchen Cabinets</Link></li>
+                <li><Link to="/services" className="hover:text-accent transition-colors">Tempered Glass Works</Link></li>
               </ul>
             </div>
 
-            {/* Newsletter */}
+            {/* Contact Info */}
             <div>
-              <h4 className="text-white text-xs uppercase tracking-[0.2em] font-semibold mb-4">Newsletter</h4>
-              <p className="text-sm text-gray-400 mb-4">
-                Subscribe to receive design tips and custom project walkthroughs.
+              <h4 className="text-white text-xs uppercase tracking-[0.2em] font-semibold mb-4">Contact</h4>
+              <ul className="space-y-3 text-sm text-gray-400">
+                <li>📍 83/2, Zahira Road, Dharga Town</li>
+                <li>📞 <a href="tel:+94773724849" className="hover:text-accent transition-colors">+94 77 372 4849</a></li>
+                <li>📘 D-AMN Aluminium Fabrication</li>
+              </ul>
+              <p className="text-xs text-gray-500 mt-4 italic">
+                තවත් නිවසකට අලංකාරය සහ ආරක්ෂාව වැඩි කිරීම!
               </p>
-              <form onSubmit={(e) => e.preventDefault()} className="flex bg-white/5 border border-white/10 rounded-lg overflow-hidden">
-                <input
-                  type="email"
-                  required
-                  placeholder="Your email"
-                  className="px-4 py-2 bg-transparent outline-none text-sm text-white focus:border-accent w-full"
-                />
-                <button
-                  type="submit"
-                  className="px-4 bg-accent hover:bg-accent-dark text-primary font-semibold transition-colors text-sm"
-                >
-                  Join
-                </button>
-              </form>
             </div>
           </div>
 
           <div className="border-t border-white/5 pt-8 text-center text-xs text-gray-500">
-            <p>&copy; {new Date().getFullYear()} D-AMN Interior Studio. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} D-AMN Aluminium Fabrication. All rights reserved.</p>
           </div>
         </div>
       </footer>

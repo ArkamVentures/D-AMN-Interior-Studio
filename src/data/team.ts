@@ -10,29 +10,29 @@ export const teamMembers: TeamMember[] = [
   {
     id: 'member-1',
     name: 'Danuka Alwis',
-    role: 'Founder & Principal Designer',
-    bio: 'With over 12 years of experience in luxury interior architecture across South Asia, Danuka spearheads the design language and artistic vision of D-AMN.',
+    role: 'Founder & Managing Director',
+    bio: 'With extensive experience in aluminium fabrication across Sri Lanka, Danuka leads D-AMN with a vision to deliver premium, customizable architectural solutions to every client.',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80'
   },
   {
     id: 'member-2',
     name: 'Amna Nazeer',
-    role: 'Co-Founder & Lead Architect',
-    bio: 'Amna specializes in space optimization, spatial flow mapping, and residential layouts, blending comfort with contemporary luxury.',
+    role: 'Co-Founder & Design Head',
+    bio: 'Amna specializes in modern aluminium and glass design solutions, ensuring every project blends contemporary aesthetics with practical durability.',
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80'
   },
   {
     id: 'member-3',
     name: 'Rishad Mansoor',
-    role: 'Head of Aluminium Fabrication',
-    bio: 'Rishad leads our state-of-the-art metal and profile workshop, overseeing precision structural assembly and partition systems.',
+    role: 'Head of Fabrication',
+    bio: 'Rishad leads our state-of-the-art fabrication workshop, overseeing precision aluminium cutting, assembly, and tempered glass installations.',
     image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80'
   },
   {
     id: 'member-4',
     name: 'Dilshani Perera',
-    role: 'Gypsum & Ceiling Specialist',
-    bio: 'Dilshani coordinates suspended gypsum ceilings, architectural lighting systems, and custom acoustic ceiling layouts.',
+    role: 'Kitchen Cabinet Specialist',
+    bio: 'Dilshani designs and coordinates modern aluminium kitchen cabinet projects, ensuring every installation meets the highest standards of quality and functionality.',
     image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80'
   }
 ];

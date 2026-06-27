@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { services } from '../../data/services';
 import { SectionHeading } from '../ui/SectionHeading';
-import { ChefHat, Gem, PiggyBank, Sofa, Map, Armchair, Box, ArrowRight } from 'lucide-react';
+import { DoorOpen, ChefHat, GlassWater, Box, ArrowRight } from 'lucide-react';
 
 const iconMap: Record<string, React.ElementType> = {
-  ChefHat, Gem, PiggyBank, Sofa, Map, Armchair, Box
+  DoorOpen, ChefHat, GlassWater, Box
 };
 
 export const Services: React.FC = () => {
-  // Show only top 3 services on home page
+  // Show all 3 services on home page
   const homeServices = services.slice(0, 3);
 
   return (

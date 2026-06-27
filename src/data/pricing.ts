@@ -10,44 +10,45 @@ export interface PricingPackage {
 export const pricingPackages: PricingPackage[] = [
   {
     id: 'pkg-1',
-    name: 'Essential Consultation',
-    price: '$2,500',
-    description: 'Perfect for spatial layout reviews and basic design guidelines.',
+    name: 'Free Consultation',
+    price: 'Free',
+    description: 'Get started with a free site visit and quotation — no obligations.',
     features: [
-      '2D Layout & spatial floorplans',
-      'Color & material concept consultation',
-      'Mood boards & lighting suggestions',
-      'Furniture & decoration shopping list',
-      '1 Revision request cycle'
+      'Free site visit & measurements',
+      'Detailed project quotation',
+      'Design consultation & recommendations',
+      'Material & style guidance',
+      'Best price guaranteed'
     ],
     highlighted: false
   },
   {
     id: 'pkg-2',
-    name: 'Signature Design',
-    price: '$7,500',
-    description: 'Comprehensive design package including bespoke custom cabinetry blueprints.',
+    name: 'Standard Package',
+    price: 'Custom Quote',
+    description: 'Complete aluminium or glass installation with premium materials and expert craftsmanship.',
     features: [
-      'Full 3D digital renderings',
-      'Bespoke kitchen & cabinetry engineering blueprints',
-      'Detailed lighting plans & electrical layouts',
-      'Material sample package delivered to you',
-      '3 Revision cycles included',
-      'Direct designer messaging'
+      'Premium quality aluminium/glass materials',
+      'Custom design & fabrication',
+      'Professional installation',
+      'Weather-resistant finishes',
+      'Quality assurance inspection',
+      'After-installation support'
     ],
     highlighted: true
   },
   {
     id: 'pkg-3',
-    name: 'Elite Turnkey',
+    name: 'Premium Package',
     price: 'Custom Quote',
-    description: 'End-to-end luxury management, from layouts to contracting and styling.',
+    description: 'Full turnkey solution for large-scale residential and commercial projects.',
     features: [
-      'Dedicated interior architect & coordinator',
-      'Complete contractor oversight & management',
-      'Custom fabrication in our master workshop',
-      'White-glove styling and staging setup',
-      'Post-occupancy warranty & maintenance check'
+      'Dedicated project manager',
+      'Complete site coordination',
+      'Premium grade materials & hardware',
+      'Multiple product installations',
+      'Priority scheduling & execution',
+      'Extended warranty & maintenance'
     ],
     highlighted: false
   }

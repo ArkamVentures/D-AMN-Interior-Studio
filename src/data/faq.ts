@@ -7,27 +7,27 @@ export interface FAQItem {
 export const faqs: FAQItem[] = [
   {
     id: 'faq-1',
-    question: 'What types of aluminium partition systems do you fabricate?',
-    answer: 'We design and install high-quality slimline frames, soundproof double-glazed partition walls for corporate offices, and customized frame designs for slide-and-fold glass doors. All extrusions are available in custom powder coatings, anodized colors, or premium wood-grain finishes.'
+    question: 'What types of aluminium doors and windows do you offer?',
+    answer: 'We offer a wide range including sliding doors, folding doors, casement windows, and fixed glass panels. All our aluminium frames are premium quality, fully customizable, weather-resistant, and designed for modern living.'
   },
   {
     id: 'faq-2',
-    question: 'How do you coordinate gypsum ceilings with lighting design?',
-    answer: 'Our ceiling and lighting teams work together on 2D layouts. We frame the suspended gypsum channel matrix to fit indirect LED strip coves, spot fixtures, and AC ducts precisely, ensuring a seamless and crack-free final surface.'
+    question: 'Are your kitchen cabinets really rust-proof and waterproof?',
+    answer: 'Yes! Our aluminium kitchen cabinets are 100% rust-proof, termite-free, waterproof, and fire-resistant. They require zero maintenance and come with soft-close doors and modern hardware for a premium kitchen experience.'
   },
   {
     id: 'faq-3',
-    question: 'Do you design and manufacture modular kitchen cabinets?',
-    answer: 'Yes, we manufacture modular kitchen systems in our workshop. We use premium water-resistant and scratch-resistant materials, equipped with state-of-the-art silent pull-out baskets and hinges from top global brands.'
+    question: 'What tempered glass thickness do you use for railings?',
+    answer: 'We use 10mm and 12mm tempered glass for all our installations including balcony railings, staircase railings, glass partitions, and shower cubicles. Our glass is strong, safe, crystal clear, and paired with rust-free stainless steel fittings.'
   },
   {
     id: 'faq-4',
-    question: 'Is D-AMN a full-service turnkey agency?',
-    answer: 'Absolutely. We manage your project from initial design layout and 3D renderings to structural work, aluminium framing, plasterboard ceiling finishes, and final furniture staging, coordinating the entire build under a single team.'
+    question: 'Do you offer free site visits and quotations?',
+    answer: 'Absolutely! We provide a completely free site visit and quotation for all projects. Our team will visit your location, take precise measurements, and provide a detailed quote — all at no cost and with the best price guaranteed.'
   },
   {
     id: 'faq-5',
-    question: 'What is the typical timeframe for a full project renovation?',
-    answer: 'Project durations range from 6 to 12 weeks depending on complexity. A detailed step-by-step timeframe plan is shared during the concept review stage to guarantee on-time delivery.'
+    question: 'What areas in Sri Lanka do you serve?',
+    answer: 'Based in Dharga Town, we serve residential and commercial clients across Sri Lanka. From houses and villas to hotels, shops, commercial buildings, and swimming pools — we deliver premium aluminium and glass solutions nationwide.'
   }
 ];

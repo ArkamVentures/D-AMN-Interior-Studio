@@ -1,33 +1,33 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { SectionHeading } from '../ui/SectionHeading';
-import { MessageSquare, Layers, ShieldCheck, Ruler, Wrench } from 'lucide-react';
+import { MapPin, Ruler, ClipboardCheck, Wrench, ShieldCheck } from 'lucide-react';
 
 const steps = [
   {
-    icon: MessageSquare,
-    title: '1. Discovery & Consultation',
-    description: 'We meet to align on your vision, budget parameters, design aesthetic preferences, and site restrictions.'
+    icon: MapPin,
+    title: '1. Free Site Visit',
+    description: 'Our team visits your location to assess the space, take precise measurements, and understand your requirements — completely free of charge.'
   },
   {
-    icon: Layers,
-    title: '2. Schematic Concept Design',
-    description: 'We draft mood boards, architectural floor layouts, color palettes, and material proposals.'
+    icon: ClipboardCheck,
+    title: '2. Free Quotation',
+    description: 'We provide a detailed, transparent quotation with best price guaranteed. No hidden charges, no surprises.'
   },
   {
     icon: Ruler,
-    title: '3. Technical Engineering',
-    description: 'Our team designs micro-detail blueprints for custom joinery, electrical systems, lighting, and load-bearing structures.'
+    title: '3. Design & Approval',
+    description: 'We present customizable design options tailored to your space and style preferences. You approve the final design before we proceed.'
   },
   {
     icon: Wrench,
-    title: '4. Fabrication & Sourcing',
-    description: 'Custom cabinetry is crafted in our wood workshop while custom furniture and stone slabs are imported.'
+    title: '4. Precision Fabrication',
+    description: 'Your aluminium frames, kitchen cabinets, or tempered glass panels are fabricated in our workshop with premium quality materials and expert craftsmanship.'
   },
   {
     icon: ShieldCheck,
-    title: '5. Installation & Turnkey Staging',
-    description: 'Our crew manages full installation, finishing details, and interior decoration to deliver a move-in ready luxury space.'
+    title: '5. Professional Installation',
+    description: 'Our skilled installation team ensures a perfect fit with secure mounting, weather sealing, and a thorough quality inspection on completion.'
   }
 ];
 
@@ -37,7 +37,7 @@ export const Process: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Our Execution Process"
-          subtitle="Concept to Reality"
+          subtitle="How We Work"
         />
 
         <div className="relative border-l border-accent/20 max-w-3xl mx-auto pl-8 sm:pl-12 space-y-12">

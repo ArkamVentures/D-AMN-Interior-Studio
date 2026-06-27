@@ -5,21 +5,21 @@ import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "Working with Celine was an absolute dream. The level of detail in the mechanical drawings gave us complete confidence, and the final results exceeded all our expectations.",
-    name: "Arthur & Sarah Pendelton",
-    role: "Townhouse Owners, Brooklyn",
+    quote: "D-AMN Aluminium Fabrication installed beautiful sliding doors throughout our home. The quality of the aluminium frames is exceptional, and the modern design has completely transformed how our house looks and feels.",
+    name: "Samantha & Ravi Perera",
+    role: "Homeowners, Colombo",
     rating: 5
   },
   {
-    quote: "Our kitchen cabinet integration was extremely complex due to structural columns. Celine Interior engineered a custom solution that hid the column inside the pantry. Brilliant!",
-    name: "Julianna Mercer",
-    role: "Penthouse Owner, Manhattan",
+    quote: "Our new aluminium kitchen cabinets are incredible — completely waterproof, zero maintenance, and the soft-close mechanism is a daily luxury. We should have switched from wood years ago!",
+    name: "Fathima Rizwan",
+    role: "Villa Owner, Galle",
     rating: 5
   },
   {
-    quote: "We chose the Smart Budget Solution. The aesthetic is incredibly premium, and they delivered exactly on schedule. Highly recommend the modular wardrobe setups.",
-    name: "Robert Chen",
-    role: "Condo Owner, Astoria",
+    quote: "The 12mm tempered glass balcony railings D-AMN installed at our hotel are stunning. Crystal clear finish, rust-free fittings, and they delivered on time with the best price. Highly recommend!",
+    name: "Kamal Jayasinghe",
+    role: "Hotel Owner, Kandy",
     rating: 5
   }
 ];
