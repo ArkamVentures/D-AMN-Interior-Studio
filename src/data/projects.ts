@@ -21,8 +21,8 @@ export const projects: Project[] = [
     testimonial: 'D-AMN Aluminium Fabrication installed stunning sliding doors and casement windows throughout our villa. The quality is exceptional and the modern look has completely transformed our home.',
     featured: true,
     images: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80'
+      '/gallery-9.png',
+      '/gallery-11.png'
     ]
   },
   {
@@ -35,8 +35,8 @@ export const projects: Project[] = [
     testimonial: 'Our new aluminium kitchen cabinets are incredible — completely waterproof, rust-free, and the soft-close doors are a joy to use. Zero maintenance and looks brand new every day!',
     featured: true,
     images: [
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
-      'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80'
+      '/gallery-1.png',
+      '/gallery-2.png'
     ]
   },
   {
@@ -49,8 +49,8 @@ export const projects: Project[] = [
     testimonial: 'D-AMN installed 12mm tempered glass railings with stainless steel fittings across our entire hotel. The crystal clear finish and elegant design have elevated our property beautifully.',
     featured: true,
     images: [
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80'
+      '/gallery-10.png',
+      '/gallery-12.png'
     ]
   }
 ];

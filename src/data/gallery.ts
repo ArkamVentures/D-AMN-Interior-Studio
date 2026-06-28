@@ -8,56 +8,74 @@ export interface GalleryImage {
 export const galleryImages: GalleryImage[] = [
   {
     id: 'gal-1',
-    src: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80',
-    title: 'Modern Aluminium Sliding Doors',
-    category: 'doors'
+    src: '/gallery-1.png',
+    title: 'Modern Aluminium Kitchen Cabinets',
+    category: 'kitchen'
   },
   {
     id: 'gal-2',
-    src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
-    title: 'Premium Aluminium Kitchen Cabinets',
+    src: '/gallery-2.png',
+    title: 'Custom Kitchen Cabinet Interior',
     category: 'kitchen'
   },
   {
     id: 'gal-3',
-    src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
-    title: 'Tempered Glass Office Partitions',
-    category: 'glass'
-  },
-  {
-    id: 'gal-4',
-    src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-    title: 'Residential Aluminium Window Installation',
-    category: 'windows'
-  },
-  {
-    id: 'gal-5',
-    src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
-    title: 'Glass Balcony Railings',
-    category: 'glass'
-  },
-  {
-    id: 'gal-6',
-    src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80',
-    title: 'Aluminium Folding Door System',
-    category: 'doors'
-  },
-  {
-    id: 'gal-7',
-    src: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80',
-    title: 'Modern Kitchen Cabinet Design',
+    src: '/gallery-3.png',
+    title: 'Premium Kitchen Worktop Finish',
     category: 'kitchen'
   },
   {
+    id: 'gal-4',
+    src: '/gallery-4.png',
+    title: 'Contemporary Cabinetry with Timber Accents',
+    category: 'kitchen'
+  },
+  {
+    id: 'gal-5',
+    src: '/gallery-5.png',
+    title: 'Sleek Aluminium Kitchen Design',
+    category: 'kitchen'
+  },
+  {
+    id: 'gal-6',
+    src: '/gallery-6.png',
+    title: 'Wood-Grain Aluminium Cabinet System',
+    category: 'budget'
+  },
+  {
+    id: 'gal-7',
+    src: '/gallery-7.png',
+    title: 'Elegant Aluminium Folding Window Wall',
+    category: 'luxury'
+  },
+  {
     id: 'gal-8',
-    src: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800&q=80',
-    title: 'Aluminium Casement Windows',
-    category: 'windows'
+    src: '/gallery-8.png',
+    title: 'Custom Aluminium Casement Windows',
+    category: 'office'
   },
   {
     id: 'gal-9',
-    src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
-    title: 'Tempered Glass Staircase Railing',
-    category: 'glass'
+    src: '/gallery-9.png',
+    title: 'Aluminium Door and Window Wall',
+    category: 'luxury'
+  },
+  {
+    id: 'gal-10',
+    src: '/gallery-10.png',
+    title: 'Glass Panel Door with Timber Frame',
+    category: 'wall'
+  },
+  {
+    id: 'gal-11',
+    src: '/gallery-11.png',
+    title: 'Large Balcony Sliding Doors',
+    category: 'luxury'
+  },
+  {
+    id: 'gal-12',
+    src: '/gallery-12.png',
+    title: 'Bright Aluminium Window Installation',
+    category: 'office'
   }
 ];

@@ -18,7 +18,7 @@ export const About: React.FC = () => {
               className="col-span-8 overflow-hidden rounded-2xl shadow-xl"
             >
               <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
+                src="/gallery-1.png"
                 alt="Aluminium door installation"
                 className="w-full h-[320px] object-cover hover:scale-105 transition-transform duration-700"
               />
@@ -31,7 +31,7 @@ export const About: React.FC = () => {
               className="col-span-4 self-end overflow-hidden rounded-2xl shadow-lg"
             >
               <img
-                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80"
+                src="/gallery-2.png"
                 alt="Modern kitchen cabinet"
                 className="w-full h-[180px] object-cover hover:scale-105 transition-transform duration-700"
               />
@@ -44,7 +44,7 @@ export const About: React.FC = () => {
               className="col-span-6 col-start-7 -mt-16 overflow-hidden rounded-2xl shadow-xl border-4 border-white dark:border-dark-bg transition-colors"
             >
               <img
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80"
+                src="/gallery-3.png"
                 alt="Tempered glass installation"
                 className="w-full h-[220px] object-cover hover:scale-105 transition-transform duration-700"
               />

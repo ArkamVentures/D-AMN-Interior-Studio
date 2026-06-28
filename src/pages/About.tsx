@@ -101,30 +101,26 @@ export const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Team (single CEO) */}
       <section className="py-20 md:py-32 bg-white dark:bg-dark-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading title="Meet Our Team" subtitle="The Experts" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center"
-              >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-48 h-48 object-cover rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-lg font-semibold text-primary dark:text-white">{member.name}</h3>
-                <p className="text-accent text-sm mb-2">{member.role}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{member.bio}</p>
-              </motion.div>
-            ))}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mx-auto w-full sm:w-96">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <img
+                src="/ceo.jpg"
+                alt="CEO"
+                className="w-56 h-56 object-cover rounded-full mx-auto mb-6"
+              />
+              <h3 className="text-2xl font-semibold text-primary dark:text-white">CEO</h3>
+              <p className="text-accent text-sm mb-2">Chief Executive Officer</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                A.Maajidh, CEO of D-AMN Aluminium Fabrication, is an undergraduate in Interior Engineering. He blends design knowledge with technical expertise to deliver premium aluminium doors, windows, kitchen cabinets, and tempered glass solutions across Sri Lanka.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>

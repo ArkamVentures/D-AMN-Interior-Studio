@@ -12,7 +12,7 @@ export const Hero: React.FC = () => {
           initial={{ scale: 1.15, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.55 }}
           transition={{ duration: 2.5, ease: 'easeOut' }}
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1920&q=80"
+          src="/gallery-9.png"
           alt="Premium aluminium doors and windows"
           className="w-full h-full object-cover"
         />
