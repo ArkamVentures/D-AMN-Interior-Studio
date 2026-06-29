@@ -6,7 +6,6 @@ import { Process } from '../components/sections/Process';
 import { Stats } from '../components/sections/Stats';
 import { Testimonials } from '../components/sections/Testimonials';
 import { Pricing } from '../components/sections/Pricing';
-import { Inspiration } from '../components/sections/Inspiration';
 import { FAQ } from '../components/sections/FAQ';
 import { Contact } from '../components/sections/Contact';
 import { Awards } from '../components/sections/Awards';
@@ -24,7 +23,6 @@ export const Home: React.FC = () => {
       <Process />
       <Testimonials />
       <Pricing />
-      <Inspiration />
       <FAQ />
       <Partners />
       <Awards />
