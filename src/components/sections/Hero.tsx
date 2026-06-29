@@ -1,91 +1,264 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { Phone, ChevronDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Floating gold dust particles animation in canvas
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let particles: Array<{
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      opacity: number;
+    }> = [];
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    };
+
+    const initParticles = () => {
+      particles = [];
+      const count = Math.min(Math.floor((canvas.width * canvas.height) / 15000), 80);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 2 + 0.5,
+          speedX: (Math.random() - 0.5) * 0.4,
+          speedY: -Math.random() * 0.6 - 0.2, // Upward drifting
+          opacity: Math.random() * 0.5 + 0.2,
+        });
+      }
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach((p) => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        // Reset if it goes off screen
+        if (p.y < -10) {
+          p.y = canvas.height + 10;
+          p.x = Math.random() * canvas.width;
+        }
+        if (p.x < -10 || p.x > canvas.width + 10) {
+          p.x = Math.random() * canvas.width;
+        }
+
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(201, 162, 39, ${p.opacity})`;
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', resizeCanvas);
+    };
+  }, []);
+
+  const keywords = [
+    'Aluminium',
+    'Glass',
+    'Kitchens',
+    'Ceilings',
+    'Cladding',
+    'Partitions',
+    'Gutters',
+    'Shop Fittings',
+  ];
+
+  // Helper for scroll action
+  const handleScrollDown = () => {
+    const nextSection = document.getElementById('our-projects') || document.querySelector('section');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-primary">
-      {/* Background Image with Zoom Effect */}
-      <div className="absolute inset-0 z-0">
-        <motion.img
-          initial={{ scale: 1.15, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.55 }}
-          transition={{ duration: 2.5, ease: 'easeOut' }}
-          src="/gallery-9.png"
-          alt="Premium aluminium doors and windows"
-          className="w-full h-full object-cover"
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#000000] via-[#080808] to-[#0e0e0e] text-white">
+      {/* 1. Canvas for Floating Gold Dust */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 z-0 pointer-events-none mix-blend-screen opacity-70"
+      />
+
+      {/* 2. Slow Drifting Outlined Glass/Aluminium Geometric Panels */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Panel 1 */}
+        <motion.div
+          animate={{
+            y: [-20, 20, -20],
+            rotate: [0, 8, 0],
+            opacity: [0.1, 0.15, 0.1],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute top-1/4 left-1/10 w-[250px] h-[400px] border border-[#C9A227]/30 rounded-xl"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/30 to-black/40" />
+
+        {/* Panel 2 */}
+        <motion.div
+          animate={{
+            y: [20, -20, 20],
+            rotate: [0, -6, 0],
+            opacity: [0.08, 0.12, 0.08],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute bottom-1/4 right-1/10 w-[300px] h-[300px] border border-[#C9A227]/20 rounded-full"
+        />
+
+        {/* Diagonal Line 1 */}
+        <motion.div
+          animate={{
+            opacity: [0.05, 0.1, 0.05],
+            x: [-10, 10, -10],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-10 right-1/4 w-[2px] h-[600px] bg-gradient-to-b from-transparent via-[#C9A227]/30 to-transparent rotate-45"
+        />
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        <motion.span
-          initial={{ opacity: 0, y: 15 }}
+      {/* 3. Brushed Aluminium Texture Overlay */}
+      <div
+        className="absolute inset-0 z-0 opacity-5 pointer-events-none mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* 4. Content */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        {/* Headline: D-AMN ALUMINIUM FABRICATION */}
+        <motion.h2
+          initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xs md:text-sm font-semibold tracking-[0.3em] text-accent uppercase block mb-4"
+          transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+          className="text-xs md:text-sm font-bold tracking-[0.4em] text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] via-[#F4D03F] to-[#C9A227] uppercase mb-4"
         >
           D-AMN Aluminium Fabrication
-        </motion.span>
-        
+        </motion.h2>
+
+        {/* Subhead: We Engineer Modern Spaces That Last */}
         <motion.h1
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.4 }}
-          className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold leading-tight mb-6"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.8, ease: 'easeOut' }}
+          className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-wide drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
         >
-          Open Up With Style —<br />
-          <span className="text-accent italic font-normal">Premium Aluminium & Glass Solutions</span>
+          We Engineer Modern <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">
+            Spaces That Last
+          </span>
         </motion.h1>
 
+        {/* Staggered Service Keywords */}
+        <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-3 mb-10 max-w-3xl">
+          {keywords.map((word, i) => (
+            <React.Fragment key={word}>
+              <motion.span
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 1.1 + i * 0.08,
+                  ease: 'easeOut',
+                }}
+                className="text-xs sm:text-sm font-semibold tracking-wider text-gray-300 hover:text-[#C9A227] transition-colors"
+              >
+                {word}
+              </motion.span>
+              {i < keywords.length - 1 && (
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.4 }}
+                  transition={{ delay: 1.2 + i * 0.08 }}
+                  className="text-[#C9A227] text-xs sm:text-sm"
+                >
+                  •
+                </motion.span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+
+        {/* Location & Guarantees */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed"
+          transition={{ duration: 0.7, delay: 1.8, ease: 'easeOut' }}
+          className="text-xs sm:text-sm md:text-base text-gray-400 font-light tracking-wide max-w-xl mb-12 border-t border-b border-white/10 py-3 text-balance"
         >
-          Premium aluminium doors, windows, kitchen cabinets, and tempered glass installations crafted with precision for modern homes and commercial spaces across Sri Lanka.
+          Dharga Town, Sri Lanka <span className="text-[#C9A227]">|</span> Free Site Visit <span className="text-[#C9A227]">|</span> Best Price Guaranteed
         </motion.p>
 
+        {/* CTA Button: BOOK NOW */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 2.2, ease: 'easeOut' }}
+          className="relative group"
         >
-          <Link
-            to="/portfolio"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-primary font-semibold rounded-lg shadow-lg shadow-accent/25 transition-all group"
+          {/* Subtle gold glow behind CTA */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#C9A227] to-[#F4D03F] rounded-full blur-md opacity-30 group-hover:opacity-60 transition-opacity duration-300" />
+          
+          <a
+            href="tel:+94773724849"
+            className="relative flex items-center justify-center px-10 py-5 bg-gradient-to-r from-[#C9A227] to-[#F4D03F] text-black font-bold text-sm tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(201,162,39,0.5)] transition-all duration-300 transform hover:scale-105 active:scale-95"
           >
-            View Our Work
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link
-            to="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-white/30 hover:border-white text-white font-semibold rounded-lg backdrop-blur-sm hover:bg-white/5 transition-all"
-          >
-            Book Free Site Visit
-          </Link>
+            BOOK NOW — +94 77 372 4849
+            <Phone className="w-4 h-4 ml-3 animate-pulse text-black" />
+          </a>
         </motion.div>
       </div>
 
-      {/* Floating Scroll Indicator */}
+      {/* 5. Floating Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5, y: [0, 10, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop', delay: 1.2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
-        onClick={() => {
-          const statsSection = document.querySelector('section.py-16');
-          if (statsSection) {
-            statsSection.scrollIntoView({ behavior: 'smooth' });
-          }
+        animate={{ opacity: 0.6, y: [0, 8, 0] }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          repeatType: 'loop',
+          delay: 2.6,
         }}
+        onClick={handleScrollDown}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group z-10"
       >
-        <span className="text-[9px] uppercase tracking-widest text-gray-400 mb-2">Scroll Down</span>
-        <div className="w-[1px] h-10 bg-white/30" />
+        <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-[#C9A227] transition-colors mb-2">
+          Scroll to explore
+        </span>
+        <ChevronDown className="w-5 h-5 text-gray-500 group-hover:text-[#C9A227] transition-colors" />
       </motion.div>
     </section>
   );

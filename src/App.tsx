@@ -16,19 +16,22 @@ function App() {
 
   return (
     <Router>
-      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/pricing" element={<PricingPage />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Layout>
+      {isLoading ? (
+        <LoadingScreen onComplete={() => setIsLoading(false)} />
+      ) : (
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+      )}
     </Router>
   );
 }

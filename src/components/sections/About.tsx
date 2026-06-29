@@ -59,11 +59,11 @@ export const About: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-accent uppercase block mb-3">About D-AMN</span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-6 leading-tight">
-              Premium Aluminium & Glass Solutions for Modern Living.
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-6 leading-tight text-balance">
+              Premium Aluminium & Interior Solutions — Designed, Fabricated, and Installed to Perfection.
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-              D-AMN Aluminium Fabrication specializes in crafting premium aluminium doors, windows, kitchen cabinets, and tempered glass installations. Based in Dharga Town, we serve residential and commercial clients across Sri Lanka with customizable, durable, and stylish architectural solutions.
+              D-AMN Aluminium Fabrication — Dharga Town's premier interior and aluminium solutions studio. Led by Nowful, an Interior Engineering undergraduate, we craft modern, durable, and customizable spaces across Sri Lanka. From sleek kitchen cabinets to tempered glass masterpieces, every project reflects our commitment to quality, innovation, and timeless design.
             </p>
 
             {/* Micro Highlights */}

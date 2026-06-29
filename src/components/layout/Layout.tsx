@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Facebook, Phone } from 'lucide-react';
+import { Menu, X, Sun, Moon, Facebook, Phone, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LayoutProps {
@@ -183,11 +183,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <MapPin className="w-5 h-5" />
               </a>
             </div>
-          </div>
-
-          {/* Hashtags */}
-          <div className="mb-12 max-w-2xl text-xs sm:text-sm text-gray-500 leading-relaxed text-balance">
-            #kaluthara #elpitiya #ambalangoda #aluthgama #mathugama #beruwela #uragasmanhandiya #karandeniya #horana #dodangoda #baduraliya #agalawatta #welipenna #bentota
           </div>
 
           <div className="border-t border-white/5 pt-8 text-xs text-gray-600 w-full">

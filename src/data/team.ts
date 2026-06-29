@@ -9,9 +9,9 @@ export interface TeamMember {
 export const teamMembers: TeamMember[] = [
   {
     id: 'member-1',
-    name: 'Danuka Alwis',
+    name: 'Abdul Maajith',
     role: 'Founder & Managing Director',
-    bio: 'With extensive experience in aluminium fabrication across Sri Lanka, Danuka leads D-AMN with a vision to deliver premium, customizable architectural solutions to every client.',
+    bio: 'With extensive experience in aluminium fabrication across Sri Lanka, Abdul leads D-AMN with a vision to deliver premium, customizable architectural solutions to every client.',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80'
   },
   {

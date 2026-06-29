@@ -82,36 +82,6 @@ export const PortfolioPage: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          {/* Featured Projects */}
-          <div className="mt-24">
-            <SectionHeading title="Featured Projects" subtitle="Case Studies" />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.filter(p => p.featured).map(project => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  onClick={() => setSelectedProject(project.id)}
-                  className="group bg-warm-gray dark:bg-dark-card rounded-2xl overflow-hidden cursor-pointer"
-                >
-                  <div className="relative h-56">
-                    <img src={project.images[0]} alt={project.name} className="w-full h-full object-cover" loading="lazy" />
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 bg-accent text-white text-xs rounded-full">{project.category}</span>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-serif font-bold text-primary dark:text-white mb-2">{project.name}</h3>
-                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 space-x-4">
-                      <span className="flex items-center"><MapPin className="w-4 h-4 mr-1" />{project.location}</span>
-                      <span className="flex items-center"><DollarSign className="w-4 h-4 mr-1" />{project.budget}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

@@ -169,23 +169,23 @@ export const ProjectGallery: React.FC = () => {
               <motion.div
                 key={photo.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, delay: Math.min(index * 0.03, 0.3) }}
+                transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.4) }}
                 onClick={() => openLightbox(index)}
-                className="group relative overflow-hidden rounded-xl cursor-pointer break-inside-avoid shadow-md hover:shadow-xl transition-shadow duration-300"
+                className="group relative overflow-hidden rounded-xl cursor-pointer break-inside-avoid shadow-lg hover:shadow-[0_0_25px_rgba(201,162,39,0.3)] transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-[#C9A227]/30"
               >
                 {/* Image with lazy loading */}
                 <img
                   src={photo.src}
                   alt={photo.title}
                   loading="lazy"
-                  className="w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-all duration-700 ease-out"
                 />
 
                 {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* Service tag (top-right) */}
                 <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-[-4px] group-hover:translate-y-0">
