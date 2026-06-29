@@ -1,68 +1,171 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { projects } from '../../data/projects';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { projectPhotos } from '../../data/projectPhotos';
 import { SectionHeading } from '../ui/SectionHeading';
 import { MapPin, ArrowRight } from 'lucide-react';
 
-export const Portfolio: React.FC = () => {
-  const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
+interface PortfolioProps {
+  onSelectLocation?: (location: string) => void;
+  activeLocation?: string;
+}
+
+const locationsData = [
+  { name: 'Ambalangoda', count: 6, services: ['Kitchen'], region: 'Southern' },
+  { name: 'Benthota', count: 5, services: ['Kitchen', 'Glass', 'Doors'], region: 'Southern' },
+  { name: 'Kaluthara', count: 6, services: ['Kitchen', 'Ceiling'], region: 'Western' },
+  { name: 'Uragasmanhandiya', count: 5, services: ['Kitchen'], region: 'Southern' },
+  { name: 'Dehiwela', count: 4, services: ['Kitchen'], region: 'Western' },
+  { name: 'Horana', count: 4, services: ['Kitchen', 'Partition'], region: 'Western' },
+  { name: 'Dodangoda', count: 4, services: ['Kitchen', 'Interior'], region: 'Western' },
+  { name: 'Pahekanuwa', count: 4, services: ['Kitchen', 'Interior'], region: 'Southern' },
+  { name: 'Kelaniya', count: 3, services: ['Kitchen', 'Interior'], region: 'Western' },
+  { name: 'Kande Vihara', count: 3, services: ['Kitchen', 'Interior'], region: 'Southern' },
+  { name: 'Elpitiya', count: null, services: [], region: 'Southern' },
+  { name: 'Aluthgama', count: null, services: [], region: 'Western' },
+  { name: 'Mathugama', count: null, services: [], region: 'Western' },
+  { name: 'Beruwela', count: null, services: [], region: 'Western' },
+  { name: 'Karandeniya', count: null, services: [], region: 'Southern' },
+  { name: 'Baduraliya', count: null, services: [], region: 'Western' },
+  { name: 'Agalawatta', count: null, services: [], region: 'Western' },
+  { name: 'Welipenna', count: null, services: [], region: 'Western' }
+];
+
+export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLocation }) => {
+  const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
+
+  const handleLocationClick = (locName: string) => {
+    if (onSelectLocation) {
+      onSelectLocation(locName);
+      // Wait slightly for state update, then scroll
+      setTimeout(() => {
+        const element = document.getElementById('our-projects');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 50);
+    }
+  };
 
   return (
-    <section className="py-20 md:py-32 bg-white dark:bg-dark-bg transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="Curated Projects"
-          subtitle="Featured Work"
-        />
+    <section className="py-20 md:py-32 bg-[#000000] text-white border-t border-b border-white/5 relative overflow-hidden">
+      {/* Decorative Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#C9A227]/5 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {featuredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer bg-warm-gray dark:bg-dark-card rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-white/5"
-            >
-              <Link to="/portfolio" className="block">
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={project.images[0]}
-                    alt={project.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/25 to-transparent opacity-60 group-hover:opacity-85 transition-opacity" />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-accent text-primary text-xs font-semibold rounded-full uppercase tracking-wider">
-                      {project.category}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <SectionHeading
+            title="Our Projects Across Sri Lanka"
+            subtitle="From Dharga Town to every corner of the island — quality you can see"
+          />
+        </div>
+
+        {/* Badge Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5 mb-16 max-w-6xl mx-auto">
+          {locationsData.map((loc, index) => {
+            const hasProjects = loc.count !== null;
+            const isActive = activeLocation === loc.name;
+            
+            // Dynamically query a preview image from projectPhotos
+            const previewPhoto = hasProjects 
+              ? projectPhotos.find(p => p.location.toLowerCase() === loc.name.toLowerCase())?.src 
+              : null;
+
+            return (
+              <div key={loc.name} className="relative">
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  onMouseEnter={() => setHoveredLocation(loc.name)}
+                  onMouseLeave={() => setHoveredLocation(null)}
+                  onClick={() => handleLocationClick(loc.name)}
+                  className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 text-left ${
+                    isActive
+                      ? 'border-[#C9A227] bg-[#C9A227]/10 text-white shadow-[0_0_15px_rgba(201,162,39,0.2)]'
+                      : 'border-white/5 bg-[#0f0f0f] text-gray-300 hover:border-[#C9A227]/50 hover:bg-[#141414] hover:text-white hover:shadow-[0_0_12px_rgba(201,162,39,0.1)] hover:-translate-y-1'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <MapPin className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-[#C9A227]' : 'text-gray-500'}`} />
+                    <span className="text-sm font-semibold truncate">{loc.name}</span>
+                  </div>
+
+                  {hasProjects ? (
+                    <div className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-[#C9A227] text-black text-xs font-bold shadow-md shadow-[#C9A227]/20">
+                      {loc.count}
+                    </div>
+                  ) : (
+                    <span className="text-[9px] uppercase tracking-wider text-gray-600 font-medium">
+                      Area
                     </span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-serif font-bold text-primary dark:text-white mb-2 group-hover:text-accent transition-colors">
-                    {project.name}
-                  </h3>
-                  <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                    <MapPin className="w-4 h-4 mr-1 text-accent" />
-                    {project.location}
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                  )}
+                </motion.button>
+
+                {/* Floating Preview Tooltip */}
+                <AnimatePresence>
+                  {hoveredLocation === loc.name && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-52 bg-[#121212] border border-[#C9A227]/30 rounded-2xl p-3 shadow-2xl z-50 pointer-events-none"
+                    >
+                      {previewPhoto ? (
+                        <img
+                          src={previewPhoto}
+                          alt={`${loc.name} project preview`}
+                          className="w-full h-28 object-cover rounded-xl mb-2.5"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-full h-16 bg-[#1a1a1a] rounded-xl flex items-center justify-center mb-2.5 border border-white/5">
+                          <MapPin className="w-6 h-6 text-gray-600" />
+                        </div>
+                      )}
+                      
+                      <div className="space-y-1">
+                        <div className="flex justify-between items-center">
+                          <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Region</span>
+                          <span className="text-[10px] text-white font-medium">{loc.region}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Services</span>
+                          <span className="text-[10px] text-[#C9A227] font-semibold truncate max-w-[120px]">
+                            {loc.services.length > 0 ? loc.services.join(', ') : 'All Services'}
+                          </span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="text-center">
-          <Link
-            to="/portfolio"
-            className="inline-flex items-center px-8 py-4 bg-accent hover:bg-accent-dark text-primary font-semibold rounded-lg shadow-lg shadow-accent/25 transition-colors group"
+        {/* View All Button */}
+        <div className="text-center mb-16">
+          <button
+            onClick={() => handleLocationClick('All Locations')}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#C9A227] hover:bg-white text-black hover:text-black font-bold rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(201,162,39,0.2)] group"
           >
-            View Full Portfolio
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Link>
+            View All 40+ Projects
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
+
+        {/* Service Area Hashtags */}
+        <div className="max-w-3xl mx-auto text-center border-t border-white/5 pt-10">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#C9A227] font-bold mb-4">Coverage Areas</p>
+          <p className="text-xs text-[#C9A227]/60 leading-relaxed max-w-2xl mx-auto">
+            #kaluthara #elpitiya #ambalangoda #aluthgama #mathugama #beruwela #uragasmanhandiya #karandeniya #horana #dodangoda #baduraliya #agalawatta #welipenna #bentota
+          </p>
+        </div>
+
       </div>
     </section>
   );

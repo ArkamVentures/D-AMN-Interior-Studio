@@ -8,8 +8,18 @@ import { MapPin, Filter, Phone, ChevronDown, ArrowRight } from 'lucide-react';
 const INITIAL_COUNT = 12;
 const LOAD_MORE_COUNT = 12;
 
-export const ProjectGallery: React.FC = () => {
-  const [activeLocation, setActiveLocation] = useState('All Locations');
+interface ProjectGalleryProps {
+  activeLocation?: string;
+  setActiveLocation?: (loc: string) => void;
+}
+
+export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
+  activeLocation: propActiveLocation,
+  setActiveLocation: propSetActiveLocation,
+}) => {
+  const [internalLocation, setInternalLocation] = useState('All Locations');
+  const activeLocation = propActiveLocation !== undefined ? propActiveLocation : internalLocation;
+  const setActiveLocation = propSetActiveLocation !== undefined ? propSetActiveLocation : setInternalLocation;
   const [activeService, setActiveService] = useState('All');
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
   const [lightboxOpen, setLightboxOpen] = useState(false);

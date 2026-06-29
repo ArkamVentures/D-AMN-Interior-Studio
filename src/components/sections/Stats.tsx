@@ -10,7 +10,7 @@ export const Stats: React.FC = () => {
           <AnimatedCounter end={10} suffix="+" label="Years Experience" />
           <AnimatedCounter end={500} suffix="+" label="Projects Completed" />
           <AnimatedCounter end={100} suffix="%" label="Client Satisfaction" />
-          <AnimatedCounter end={3} suffix="" label="Core Services" />
+          <AnimatedCounter end={9} suffix="" label="Core Services" />
         </div>
       </div>
     </section>
