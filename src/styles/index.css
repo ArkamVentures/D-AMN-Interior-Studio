@@ -45,3 +45,44 @@
     overflow: hidden;
   }
 }
+
+/* ─── Loading Screen Shimmer Effect ───────────────────────── */
+.loading-shimmer {
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(201, 162, 39, 0.15) 45%,
+    rgba(201, 162, 39, 0.3) 50%,
+    rgba(201, 162, 39, 0.15) 55%,
+    transparent 70%
+  );
+  background-size: 300% 100%;
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ─── Gallery Image Hover Glow ────────────────────────────── */
+.gallery-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    circle at center,
+    rgba(201, 162, 39, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+.gallery-card:hover::after {
+  opacity: 1;
+}

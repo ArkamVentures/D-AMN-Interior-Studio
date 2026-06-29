@@ -3,6 +3,7 @@ import { Hero } from '../components/sections/Hero';
 import { About } from '../components/sections/About';
 import { Services } from '../components/sections/Services';
 import { Portfolio } from '../components/sections/Portfolio';
+import { ProjectGallery } from '../components/sections/ProjectGallery';
 import { Process } from '../components/sections/Process';
 import { Stats } from '../components/sections/Stats';
 import { Testimonials } from '../components/sections/Testimonials';
@@ -21,6 +22,7 @@ export const Home: React.FC = () => {
       <About />
       <Services />
       <Portfolio />
+      <ProjectGallery />
       <Process />
       <Testimonials />
       <Pricing />

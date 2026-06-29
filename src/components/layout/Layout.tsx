@@ -47,9 +47,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
-              <span className="font-serif text-xl font-bold tracking-[0.2em] text-primary dark:text-white">
+            <Link to="/" className="flex flex-col justify-center">
+              <span className="font-serif text-2xl sm:text-3xl font-bold tracking-[0.2em] text-primary dark:text-white leading-tight">
                 D-AMN<span className="text-accent">.</span>
+              </span>
+              <span className="text-[7px] sm:text-[8px] uppercase tracking-[0.35em] text-gray-400 dark:text-gray-500 font-light -mt-0.5">
+                Aluminium & Glass
               </span>
             </Link>
 
@@ -140,8 +143,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             {/* Brand */}
             <div>
-              <span className="font-serif text-2xl font-bold tracking-[0.2em] text-white block mb-4">
+              <span className="font-serif text-3xl font-bold tracking-[0.2em] text-white block mb-1">
                 D-AMN<span className="text-accent">.</span>
+              </span>
+              <span className="text-[8px] uppercase tracking-[0.35em] text-gray-500 font-light block mb-4">
+                Aluminium & Glass Fabrication
               </span>
               <p className="text-sm text-gray-400 leading-relaxed mb-6">
                 D-AMN Aluminium Fabrication specializes in crafting premium aluminium doors, windows, kitchen cabinets, and tempered glass installations. Based in Dharga Town, Sri Lanka.
