@@ -22,6 +22,14 @@ export const ContactPage: React.FC = () => {
           <p className="text-sm text-gray-400 mt-4 uppercase tracking-[0.3em]">
             Email us at <a href="mailto:damnaluminiumfabrication@gmail.com" className="text-accent hover:text-white">damnaluminiumfabrication@gmail.com</a>
           </p>
+          <div className="mt-8 flex flex-col sm:flex-row sm:justify-center sm:items-center sm:space-x-6 space-y-4 sm:space-y-0 text-sm text-gray-300">
+            <a href="https://wa.me/94773724849" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-gray-100 hover:border-[#C9A227] hover:text-white transition-all duration-300">
+              WhatsApp: +94 77 372 4849
+            </a>
+            <a href="tel:+94773724849" className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-gray-100 hover:border-[#C9A227] hover:text-white transition-all duration-300">
+              Call Now: +94 77 372 4849
+            </a>
+          </div>
         </div>
       </section>
 

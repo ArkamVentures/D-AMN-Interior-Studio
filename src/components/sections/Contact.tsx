@@ -76,6 +76,28 @@ export const Contact: React.FC = () => {
                 </div>
               </a>
 
+              {/* WhatsApp */}
+              <a href="https://wa.me/94773724849" target="_blank" rel="noopener noreferrer" className="group flex items-center space-x-4 p-3 rounded-xl hover:bg-white/5 transition-colors duration-300">
+                <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(201,162,39,0.5)] transition-all duration-300 border border-white/10">
+                  <Phone className="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-primary dark:text-white mb-1 group-hover:text-accent transition-colors">WhatsApp</h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">+94 77 372 4849</p>
+                </div>
+              </a>
+
+              {/* Call */}
+              <a href="tel:+94773724849" className="group flex items-center space-x-4 p-3 rounded-xl hover:bg-white/5 transition-colors duration-300">
+                <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(201,162,39,0.5)] transition-all duration-300 border border-white/10">
+                  <Phone className="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-primary dark:text-white mb-1 group-hover:text-accent transition-colors">Call Us</h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">+94 77 372 4849</p>
+                </div>
+              </a>
+
               {/* Business Hours (Keep as non-clickable info but styled consistently) */}
               <div className="flex items-center space-x-4 p-3 rounded-xl">
                 <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0 border border-white/10">
