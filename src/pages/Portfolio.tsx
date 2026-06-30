@@ -34,16 +34,16 @@ export const PortfolioPage: React.FC = () => {
     <div className="pt-20">
       <section className="py-24 bg-primary dark:bg-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4">Portfolio</h1>
+          <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4">Fabrication Portfolio</h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Explore our curated collection of transformative interior designs
+            Explore our best aluminium fabrication and custom industrial projects.
           </p>
         </div>
       </section>
 
       <section className="py-20 md:py-32 bg-white dark:bg-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading title="Gallery" subtitle="Our Work" />
+          <SectionHeading title="Project Gallery" subtitle="Recent Fabrication Work" />
 
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {categories.map(cat => (

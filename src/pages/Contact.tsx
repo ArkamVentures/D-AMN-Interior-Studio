@@ -15,9 +15,12 @@ export const ContactPage: React.FC = () => {
     <div className="pt-20">
       <section className="py-24 bg-primary dark:bg-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4">Contact Us</h1>
+          <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4">Request a Quote</h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Let's discuss your next project
+            Fast, professional aluminium fabrication quotes with expert support every step of the way.
+          </p>
+          <p className="text-sm text-gray-400 mt-4 uppercase tracking-[0.3em]">
+            Email us at <a href="mailto:damnaluminiumfabrication@gmail.com" className="text-accent hover:text-white">damnaluminiumfabrication@gmail.com</a>
           </p>
         </div>
       </section>
@@ -30,23 +33,23 @@ export const ContactPage: React.FC = () => {
               <div className="space-y-6 mb-8">
                 <div className="flex items-start space-x-4">
                   <MapPin className="w-6 h-6 text-accent mt-1" />
-                  <div><h4 className="font-semibold text-primary dark:text-white">Address</h4><p className="text-gray-600 dark:text-gray-400 text-sm">123 Design Avenue, Suite 500, New York, NY 10001</p></div>
+                  <div><h4 className="font-semibold text-primary dark:text-white">Location</h4><p className="text-gray-600 dark:text-gray-400 text-sm">Dharga Town, Sri Lanka</p></div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Phone className="w-6 h-6 text-accent mt-1" />
-                  <div><h4 className="font-semibold text-primary dark:text-white">Phone</h4><p className="text-gray-600 dark:text-gray-400 text-sm">+1 (212) 555-1234</p></div>
+                  <div><h4 className="font-semibold text-primary dark:text-white">Phone</h4><p className="text-gray-600 dark:text-gray-400 text-sm">+94 77 372 4849</p></div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Mail className="w-6 h-6 text-accent mt-1" />
-                  <div><h4 className="font-semibold text-primary dark:text-white">Email</h4><p className="text-gray-600 dark:text-gray-400 text-sm">hello@celineinterior.com</p></div>
+                  <div><h4 className="font-semibold text-primary dark:text-white">Email</h4><p className="text-gray-600 dark:text-gray-400 text-sm">damnaluminiumfabrication@gmail.com</p></div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Clock className="w-6 h-6 text-accent mt-1" />
-                  <div><h4 className="font-semibold text-primary dark:text-white">Hours</h4><p className="text-gray-600 dark:text-gray-400 text-sm">Mon-Fri: 9AM-6PM, Sat: 10AM-4PM</p></div>
+                  <div><h4 className="font-semibold text-primary dark:text-white">Hours</h4><p className="text-gray-600 dark:text-gray-400 text-sm">Mon-Fri: 8AM-6PM</p></div>
                 </div>
               </div>
-              <a href="https://wa.me/12125551234" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
-                <MessageCircle className="w-5 h-5 mr-2" />Chat on WhatsApp
+              <a href="https://wa.me/94773724849?text=Hi%2C%20I'm%20interested%20in%20aluminium%20fabrication%20services" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-[#25D366] text-white font-semibold rounded-lg hover:bg-[#20ba5a] transition-all hover:shadow-[0_0_15px_rgba(37,211,102,0.4)]">
+                <MessageCircle className="w-5 h-5 mr-2" />Chat with us
               </a>
             </motion.div>
 
@@ -70,12 +73,28 @@ export const ContactPage: React.FC = () => {
                         <input type="email" required className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent dark:text-white focus:ring-2 focus:ring-accent outline-none" placeholder="your@email.com" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
                       </div>
                     </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                      <div>
+                        <label className="block text-sm font-medium text-primary dark:text-white mb-2">Project Type</label>
+                        <select required className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent dark:text-white focus:ring-2 focus:ring-accent outline-none" value={formData.service} onChange={(e) => setFormData({...formData, service: e.target.value})}>
+                          <option value="">Select service</option>
+                          <option value="Aluminium Fabrication">Aluminium Fabrication</option>
+                          <option value="Custom Design">Custom Design</option>
+                          <option value="Industrial Solution">Industrial Solution</option>
+                          <option value="Project Consultation">Project Consultation</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-primary dark:text-white mb-2">Budget</label>
+                        <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent dark:text-white focus:ring-2 focus:ring-accent outline-none" placeholder="Estimated budget" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} />
+                      </div>
+                    </div>
                     <div className="mb-6">
-                      <label className="block text-sm font-medium text-primary dark:text-white mb-2">Message</label>
+                      <label className="block text-sm font-medium text-primary dark:text-white mb-2">Project Details</label>
                       <textarea rows={5} required className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent dark:text-white focus:ring-2 focus:ring-accent outline-none resize-none" placeholder="Tell us about your project..." value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} />
                     </div>
                     <button type="submit" className="w-full flex items-center justify-center px-6 py-4 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark">
-                      <Send className="w-4 h-4 mr-2" />Send Message
+                      <Send className="w-4 h-4 mr-2" />Request Quote
                     </button>
                   </>
                 )}
