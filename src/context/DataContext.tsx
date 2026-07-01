@@ -447,7 +447,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [contact, setContactState] = useState(() => getStoredValue('contact', initialContact));
   const [submissionsList, setSubmissionsListState] = useState(() => getStoredValue<FormSubmission[]>('submissionsList', []));
   const [globalSettings, setGlobalSettingsState] = useState(() => getStoredValue('globalSettings', initialGlobalSettings));
-  const [dashboardStatsOverrides, setDashboardStatsOverridesState] = useState(() => getStoredValue('dashboardStatsOverrides', { totalProjects: '', blogPosts: '', pendingEnquiries: '', activeServices: '' }));
+  const [dashboardStatsOverrides, setDashboardStatsOverridesState] = useState(() => getStoredValue('dashboardStatsOverrides', { totalProjects: '100+', blogPosts: '', pendingEnquiries: '', activeServices: '' }));
 
   // Sync to LocalStorage on state changes
   useEffect(() => {
@@ -556,7 +556,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setContactState(initialContact);
     setSubmissionsListState([]);
     setGlobalSettingsState(initialGlobalSettings);
-    setDashboardStatsOverridesState({ totalProjects: '', blogPosts: '', pendingEnquiries: '', activeServices: '' });
+    setDashboardStatsOverridesState({ totalProjects: '100+', blogPosts: '', pendingEnquiries: '', activeServices: '' });
     localStorage.clear();
   };
 

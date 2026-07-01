@@ -19,6 +19,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
+    // Force HMR reload
     <DataProvider>
       <Router>
         {isLoading ? (

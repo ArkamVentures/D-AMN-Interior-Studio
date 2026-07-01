@@ -10,11 +10,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-f85df048.js"></script>
+    <script type="module" crossorigin src="/assets/index-66f48598.js"></script>
     <link rel="stylesheet" href="/assets/index-86ebe1f7.css">
   </head>
   <body class="bg-warm-gray text-primary dark:bg-dark-bg dark:text-gray-100 transition-colors duration-300">
     <div id="root"></div>
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        document.body.innerHTML += '<div style="color:red; background:white; position:fixed; z-index:999999; top:0; left:0; padding:20px; font-family:monospace; border:2px solid red; font-size:16px;"><h1>Runtime Error</h1><p>' + message + '</p><pre>' + (error && error.stack ? error.stack : '') + '</pre></div>';
+      };
+      window.addEventListener('unhandledrejection', function(event) {
+        document.body.innerHTML += '<div style="color:red; background:white; position:fixed; z-index:999999; top:0; left:0; padding:20px; font-family:monospace; border:2px solid red; font-size:16px;"><h1>Unhandled Promise Rejection</h1><p>' + event.reason + '</p><pre>' + (event.reason && event.reason.stack ? event.reason.stack : '') + '</pre></div>';
+      });
+    </script>
     
   </body>
 </html>

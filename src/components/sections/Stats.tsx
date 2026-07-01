@@ -8,7 +8,7 @@ export const Stats: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           <AnimatedCounter end={10} suffix="+" label="Years Experience" />
-          <AnimatedCounter end={500} suffix="+" label="Projects Completed" />
+          <AnimatedCounter end={100} suffix="+" label="Projects Completed" />
           <AnimatedCounter end={100} suffix="%" label="Client Satisfaction" />
           <AnimatedCounter end={9} suffix="" label="Core Services" />
         </div>

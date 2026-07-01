@@ -12,7 +12,7 @@
   }
 
   ::selection {
-    @apply bg-accent/30 text-primary;
+    @apply bg-accent text-primary;
   }
 }
 
