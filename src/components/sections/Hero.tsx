@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, ChevronDown } from 'lucide-react';
+import { useData } from '../../context/DataContext';
 
 export const Hero: React.FC = () => {
+  const { heroTitle, heroKeywords, contact, globalSettings } = useData();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Floating gold dust particles animation in canvas
@@ -78,17 +80,6 @@ export const Hero: React.FC = () => {
       window.removeEventListener('resize', resizeCanvas);
     };
   }, []);
-
-  const keywords = [
-    'Aluminium',
-    'Glass',
-    'Kitchens',
-    'Ceilings',
-    'Cladding',
-    'Partitions',
-    'Gutters',
-    'Shop Fittings',
-  ];
 
   // Helper for scroll action
   const handleScrollDown = () => {
@@ -166,7 +157,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
           className="text-xs md:text-sm font-bold tracking-[0.4em] text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] via-[#F4D03F] to-[#C9A227] uppercase mb-4"
         >
-          D-AMN Aluminium Fabrication
+          {globalSettings.logoText} Aluminium Fabrication
         </motion.h2>
 
         {/* Subhead: We Engineer Modern Spaces That Last */}
@@ -176,15 +167,16 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.9, delay: 0.8, ease: 'easeOut' }}
           className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-wide drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
         >
-          We Engineer Modern <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">
-            Spaces That Last
-          </span>
+          {heroTitle.includes('<br />') ? (
+            <span dangerouslySetInnerHTML={{ __html: heroTitle }} />
+          ) : (
+            heroTitle
+          )}
         </motion.h1>
 
         {/* Staggered Service Keywords */}
         <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-3 mb-10 max-w-3xl">
-          {keywords.map((word, i) => (
+          {heroKeywords.map((word, i) => (
             <React.Fragment key={word}>
               <motion.span
                 initial={{ opacity: 0, y: 10 }}
@@ -198,7 +190,7 @@ export const Hero: React.FC = () => {
               >
                 {word}
               </motion.span>
-              {i < keywords.length - 1 && (
+              {i < heroKeywords.length - 1 && (
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.4 }}
@@ -233,10 +225,10 @@ export const Hero: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-[#C9A227] to-[#F4D03F] rounded-full blur-md opacity-30 group-hover:opacity-60 transition-opacity duration-300" />
           
           <a
-            href="tel:+94773724849"
+            href={`tel:${contact.phone.replace(/\s+/g, '')}`}
             className="relative flex items-center justify-center px-10 py-5 bg-gradient-to-r from-[#C9A227] to-[#F4D03F] text-black font-bold text-sm tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(201,162,39,0.5)] transition-all duration-300 transform hover:scale-105 active:scale-95"
           >
-            BOOK NOW — +94 77 372 4849
+            BOOK NOW — {contact.phone}
             <Phone className="w-4 h-4 ml-3 animate-pulse text-black" />
           </a>
         </motion.div>

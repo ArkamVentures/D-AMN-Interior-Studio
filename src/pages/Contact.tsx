@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, MessageCircle, CheckCircle, Send } from 'lucide-react';
+import { useData } from '../context/DataContext';
 
 export const ContactPage: React.FC = () => {
+  const { contact, globalSettings, addSubmission } = useData();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '', message: '' });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const formattedMessage = `[Project Type: ${formData.service}] [Budget: ${formData.phone}] - ${formData.message}`;
+    addSubmission({
+      name: formData.name,
+      email: formData.email,
+      service: formData.service,
+      phone: formData.phone,
+      message: formattedMessage
+    });
     setSubmitted(true);
   };
 
@@ -20,14 +30,14 @@ export const ContactPage: React.FC = () => {
             Fast, professional aluminium fabrication quotes with expert support every step of the way.
           </p>
           <p className="text-sm text-gray-400 mt-4 uppercase tracking-[0.3em]">
-            Email us at <a href="mailto:damnaluminiumfabrication@gmail.com" className="text-accent hover:text-white">damnaluminiumfabrication@gmail.com</a>
+            Email us at <a href={`mailto:${contact.email}`} className="text-accent hover:text-white">{contact.email}</a>
           </p>
           <div className="mt-8 flex flex-col sm:flex-row sm:justify-center sm:items-center sm:space-x-6 space-y-4 sm:space-y-0 text-sm text-gray-300">
-            <a href="https://wa.me/94773724849" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-gray-100 hover:border-[#C9A227] hover:text-white transition-all duration-300">
-              WhatsApp: +94 77 372 4849
+            <a href={globalSettings.whatsappLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-gray-100 hover:border-[#C9A227] hover:text-white transition-all duration-300">
+              WhatsApp: {contact.whatsapp}
             </a>
-            <a href="tel:+94773724849" className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-gray-100 hover:border-[#C9A227] hover:text-white transition-all duration-300">
-              Call Now: +94 77 372 4849
+            <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-gray-100 hover:border-[#C9A227] hover:text-white transition-all duration-300">
+              Call Now: {contact.phone}
             </a>
           </div>
         </div>
@@ -41,22 +51,22 @@ export const ContactPage: React.FC = () => {
               <div className="space-y-6 mb-8">
                 <div className="flex items-start space-x-4">
                   <MapPin className="w-6 h-6 text-accent mt-1" />
-                  <div><h4 className="font-semibold text-primary dark:text-white">Location</h4><p className="text-gray-600 dark:text-gray-400 text-sm">Dharga Town, Sri Lanka</p></div>
+                  <div><h4 className="font-semibold text-primary dark:text-white">Location</h4><p className="text-gray-600 dark:text-gray-400 text-sm">{contact.address}</p></div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Phone className="w-6 h-6 text-accent mt-1" />
-                  <div><h4 className="font-semibold text-primary dark:text-white">Phone</h4><p className="text-gray-600 dark:text-gray-400 text-sm">+94 77 372 4849</p></div>
+                  <div><h4 className="font-semibold text-primary dark:text-white">Phone</h4><p className="text-gray-600 dark:text-gray-400 text-sm">{contact.phone}</p></div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Mail className="w-6 h-6 text-accent mt-1" />
-                  <div><h4 className="font-semibold text-primary dark:text-white">Email</h4><p className="text-gray-600 dark:text-gray-400 text-sm">damnaluminiumfabrication@gmail.com</p></div>
+                  <div><h4 className="font-semibold text-primary dark:text-white">Email</h4><p className="text-gray-600 dark:text-gray-400 text-sm">{contact.email}</p></div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Clock className="w-6 h-6 text-accent mt-1" />
-                  <div><h4 className="font-semibold text-primary dark:text-white">Hours</h4><p className="text-gray-600 dark:text-gray-400 text-sm">Mon-Fri: 8AM-6PM</p></div>
+                  <div><h4 className="font-semibold text-primary dark:text-white">Hours</h4><p className="text-gray-600 dark:text-gray-400 text-sm">{contact.hours}</p></div>
                 </div>
               </div>
-              <a href="https://wa.me/94773724849?text=Hi%2C%20I'm%20interested%20in%20aluminium%20fabrication%20services" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-[#25D366] text-white font-semibold rounded-lg hover:bg-[#20ba5a] transition-all hover:shadow-[0_0_15px_rgba(37,211,102,0.4)]">
+              <a href={globalSettings.whatsappLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-[#25D366] text-white font-semibold rounded-lg hover:bg-[#20ba5a] transition-all hover:shadow-[0_0_15px_rgba(37,211,102,0.4)]">
                 <MessageCircle className="w-5 h-5 mr-2" />Chat with us
               </a>
             </motion.div>

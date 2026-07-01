@@ -11,28 +11,37 @@ import { Blog } from './pages/Blog';
 import { ContactPage } from './pages/Contact';
 import { NotFound } from './pages/NotFound';
 
+import { DataProvider } from './context/DataContext';
+import { Login } from './pages/admin/Login';
+import { Dashboard } from './pages/admin/Dashboard';
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <Router>
-      {isLoading ? (
-        <LoadingScreen onComplete={() => setIsLoading(false)} />
-      ) : (
-        <Layout>
+    <DataProvider>
+      <Router>
+        {isLoading ? (
+          <LoadingScreen onComplete={() => setIsLoading(false)} />
+        ) : (
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/portfolio" element={<PortfolioPage />} />
-            <Route path="/pricing" element={<PricingPage />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<NotFound />} />
+            {/* Admin Routes (Without Layout header/footer) */}
+            <Route path="/admin/login" element={<Login />} />
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+
+            {/* Public Routes (With Layout) */}
+            <Route path="/" element={<Layout><Home /></Layout>} />
+            <Route path="/about" element={<Layout><About /></Layout>} />
+            <Route path="/services" element={<Layout><ServicesPage /></Layout>} />
+            <Route path="/portfolio" element={<Layout><PortfolioPage /></Layout>} />
+            <Route path="/pricing" element={<Layout><PricingPage /></Layout>} />
+            <Route path="/blog" element={<Layout><Blog /></Layout>} />
+            <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
+            <Route path="*" element={<Layout><NotFound /></Layout>} />
           </Routes>
-        </Layout>
-      )}
-    </Router>
+        )}
+      </Router>
+    </DataProvider>
   );
 }
 

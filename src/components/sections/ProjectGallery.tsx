@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projectPhotos, locations, serviceTypes } from '../../data/projectPhotos';
+import { MapPin, ChevronDown, Filter, ArrowRight, Phone } from 'lucide-react';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Lightbox } from '../ui/Lightbox';
-import { MapPin, Filter, Phone, ChevronDown, ArrowRight } from 'lucide-react';
+import { useData } from '../../context/DataContext';
 
 const INITIAL_COUNT = 12;
 const LOAD_MORE_COUNT = 12;
@@ -17,6 +17,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
   activeLocation: propActiveLocation,
   setActiveLocation: propSetActiveLocation,
 }) => {
+  const { projectPhotosList } = useData();
   const [internalLocation, setInternalLocation] = useState('All Locations');
   const activeLocation = propActiveLocation !== undefined ? propActiveLocation : internalLocation;
   const setActiveLocation = propSetActiveLocation !== undefined ? propSetActiveLocation : setInternalLocation;
@@ -26,16 +27,27 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
 
+  // Compute unique locations and services dynamically
+  const locations = useMemo(() => {
+    const locs = new Set(projectPhotosList.map(p => p.location));
+    return ['All Locations', ...Array.from(locs).sort()];
+  }, [projectPhotosList]);
+
+  const serviceTypes = useMemo(() => {
+    const svcs = new Set(projectPhotosList.map(p => p.service));
+    return ['All', ...Array.from(svcs).sort()];
+  }, [projectPhotosList]);
+
   // Filter logic
   const filteredPhotos = useMemo(() => {
-    return projectPhotos.filter((photo) => {
+    return projectPhotosList.filter((photo) => {
       const locationMatch =
         activeLocation === 'All Locations' || photo.location === activeLocation;
       const serviceMatch =
         activeService === 'All' || photo.service === activeService;
       return locationMatch && serviceMatch;
     });
-  }, [activeLocation, activeService]);
+  }, [projectPhotosList, activeLocation, activeService]);
 
   const visiblePhotos = filteredPhotos.slice(0, visibleCount);
   const hasMore = visibleCount < filteredPhotos.length;
@@ -60,11 +72,11 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
   // Get unique location counts
   const locationCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    projectPhotos.forEach((p) => {
+    projectPhotosList.forEach((p) => {
       counts[p.location] = (counts[p.location] || 0) + 1;
     });
     return counts;
-  }, []);
+  }, [projectPhotosList]);
 
   return (
     <section

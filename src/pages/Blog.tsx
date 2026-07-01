@@ -1,10 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { blogPosts } from '../data/blog';
-import { ArrowRight, Clock } from 'lucide-react';
+import { Clock, ArrowRight } from 'lucide-react';
+import { useData } from '../context/DataContext';
 
 export const Blog: React.FC = () => {
+  const { blogsList } = useData();
+  const publishedPosts = blogsList.filter(p => p.status === 'published');
+
   return (
     <div className="pt-20">
       <section className="py-24 bg-primary dark:bg-dark-bg">
@@ -19,7 +22,7 @@ export const Blog: React.FC = () => {
       <section className="py-20 md:py-32 bg-white dark:bg-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
+            {publishedPosts.map((post, index) => (
               <motion.article
                 key={post.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -31,7 +34,7 @@ export const Blog: React.FC = () => {
                 <div className="relative h-52 overflow-hidden">
                   <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-accent text-white text-xs font-medium rounded-full">{post.category}</span>
+                    <span className="px-3 py-1 bg-[#C9A227] text-black text-xs font-bold rounded-full">{post.category}</span>
                   </div>
                 </div>
                 <div className="p-6">

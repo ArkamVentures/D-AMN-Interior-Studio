@@ -1,33 +1,30 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { galleryImages } from '../data/gallery';
-import { projects } from '../data/projects';
-import { projectPhotos } from '../data/projectPhotos';
+import { X, Star } from 'lucide-react';
 import { SectionHeading } from '../components/ui/SectionHeading';
-import { Lightbox } from '../components/ui/Lightbox';
 import { ProjectGallery } from '../components/sections/ProjectGallery';
-import { X, MapPin, Calendar, DollarSign, Star } from 'lucide-react';
+import { Lightbox } from '../components/ui/Lightbox';
+import { useData } from '../context/DataContext';
 
 const categories = ['all', 'luxury', 'kitchen', 'budget', 'wall', 'office'];
 
 export const PortfolioPage: React.FC = () => {
+  const { projectPhotosList } = useData();
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [activeProject, setSelectedProject] = useState<any | null>(null);
 
   const filteredImages = activeCategory === 'all'
-    ? galleryImages
-    : galleryImages.filter(img => img.category === activeCategory);
-
-  const activeProject = projects.find(p => p.id === selectedProject);
+    ? projectPhotosList
+    : projectPhotosList.filter(img => img.service.toLowerCase() === activeCategory.toLowerCase());
 
   // Convert gallery images to ProjectPhoto format for the lightbox
   const lightboxImages = filteredImages.map((img) => ({
     id: img.id,
     src: img.src,
-    location: '',
-    service: img.category.charAt(0).toUpperCase() + img.category.slice(1),
-    title: img.title,
+    location: img.location,
+    service: img.service,
+    title: img.title || 'Aluminium Fabrication Project',
   }));
 
   return (
@@ -51,7 +48,7 @@ export const PortfolioPage: React.FC = () => {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                  activeCategory === cat ? 'bg-accent text-white' : 'bg-gray-100 dark:bg-dark-card text-gray-600 dark:text-gray-400'
+                  activeCategory === cat ? 'bg-[#C9A227] text-black' : 'bg-gray-100 dark:bg-dark-card text-gray-600 dark:text-gray-400'
                 }`}
               >
                 {cat.charAt(0).toUpperCase() + cat.slice(1)}
@@ -74,7 +71,7 @@ export const PortfolioPage: React.FC = () => {
                   <img src={image.src} alt={image.title} className="w-full object-cover" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform">
-                    <span className="text-accent text-xs uppercase">{image.category}</span>
+                    <span className="text-accent text-xs uppercase">{image.service}</span>
                     <h4 className="text-white font-semibold">{image.title}</h4>
                   </div>
                 </motion.div>

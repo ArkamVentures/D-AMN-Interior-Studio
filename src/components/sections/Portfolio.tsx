@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projectPhotos } from '../../data/projectPhotos';
-import { SectionHeading } from '../ui/SectionHeading';
 import { MapPin, ArrowRight } from 'lucide-react';
+import { SectionHeading } from '../ui/SectionHeading';
+import { useData } from '../../context/DataContext';
 
 interface PortfolioProps {
   onSelectLocation?: (location: string) => void;
@@ -31,6 +31,7 @@ const locationsData = [
 ];
 
 export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLocation }) => {
+  const { projectPhotosList } = useData();
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
 
   const handleLocationClick = (locName: string) => {
@@ -67,9 +68,9 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
             const hasProjects = loc.count !== null;
             const isActive = activeLocation === loc.name;
             
-            // Dynamically query a preview image from projectPhotos
+            // Dynamically query a preview image from projectPhotosList
             const previewPhoto = hasProjects 
-              ? projectPhotos.find(p => p.location.toLowerCase() === loc.name.toLowerCase())?.src 
+              ? projectPhotosList.find(p => p.location.toLowerCase() === loc.name.toLowerCase())?.src 
               : null;
 
             return (

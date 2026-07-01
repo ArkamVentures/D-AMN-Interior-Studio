@@ -69,12 +69,27 @@ const coreServices = [
   }
 ];
 
+import { useData } from '../../context/DataContext';
+
+const iconMap: Record<string, any> = {
+  Wind,
+  Hammer,
+  Layers,
+  Grid,
+  Box,
+  Droplet,
+  Package,
+  Sparkles,
+  LayoutGrid
+};
+
 interface ServicesProps {
   limit?: number;
 }
 
 export const Services: React.FC<ServicesProps> = ({ limit }) => {
-  const displayedServices = limit ? coreServices.slice(0, limit) : coreServices;
+  const { servicesList, contact } = useData();
+  const displayedServices = limit ? servicesList.slice(0, limit) : servicesList;
 
   return (
     <section className="py-20 md:py-32 bg-slate-950 text-white">
@@ -88,7 +103,7 @@ export const Services: React.FC<ServicesProps> = ({ limit }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {displayedServices.map((service, index) => {
-            const Icon = service.icon;
+            const Icon = iconMap[service.iconName] || Wind;
             return (
               <motion.div
                 key={service.id}
@@ -126,7 +141,7 @@ export const Services: React.FC<ServicesProps> = ({ limit }) => {
                 {/* Book Now Button */}
                 <div className="mt-auto pt-6 border-t border-white/5">
                   <a
-                    href="tel:+94773724849"
+                    href={`tel:${contact.phone.replace(/\s+/g, '')}`}
                     className="flex items-center justify-center w-full px-6 py-3.5 border-2 border-[#C9A227] text-white font-bold rounded-xl hover:bg-[#C9A227] hover:text-black hover:shadow-[0_0_20px_rgba(201,162,39,0.3)] transition-all duration-300 group/btn"
                   >
                     BOOK NOW
