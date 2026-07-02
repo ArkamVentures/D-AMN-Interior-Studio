@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { LoadingScreen } from './components/ui/LoadingScreen';
 import { Home } from './pages/Home';
@@ -15,6 +15,16 @@ import { DataProvider } from './context/DataContext';
 import { Login } from './pages/admin/Login';
 import { Dashboard } from './pages/admin/Dashboard';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -22,6 +32,7 @@ function App() {
     // Force HMR reload
     <DataProvider>
       <Router>
+        <ScrollToTop />
         {isLoading ? (
           <LoadingScreen onComplete={() => setIsLoading(false)} />
         ) : (
