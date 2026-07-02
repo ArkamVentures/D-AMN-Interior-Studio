@@ -83,10 +83,7 @@ export const Hero: React.FC = () => {
 
   // Helper for scroll action
   const handleScrollDown = () => {
-    const nextSection = document.getElementById('our-projects') || document.querySelector('section');
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
   };
 
   return (
