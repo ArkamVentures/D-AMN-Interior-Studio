@@ -1,9 +1,9 @@
 import shutil
 from fastapi import APIRouter, Depends, UploadFile, File
 from sqlalchemy.orm import Session
-from .. import crud, models, schemas, auth
-from ..database import get_db
-from ..config import settings
+from backend import crud, models, schemas, auth
+from backend.database import get_db
+from backend.config import settings
 
 router = APIRouter(prefix="/api/about", tags=["about"])
 

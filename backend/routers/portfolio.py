@@ -2,9 +2,9 @@ import shutil
 from typing import List, Optional
 from fastapi import APIRouter, Depends, UploadFile, File, HTTPException
 from sqlalchemy.orm import Session
-from .. import crud, models, schemas, auth
-from ..database import get_db
-from ..config import settings
+from backend import crud, models, schemas, auth
+from backend.database import get_db
+from backend.config import settings
 
 router = APIRouter(prefix="/api/portfolio", tags=["portfolio"])
 
