@@ -16,6 +16,8 @@ app = FastAPI(title="Damn Aluminium Fabrication API")
 origins = [
     "http://localhost:5173",
     "https://damnaluminium.wuaze.com",
+    "https://damn-aluminium.vercel.app",
+    "https://damn-aluminium-5of0jiqvk-inventory-pro.vercel.app",
 ]
 
 app.add_middleware(

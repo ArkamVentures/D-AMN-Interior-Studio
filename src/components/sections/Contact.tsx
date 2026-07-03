@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SectionHeading } from '../ui/SectionHeading';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,10 +16,22 @@ export const Contact: React.FC = () => {
     message: '',
   });
 
+  const sendViaWhatsApp = (data: typeof formData) => {
+    const serviceName = data.service || 'General Enquiry';
+    const text = encodeURIComponent(
+      `*New Enquiry from Website*\n\n` +
+      `*Name:* ${data.name}\n` +
+      `*Phone:* ${data.phone}\n` +
+      (data.email ? `*Email:* ${data.email}\n` : '') +
+      `*Service:* ${serviceName}\n\n` +
+      `*Message:*\n${data.message}`
+    );
+    window.open(`https://wa.me/94773724849?text=${text}`, '_blank');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setError(null);
     try {
       const response = await fetch(`${API_BASE}/api/contact/messages`, {
         method: 'POST',
@@ -32,13 +43,18 @@ export const Contact: React.FC = () => {
           service: formData.service || 'General Enquiry',
           message: formData.message,
         }),
+        signal: AbortSignal.timeout(5000), // 5 second timeout
       });
       if (!response.ok) throw new Error('Server error');
       setSubmitted(true);
       setFormData({ name: '', email: '', phone: '', service: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);
     } catch {
-      setError('Something went wrong. Please call us directly at +94 77 372 4849.');
+      // Backend unreachable — silently fall back to WhatsApp
+      sendViaWhatsApp(formData);
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
     } finally {
       setSubmitting(false);
     }
@@ -231,12 +247,7 @@ export const Contact: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     />
                   </div>
-                  {error && (
-                    <div className="mb-4 flex items-start gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
-                      <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                      <span>{error}</span>
-                    </div>
-                  )}
+
                   <button
                     type="submit"
                     disabled={submitting}
