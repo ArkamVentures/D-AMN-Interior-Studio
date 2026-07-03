@@ -1,11 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useData, ServiceItem, TeamMember, ProjectItem, ProjectPhotoItem, PricingPackageItem, BlogPostItem } from '../../context/DataContext';
 import { 
   LayoutDashboard, Home, Info, Hammer, Briefcase, DollarSign, 
   FileText, Phone, Settings, LogOut, Plus, Trash2, Edit2, 
-  Eye, Check, Mail, MessageSquare, Menu, X, ArrowUpRight, User
+  Eye, Check, Mail, MessageSquare, Menu, X, ArrowUpRight, User, Inbox, RefreshCw
 } from 'lucide-react';
+
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
+interface ContactMessage {
+  id: number;
+  name: string;
+  phone: string;
+  email?: string;
+  service: string;
+  message: string;
+  is_read: boolean;
+  created_at: string;
+}
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -21,13 +34,67 @@ export const Dashboard: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('admin_auth');
+    localStorage.removeItem('admin_token');
     navigate('/admin/login');
   };
 
   // State
-  const [activeTab, setActiveTab] = useState<'overview' | 'home' | 'about' | 'services' | 'portfolio' | 'pricing' | 'blog' | 'contact' | 'global'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'home' | 'about' | 'services' | 'portfolio' | 'pricing' | 'blog' | 'contact' | 'global' | 'inbox'>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+  // Real contact messages from backend
+  const [messages, setMessages] = useState<ContactMessage[]>([]);
+  const [messagesLoading, setMessagesLoading] = useState(false);
+
+  const getAuthHeaders = () => {
+    const token = localStorage.getItem('admin_token');
+    return { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
+  };
+
+  const fetchMessages = useCallback(async () => {
+    setMessagesLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/contact/messages`, { headers: getAuthHeaders() });
+      if (res.ok) {
+        const data = await res.json();
+        setMessages(data);
+      }
+    } catch { /* silent fail */ } finally {
+      setMessagesLoading(false);
+    }
+  }, []);
+
+  const markAsRead = async (id: number) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/contact/messages/${id}/read`, {
+        method: 'PATCH',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ is_read: true }),
+      });
+      if (res.ok) {
+        setMessages(prev => prev.map(m => m.id === id ? { ...m, is_read: true } : m));
+        showToast('Message marked as read');
+      }
+    } catch { showToast('Failed to update', 'error'); }
+  };
+
+  const deleteMessage = async (id: number) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/contact/messages/${id}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
+      });
+      if (res.ok) {
+        setMessages(prev => prev.filter(m => m.id !== id));
+        showToast('Message deleted');
+      }
+    } catch { showToast('Failed to delete', 'error'); }
+  };
+
+  useEffect(() => {
+    if (activeTab === 'inbox' || activeTab === 'overview') fetchMessages();
+  }, [activeTab, fetchMessages]);
 
   // Form states
   const [editingService, setEditingService] = useState<ServiceItem | null>(null);
@@ -96,6 +163,7 @@ export const Dashboard: React.FC = () => {
         <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
           {[
             { id: 'overview', label: 'Overview', icon: LayoutDashboard },
+            { id: 'inbox', label: 'Inbox', icon: Inbox, badge: messages.filter(m => !m.is_read).length },
             { id: 'home', label: 'Home Page', icon: Home },
             { id: 'about', label: 'About Tab', icon: Info },
             { id: 'services', label: 'Services', icon: Hammer },
@@ -104,7 +172,7 @@ export const Dashboard: React.FC = () => {
             { id: 'blog', label: 'Blog Posts', icon: FileText },
             { id: 'contact', label: 'Contact', icon: Phone },
             { id: 'global', label: 'Settings', icon: Settings },
-          ].map((link) => {
+          ].map((link: any) => {
             const Icon = link.icon;
             const active = activeTab === link.id;
             return (
@@ -121,7 +189,12 @@ export const Dashboard: React.FC = () => {
                 }`}
               >
                 <Icon className="w-4 h-4" />
-                <span>{link.label}</span>
+                <span className="flex-grow text-left">{link.label}</span>
+                {link.badge > 0 && (
+                  <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded-full ${
+                    active ? 'bg-black/30 text-black' : 'bg-[#C9A227] text-black'
+                  }`}>{link.badge}</span>
+                )}
               </button>
             );
           })}
@@ -188,36 +261,43 @@ export const Dashboard: React.FC = () => {
 
             {/* Recent Enquiries */}
             <div className="bg-[#0f0f0f] border border-white/5 rounded-2xl p-6">
-              <h2 className="text-lg font-bold font-serif mb-4 flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-[#C9A227]" />
-                Recent Visitor Messages
-              </h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-bold font-serif flex items-center gap-2">
+                  <MessageSquare className="w-5 h-5 text-[#C9A227]" />
+                  Recent Messages
+                </h2>
+                <div className="flex gap-2">
+                  <button onClick={fetchMessages} className="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors" title="Refresh">
+                    <RefreshCw className={`w-4 h-4 ${messagesLoading ? 'animate-spin' : ''}`} />
+                  </button>
+                  <button onClick={() => setActiveTab('inbox')} className="px-3 py-1.5 text-xs bg-white/5 hover:bg-white/10 text-gray-300 rounded-lg transition-colors">
+                    View All
+                  </button>
+                </div>
+              </div>
 
-              {data.submissionsList.length === 0 ? (
+              {messagesLoading ? (
+                <p className="text-gray-500 text-sm py-6 text-center">Loading messages...</p>
+              ) : messages.length === 0 ? (
                 <p className="text-gray-500 text-sm py-6 text-center">No contact form messages received yet.</p>
               ) : (
                 <div className="space-y-4">
-                  {data.submissionsList.slice(0, 5).map((sub) => (
-                    <div key={sub.id} className="p-4 bg-black/40 border border-white/5 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  {messages.slice(0, 5).map((msg) => (
+                    <div key={msg.id} className="p-4 bg-black/40 border border-white/5 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-sm">{sub.name}</span>
-                          {!sub.read && (
-                            <span className="px-2 py-0.5 bg-[#C9A227]/25 text-[#C9A227] text-[10px] uppercase font-bold rounded">
-                              New
-                            </span>
+                          <span className="font-semibold text-sm">{msg.name}</span>
+                          {!msg.is_read && (
+                            <span className="px-2 py-0.5 bg-[#C9A227]/25 text-[#C9A227] text-[10px] uppercase font-bold rounded">New</span>
                           )}
+                          <span className="text-[10px] text-gray-500">{msg.service}</span>
                         </div>
-                        <p className="text-xs text-gray-500 mt-1">{sub.email} | {sub.date}</p>
-                        <p className="text-sm text-gray-300 mt-2 font-medium">"{sub.message}"</p>
+                        <p className="text-xs text-gray-500 mt-1">{msg.phone}{msg.email ? ` | ${msg.email}` : ''} | {new Date(msg.created_at).toLocaleDateString()}</p>
+                        <p className="text-sm text-gray-300 mt-2 font-medium line-clamp-2">"{msg.message}"</p>
                       </div>
-                      {!sub.read && (
-                        <button 
-                          onClick={() => {
-                            const updated = data.submissionsList.map(s => s.id === sub.id ? { ...s, read: true } : s);
-                            data.setSubmissionsList(updated);
-                            showToast('Message marked as read');
-                          }}
+                      {!msg.is_read && (
+                        <button
+                          onClick={() => markAsRead(msg.id)}
                           className="px-4 py-2 border border-white/10 hover:border-[#C9A227] text-xs font-semibold rounded-lg self-start md:self-auto transition-colors"
                         >
                           Mark Read
@@ -231,6 +311,86 @@ export const Dashboard: React.FC = () => {
           </div>
         )}
 
+        {/* ─── Inbox Tab ─────────────────────────────────────── */}
+        {activeTab === 'inbox' && (
+          <div className="space-y-8">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold font-serif mb-2">Customer Inbox</h1>
+                <p className="text-gray-400 text-sm">
+                  {messages.filter(m => !m.is_read).length} unread of {messages.length} total messages
+                </p>
+              </div>
+              <button
+                onClick={fetchMessages}
+                className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 rounded-xl text-sm font-semibold transition-colors"
+              >
+                <RefreshCw className={`w-4 h-4 ${messagesLoading ? 'animate-spin' : ''}`} />
+                Refresh
+              </button>
+            </div>
+
+            {messagesLoading ? (
+              <div className="text-center py-20 text-gray-500">Loading messages...</div>
+            ) : messages.length === 0 ? (
+              <div className="text-center py-20">
+                <Inbox className="w-16 h-16 mx-auto mb-4 text-gray-700" />
+                <p className="text-gray-500">No messages yet. When customers submit the contact form, their messages will appear here.</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {messages.map((msg) => (
+                  <div
+                    key={msg.id}
+                    className={`p-6 bg-[#0f0f0f] border rounded-2xl transition-colors ${
+                      msg.is_read ? 'border-white/5' : 'border-[#C9A227]/30'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-grow">
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <span className="font-bold text-lg">{msg.name}</span>
+                          {!msg.is_read && (
+                            <span className="px-2 py-0.5 bg-[#C9A227]/25 text-[#C9A227] text-[10px] uppercase font-bold rounded">New</span>
+                          )}
+                          <span className="text-xs px-2 py-0.5 bg-white/5 rounded text-gray-400">{msg.service}</span>
+                        </div>
+                        <div className="flex flex-wrap gap-4 text-xs text-gray-500 mb-3">
+                          <span>📞 {msg.phone}</span>
+                          {msg.email && <span>✉️ {msg.email}</span>}
+                          <span>🕐 {new Date(msg.created_at).toLocaleString()}</span>
+                        </div>
+                        <p className="text-gray-200 leading-relaxed">{msg.message}</p>
+                      </div>
+                      <div className="flex flex-col gap-2 flex-shrink-0">
+                        {!msg.is_read && (
+                          <button
+                            onClick={() => markAsRead(msg.id)}
+                            className="px-3 py-2 border border-[#C9A227]/40 hover:border-[#C9A227] hover:bg-[#C9A227]/10 text-[#C9A227] text-xs font-semibold rounded-lg transition-colors"
+                          >
+                            Mark Read
+                          </button>
+                        )}
+                        <a
+                          href={`tel:${msg.phone}`}
+                          className="px-3 py-2 bg-green-500/10 border border-green-500/20 hover:bg-green-500/20 text-green-400 text-xs font-semibold rounded-lg transition-colors text-center"
+                        >
+                          Call
+                        </a>
+                        <button
+                          onClick={() => deleteMessage(msg.id)}
+                          className="px-3 py-2 bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-red-400 text-xs font-semibold rounded-lg transition-colors"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
         {/* ─── Tab 2: Home Page ─────────────────────────────────── */}
         {activeTab === 'home' && (
           <div className="space-y-8">

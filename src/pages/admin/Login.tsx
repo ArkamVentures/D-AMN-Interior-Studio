@@ -3,21 +3,49 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Lock, User, AlertCircle } from 'lucide-react';
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 export const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === 'admin' && password === 'admin123') {
-      localStorage.setItem('admin_auth', 'true');
-      navigate('/admin/dashboard');
-    } else {
-      setError('Invalid username or password');
+    setLoading(true);
+    setError('');
+    try {
+      const formData = new URLSearchParams();
+      formData.append('username', username);
+      formData.append('password', password);
+      const res = await fetch(`${API_BASE}/api/auth/token`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData,
+      });
+      if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem('admin_auth', 'true');
+        localStorage.setItem('admin_token', data.access_token);
+        navigate('/admin/dashboard');
+      } else {
+        setError('Invalid username or password');
+      }
+    } catch {
+      // Fallback: allow hardcoded login if backend is offline
+      if (username === 'admin' && password === 'admin123') {
+        localStorage.setItem('admin_auth', 'true');
+        navigate('/admin/dashboard');
+      } else {
+        setError('Could not connect to server. Check backend is running.');
+      }
+    } finally {
+      setLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#050505] text-white px-4 relative overflow-hidden">
@@ -82,9 +110,10 @@ export const Login: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full py-4 bg-gradient-to-r from-[#C9A227] to-[#F4D03F] text-black font-bold text-sm tracking-wider rounded-xl hover:shadow-[0_0_20px_rgba(201,162,39,0.3)] transition-all transform hover:scale-[1.02] active:scale-[0.98] mt-6"
+            disabled={loading}
+            className="w-full py-4 bg-gradient-to-r from-[#C9A227] to-[#F4D03F] text-black font-bold text-sm tracking-wider rounded-xl hover:shadow-[0_0_20px_rgba(201,162,39,0.3)] transition-all transform hover:scale-[1.02] active:scale-[0.98] mt-6 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
           >
-            Sign In
+            {loading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
       </motion.div>

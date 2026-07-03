@@ -95,3 +95,15 @@ class ContactInfo(Base):
     whatsapp_link = Column(String(255))
     business_hours = Column(String(200))
     social_links = Column(JSON)
+
+class ContactMessage(Base):
+    __tablename__ = "contact_messages"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100))
+    phone = Column(String(50))
+    email = Column(String(100), nullable=True)
+    service = Column(String(100))
+    message = Column(Text)
+    is_read = Column(Boolean, default=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())

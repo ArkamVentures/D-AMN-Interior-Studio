@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SectionHeading } from '../ui/SectionHeading';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
+
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,10 +17,31 @@ export const Contact: React.FC = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setSubmitting(true);
+    setError(null);
+    try {
+      const response = await fetch(`${API_BASE}/api/contact/messages`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email || undefined,
+          service: formData.service || 'General Enquiry',
+          message: formData.message,
+        }),
+      });
+      if (!response.ok) throw new Error('Server error');
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch {
+      setError('Something went wrong. Please call us directly at +94 77 372 4849.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -141,7 +166,7 @@ export const Contact: React.FC = () => {
               {submitted ? (
                 <div className="text-center py-12">
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-primary dark:text-white mb-2">Thank You!</h3>
+                  <h3 className="text-xl font-semibold text-primary dark:text-white mb-2">Message Received!</h3>
                   <p className="text-gray-600 dark:text-gray-400">We'll contact you shortly to arrange your free site visit.</p>
                 </div>
               ) : (
@@ -206,12 +231,22 @@ export const Contact: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     />
                   </div>
+                  {error && (
+                    <div className="mb-4 flex items-start gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
+                      <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                      <span>{error}</span>
+                    </div>
+                  )}
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center px-6 py-4 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors shadow-lg shadow-accent/25"
+                    disabled={submitting}
+                    className="w-full flex items-center justify-center px-6 py-4 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors shadow-lg shadow-accent/25 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-4 h-4 mr-2" />
-                    Book Free Site Visit
+                    {submitting ? (
+                      <><span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white inline-block" />Sending...</>
+                    ) : (
+                      <><Send className="w-4 h-4 mr-2" />Book Free Site Visit</>
+                    )}
                   </button>
                 </>
               )}
