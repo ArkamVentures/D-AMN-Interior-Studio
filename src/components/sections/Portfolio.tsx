@@ -10,24 +10,28 @@ interface PortfolioProps {
 }
 
 const locationsData = [
-  { name: 'Ambalangoda', count: 6, services: ['Kitchen'], region: 'Southern' },
-  { name: 'Benthota', count: 5, services: ['Kitchen', 'Glass', 'Doors'], region: 'Southern' },
-  { name: 'Kaluthara', count: 6, services: ['Kitchen', 'Ceiling'], region: 'Western' },
-  { name: 'Uragasmanhandiya', count: 5, services: ['Kitchen'], region: 'Southern' },
-  { name: 'Dehiwela', count: 4, services: ['Kitchen'], region: 'Western' },
-  { name: 'Horana', count: 4, services: ['Kitchen', 'Partition'], region: 'Western' },
-  { name: 'Dodangoda', count: 4, services: ['Kitchen', 'Interior'], region: 'Western' },
-  { name: 'Pahekanuwa', count: 4, services: ['Kitchen', 'Interior'], region: 'Southern' },
-  { name: 'Kelaniya', count: 3, services: ['Kitchen', 'Interior'], region: 'Western' },
-  { name: 'Kande Vihara', count: 3, services: ['Kitchen', 'Interior'], region: 'Southern' },
-  { name: 'Elpitiya', count: null, services: [], region: 'Southern' },
-  { name: 'Aluthgama', count: null, services: [], region: 'Western' },
-  { name: 'Mathugama', count: null, services: [], region: 'Western' },
-  { name: 'Beruwela', count: null, services: [], region: 'Western' },
-  { name: 'Karandeniya', count: null, services: [], region: 'Southern' },
-  { name: 'Baduraliya', count: null, services: [], region: 'Western' },
-  { name: 'Agalawatta', count: null, services: [], region: 'Western' },
-  { name: 'Welipenna', count: null, services: [], region: 'Western' }
+  { name: 'Ambalangoda', services: ['Kitchen'], region: 'Southern' },
+  { name: 'Benthota', services: ['Kitchen', 'Glass', 'Doors'], region: 'Southern' },
+  { name: 'Kaluthara', services: ['Kitchen', 'Ceiling'], region: 'Western' },
+  { name: 'Uragasmanhandiya', services: ['Kitchen'], region: 'Southern' },
+  { name: 'Dehiwela', services: ['Kitchen'], region: 'Western' },
+  { name: 'Horana', services: ['Kitchen', 'Partition'], region: 'Western' },
+  { name: 'Dodangoda', services: ['Kitchen', 'Interior'], region: 'Western' },
+  { name: 'Pahekanuwa', services: ['Kitchen', 'Interior'], region: 'Southern' },
+  { name: 'Kelaniya', services: ['Kitchen', 'Interior'], region: 'Western' },
+  { name: 'Kande Vihara', services: ['Kitchen', 'Interior'], region: 'Southern' },
+  { name: 'Elpitiya', services: [], region: 'Southern' },
+  { name: 'Aluthgama', services: [], region: 'Western' },
+  { name: 'Mathugama', services: [], region: 'Western' },
+  { name: 'Beruwela', services: [], region: 'Western' },
+  { name: 'Karandeniya', services: [], region: 'Southern' },
+  { name: 'Baduraliya', services: [], region: 'Western' },
+  { name: 'Agalawatta', services: [], region: 'Western' },
+  { name: 'Welipenna', services: [], region: 'Western' },
+  { name: 'Bandarawala', services: [], region: 'Central' },
+  { name: 'Polgahawela', services: [], region: 'North Western' },
+  { name: 'Mariyam Gold, Beruwela', services: [], region: 'Western' },
+  { name: 'Pelawatta', services: [], region: 'Western' }
 ];
 
 export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLocation }) => {
@@ -65,12 +69,15 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
         {/* Badge Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5 mb-16 max-w-6xl mx-auto">
           {locationsData.map((loc, index) => {
-            const hasProjects = loc.count !== null;
+            // Count actual photos for this location
+            const locPhotos = projectPhotosList.filter(p => p.location.toLowerCase() === loc.name.toLowerCase());
+            const realCount = locPhotos.length;
+            const hasProjects = realCount > 0;
             const isActive = activeLocation === loc.name;
             
             // Dynamically query a preview image from projectPhotosList
             const previewPhoto = hasProjects 
-              ? projectPhotosList.find(p => p.location.toLowerCase() === loc.name.toLowerCase())?.src 
+              ? locPhotos[0].src 
               : null;
 
             return (
@@ -96,7 +103,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
 
                   {hasProjects ? (
                     <div className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-[#C9A227] text-black text-xs font-bold shadow-md shadow-[#C9A227]/20">
-                      {loc.count}
+                      {realCount}
                     </div>
                   ) : (
                     <span className="text-[9px] uppercase tracking-wider text-gray-600 font-medium">
@@ -154,7 +161,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
             onClick={() => handleLocationClick('All Locations')}
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#C9A227] hover:bg-white text-black hover:text-black font-bold rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(201,162,39,0.2)] group"
           >
-            View All 40+ Projects
+            View All {projectPhotosList.length}+ Projects
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
