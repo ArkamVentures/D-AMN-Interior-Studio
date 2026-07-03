@@ -1,4 +1,7 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 
 // Interfaces
 export interface ServiceItem {
@@ -153,6 +156,10 @@ export interface DataContextType {
 
   // Reset function to restore original data
   resetAllData: () => void;
+
+  // API sync helpers
+  apiSynced: boolean;
+  saveToAPI: () => Promise<void>;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -515,6 +522,8 @@ const initialGlobalSettings: GlobalSettingsItem = {
 };
 
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [apiSynced, setApiSynced] = useState(false);
+
   // LocalStorage Helpers
   const getStoredValue = <T,>(key: string, defaultValue: T): T => {
     const saved = localStorage.getItem(key);
@@ -555,6 +564,39 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [submissionsList, setSubmissionsListState] = useState(() => getStoredValue<FormSubmission[]>('submissionsList', []));
   const [globalSettings, setGlobalSettingsState] = useState(() => getStoredValue('globalSettings', initialGlobalSettings));
   const [dashboardStatsOverrides, setDashboardStatsOverridesState] = useState(() => getStoredValue('dashboardStatsOverrides', { totalProjects: '100+', blogPosts: '', pendingEnquiries: '', activeServices: '' }));
+
+  // ─── Load from backend API on mount ─────────────────────────────────────
+  useEffect(() => {
+    const loadFromAPI = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/settings`, { signal: AbortSignal.timeout(5000) });
+        if (!res.ok) return;
+        const json = await res.json();
+        const d = json.data;
+        if (!d || Object.keys(d).length === 0) return;
+        // Apply all fetched settings to state
+        if (d.heroTitle) setHeroTitleState(d.heroTitle);
+        if (d.heroSubtitle) setHeroSubtitleState(d.heroSubtitle);
+        if (d.heroKeywords) setHeroKeywordsState(d.heroKeywords);
+        if (d.aboutTitle) setAboutTitleState(d.aboutTitle);
+        if (d.aboutSubtitle) setAboutSubtitleState(d.aboutSubtitle);
+        if (d.aboutParagraph) setAboutParagraphState(d.aboutParagraph);
+        if (d.team) setTeamState(d.team);
+        if (d.servicesList) setServicesListState(d.servicesList);
+        if (d.projectsList) setProjectsListState(d.projectsList);
+        if (d.projectPhotosList) setProjectPhotosListState(d.projectPhotosList);
+        if (d.pricingList) setPricingListState(d.pricingList);
+        if (d.blogsList) setBlogsListState(d.blogsList);
+        if (d.contact) setContactState(d.contact);
+        if (d.globalSettings) setGlobalSettingsState(d.globalSettings);
+        if (d.dashboardStatsOverrides) setDashboardStatsOverridesState(d.dashboardStatsOverrides);
+        setApiSynced(true);
+      } catch {
+        // Backend offline — use localStorage/defaults (already loaded)
+      }
+    };
+    loadFromAPI();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Sync to LocalStorage on state changes
   useEffect(() => {
@@ -667,6 +709,28 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.clear();
   };
 
+  // ─── Save all current state to backend API ────────────────────────────────
+  const saveToAPI = useCallback(async () => {
+    const token = localStorage.getItem('admin_token');
+    if (!token) return;
+    const payload = {
+      heroTitle, heroSubtitle, heroKeywords,
+      aboutTitle, aboutSubtitle, aboutParagraph, team,
+      servicesList, projectsList, projectPhotosList,
+      pricingList, blogsList, contact, globalSettings, dashboardStatsOverrides,
+    };
+    try {
+      await fetch(`${API_BASE}/api/settings`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ data: payload }),
+        signal: AbortSignal.timeout(8000),
+      });
+    } catch {
+      // Silently fail — localStorage already saved locally
+    }
+  }, [heroTitle, heroSubtitle, heroKeywords, aboutTitle, aboutSubtitle, aboutParagraph, team, servicesList, projectsList, projectPhotosList, pricingList, blogsList, contact, globalSettings, dashboardStatsOverrides]);
+
   return (
     <DataContext.Provider value={{
       heroTitle, heroSubtitle, heroKeywords, setHeroTitle, setHeroSubtitle, setHeroKeywords,
@@ -679,7 +743,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       submissionsList, setSubmissionsList, addSubmission,
       globalSettings, setGlobalSettings,
       dashboardStatsOverrides, setDashboardStatsOverrides,
-      resetAllData
+      resetAllData,
+      apiSynced, saveToAPI,
     }}>
       {children}
     </DataContext.Provider>

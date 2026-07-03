@@ -5,20 +5,15 @@ from fastapi.staticfiles import StaticFiles
 
 from backend.database import engine, Base
 from backend.config import settings
-from backend.routers import auth, home, about, services, portfolio, pricing, blog, contact
+from backend.routers import auth, home, about, services, portfolio, pricing, blog, contact, settings as settings_router
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Damn Aluminium Fabrication API")
 
-# Setup CORS
-origins = [
-    "http://localhost:5173",
-    "https://damnaluminium.wuaze.com",
-    "https://damn-aluminium.vercel.app",
-    "https://damn-aluminium-5of0jiqvk-inventory-pro.vercel.app",
-]
+# Setup CORS — read from env so Railway can add extra origins easily
+origins = [o.strip() for o in settings.ALLOWED_ORIGINS.split(",") if o.strip()]
 
 app.add_middleware(
     CORSMiddleware,
@@ -41,6 +36,7 @@ app.include_router(portfolio.router)
 app.include_router(pricing.router)
 app.include_router(blog.router)
 app.include_router(contact.router)
+app.include_router(settings_router.router)
 
 @app.get("/")
 def read_root():

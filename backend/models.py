@@ -107,3 +107,12 @@ class ContactMessage(Base):
     message = Column(Text)
     is_read = Column(Boolean, default=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+class SiteSettings(Base):
+    """Single-row table storing all website content as JSON.
+    id=1 is always the active settings record."""
+    __tablename__ = "site_settings"
+
+    id = Column(Integer, primary_key=True, default=1)
+    data = Column(JSON, nullable=False, default=dict)
+    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())

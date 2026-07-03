@@ -4,7 +4,7 @@ import { useData, ServiceItem, TeamMember, ProjectItem, ProjectPhotoItem, Pricin
 import { 
   LayoutDashboard, Home, Info, Hammer, Briefcase, DollarSign, 
   FileText, Phone, Settings, LogOut, Plus, Trash2, Edit2, 
-  Eye, Check, Mail, MessageSquare, Menu, X, ArrowUpRight, User, Inbox, RefreshCw
+  Eye, Check, Mail, MessageSquare, Menu, X, ArrowUpRight, User, Inbox, RefreshCw, Cloud
 } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
@@ -114,6 +114,14 @@ export const Dashboard: React.FC = () => {
     setTimeout(() => setToast(null), 3000);
   };
 
+  const [publishing, setPublishing] = useState(false);
+  const handlePublish = async () => {
+    setPublishing(true);
+    await data.saveToAPI();
+    setPublishing(false);
+    showToast('✅ Published! Changes are now live on the website.');
+  };
+
   // Base64 Image converter utility
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>, callback: (base64: string) => void) => {
     const file = e.target.files?.[0];
@@ -215,14 +223,42 @@ export const Dashboard: React.FC = () => {
       {/* Mobile Top Navbar */}
       <header className="md:hidden h-20 bg-[#0a0a0a] border-b border-white/5 px-6 flex items-center justify-between">
         <span className="font-serif text-lg font-bold tracking-[0.2em]">D-AMN</span>
-        <button onClick={() => setMobileMenuOpen(true)} className="p-2 hover:bg-white/5 rounded-lg">
-          <Menu className="w-6 h-6" />
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handlePublish}
+            disabled={publishing}
+            className="flex items-center gap-1.5 px-3 py-2 bg-[#C9A227] text-black text-xs font-bold rounded-lg disabled:opacity-60"
+          >
+            <Cloud className="w-3.5 h-3.5" />
+            {publishing ? 'Saving...' : 'Publish'}
+          </button>
+          <button onClick={() => setMobileMenuOpen(true)} className="p-2 hover:bg-white/5 rounded-lg">
+            <Menu className="w-6 h-6" />
+          </button>
+        </div>
       </header>
 
       {/* Main Workspace */}
       <main className="flex-grow p-6 md:p-10 max-w-5xl mx-auto w-full overflow-y-auto">
-        
+
+        {/* Publish Bar */}
+        <div className="mb-6 flex items-center justify-between bg-[#0f0f0f] border border-white/5 rounded-2xl px-5 py-3">
+          <div className="flex items-center gap-2">
+            <div className={`w-2 h-2 rounded-full ${data.apiSynced ? 'bg-green-400' : 'bg-yellow-400'}`} />
+            <span className="text-xs text-gray-400">
+              {data.apiSynced ? 'Synced with live website' : 'Using local data (backend offline)'}
+            </span>
+          </div>
+          <button
+            onClick={handlePublish}
+            disabled={publishing}
+            className="flex items-center gap-2 px-4 py-2 bg-[#C9A227] hover:bg-[#F4D03F] text-black text-sm font-bold rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            <Cloud className="w-4 h-4" />
+            {publishing ? 'Publishing...' : 'Publish to Live Website'}
+          </button>
+        </div>
+
         {/* ─── Tab 1: Overview ─────────────────────────────────── */}
         {activeTab === 'overview' && (
           <div className="space-y-8">
