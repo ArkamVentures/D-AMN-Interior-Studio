@@ -119,7 +119,15 @@ export const Dashboard: React.FC = () => {
     setPublishing(true);
     await data.saveToAPI();
     setPublishing(false);
-    showToast('✅ Published! Changes are now live on the website.');
+    showToast('✅ Published! Opening live website to verify...');
+    // Open the live site in a new tab so they can immediately see changes
+    setTimeout(() => {
+      window.open(window.location.origin.includes('localhost')
+        ? 'http://localhost:5173/'
+        : 'https://damn-aluminium.vercel.app/',
+        '_blank'
+      );
+    }, 1000);
   };
 
   // Base64 Image converter utility
