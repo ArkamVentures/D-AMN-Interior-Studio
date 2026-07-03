@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface LoadingScreenProps {
@@ -6,20 +6,29 @@ interface LoadingScreenProps {
 }
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+      setTimeout(onComplete, 100);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!isVisible) return null;
+
   return (
     <motion.div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#000000]"
       initial={{ opacity: 1 }}
-      animate={{ opacity: 0 }}
-      transition={{
-        opacity: { duration: 0.7, delay: 2.5, ease: 'easeInOut' },
-      }}
-      onAnimationComplete={onComplete}
+      animate={{ opacity: [1, 1, 1, 0], scale: [1, 1, 1, 1.05] }}
+      transition={{ duration: 3, times: [0, 0.5, 0.83, 1], ease: "easeInOut" }}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#000000]"
     >
-      {/* Pulsing background glow */}
+      {/* Subtle pulsing background glow */}
       <motion.div
-        animate={{ opacity: [0, 0.35, 0] }}
-        transition={{ duration: 2, delay: 0.3, repeat: 1, ease: 'easeInOut' }}
+        animate={{ opacity: [0, 0.4, 0] }}
+        transition={{ duration: 2, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}
         className="absolute w-[300px] md:w-[400px] h-[100px] bg-[#C9A227]/20 blur-[60px] rounded-full pointer-events-none"
       />
 
@@ -33,11 +42,11 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
 
       <div className="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-8 px-6">
 
-        {/* Cabinet Icon */}
+        {/* Cabinet Icon Fade In */}
         <motion.div
           initial={{ opacity: 0, filter: 'drop-shadow(0px 0px 0px rgba(255,255,255,0))' }}
           animate={{ opacity: 1, filter: 'drop-shadow(0px 0px 8px rgba(255,255,255,0.3))' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex-shrink-0"
         >
           <svg
@@ -62,30 +71,31 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           </svg>
         </motion.div>
 
-        {/* D-AMN Text */}
+        {/* Text Reveal */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           className="flex flex-col justify-center text-center sm:text-left"
         >
-          <div className="relative overflow-hidden">
+          <div className="relative">
             <h1 className="text-[2.75rem] md:text-6xl font-bold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] via-[#F4D03F] to-[#C9A227] pb-1">
               D-AMN
             </h1>
-            {/* Shimmer sweep */}
+            {/* Shimmer effect */}
             <motion.div
               initial={{ left: '-100%' }}
               animate={{ left: '200%' }}
-              transition={{ duration: 1.2, delay: 1, ease: 'easeInOut' }}
+              transition={{ duration: 1.5, delay: 1, ease: "easeInOut" }}
               className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none mix-blend-overlay"
             />
           </div>
 
+          {/* Tagline */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.9, ease: 'easeOut' }}
+            transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
             className="text-[#B8860B] text-[8px] md:text-[10px] tracking-[0.45em] font-medium uppercase mt-1 pl-1"
           >
             Aluminum Fabrication
