@@ -64,11 +64,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <Link to="/" className="flex flex-col justify-center">
-              <span className="font-serif text-2xl sm:text-3xl font-bold tracking-[0.2em] text-primary dark:text-white leading-tight">
+            <Link to="/" className="flex flex-col justify-center group">
+              <span className="font-serif text-2xl sm:text-[1.6rem] font-bold tracking-[0.22em] text-primary dark:text-white leading-none">
                 {globalSettings.logoText}<span className="text-accent">.</span>
               </span>
-              <span className="text-[7px] sm:text-[8px] uppercase tracking-[0.35em] text-gray-400 dark:text-gray-500 font-light -mt-0.5">
+              <span className="block w-full h-px bg-accent/40 mt-1 mb-1" />
+              <span className="text-[7px] sm:text-[8px] uppercase tracking-[0.4em] text-gray-400 dark:text-gray-500 font-medium leading-none">
                 {globalSettings.logoSubtext}
               </span>
             </Link>
@@ -154,11 +155,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
           
           {/* Brand */}
-          <div className="mb-8">
-            <span className="font-serif text-3xl sm:text-4xl font-bold tracking-[0.2em] text-white block mb-1">
+          <div className="mb-8 flex flex-col items-center">
+            <span className="font-serif text-3xl sm:text-4xl font-bold tracking-[0.22em] text-white leading-none">
               {globalSettings.logoText}<span className="text-accent">.</span>
             </span>
-            <span className="text-[9px] uppercase tracking-[0.35em] text-gray-500 font-light block">
+            <span className="block w-20 h-px bg-accent/40 mt-1.5 mb-1.5" />
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.4em] text-gray-500 font-medium leading-none">
               {globalSettings.logoSubtext}
             </span>
           </div>
