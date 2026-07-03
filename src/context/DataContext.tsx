@@ -16,6 +16,8 @@ export interface TeamMember {
   image: string;
   whatsapp?: string;
   email?: string;
+  linkedin?: string;
+  badge?: string;
 }
 
 export interface ProjectItem {
@@ -175,17 +177,18 @@ const initialAboutParagraph = "D-AMN Aluminium Fabrication is a full-service int
 
 const initialTeam: TeamMember[] = [
   {
-    name: "Maajidh",
+    name: "Nowful",
     role: "Founder & CEO",
-    bio: "Interior Engineering undergraduate and visionary behind D-AMN Aluminium Fabrication. Maajidh leads the company with a passion for modern design, precision craftsmanship, and innovative interior solutions. From concept to completion, he ensures every project reflects quality, durability, and style.",
+    bio: "Visionary founder behind D-AMN Aluminium Fabrication with 20+ years of hands-on experience in aluminium fabrication and interior solutions. Nowful leads the company with deep industry expertise, a passion for modern design, and an unwavering commitment to quality craftsmanship. From concept to completion, he ensures every project reflects durability, innovation, and timeless style.",
     image: "/founder.png",
     whatsapp: "94773724849",
-    email: "damnaluminiumfabrication@gmail.com"
+    email: "damnaluminiumfabrication@gmail.com",
+    badge: "20+ Years Experience"
   },
   {
-    name: "Danuka Alwis",
+    name: "Maajidh",
     role: "Managing Director",
-    bio: "Oversees day-to-day operations, project management, and client relations at D-AMN. With hands-on expertise in aluminium fabrication and interior execution, Danuka ensures every installation is delivered on time, within budget, and to the highest standards of finish.",
+    bio: "Interior Engineering undergraduate and managing director at D-AMN. Maajidh oversees day-to-day operations, project management, and client relations with hands-on expertise in aluminium fabrication and interior execution. He ensures every installation is delivered on time, within budget, and to the highest standards of finish.",
     image: "/md.png",
     whatsapp: "94773724849",
     email: "damnaluminiumfabrication@gmail.com"

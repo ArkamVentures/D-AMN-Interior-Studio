@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Mail, Linkedin } from 'lucide-react';
 import { useData } from '../context/DataContext';
 
 export const About: React.FC = () => {
@@ -91,7 +91,7 @@ export const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: idx * 0.2, ease: "easeOut" }}
-              className="group flex flex-col bg-[#0f0f0f] border border-white/5 rounded-3xl p-8 hover:-translate-y-2 hover:border-[#C9A227]/40 hover:shadow-[0_10px_30px_rgba(201,162,39,0.1)] transition-all duration-500"
+              className="group flex flex-col bg-[#0f0f0f] border border-white/5 rounded-3xl p-8 hover:-translate-y-[5px] hover:border-[#C9A227]/50 hover:shadow-[0_0_25px_rgba(201,162,39,0.3)] transition-all duration-500"
             >
               {/* Photo Crop */}
               <div className="relative w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-[3px] border-[#C9A227] flex-shrink-0">
@@ -107,18 +107,35 @@ export const About: React.FC = () => {
               </div>
 
               {/* Content info */}
-              <div className="text-center flex-grow flex flex-col">
+              <div className="text-center flex-grow flex flex-col items-center">
                 <h4 className="text-2xl font-bold text-white mb-1">{member.name}</h4>
-                <p className="text-xs uppercase tracking-[0.2em] text-[#C9A227] font-semibold mb-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#C9A227] font-semibold mb-3">
                   {member.role}
                 </p>
+
+                {member.badge && (
+                  <span className="inline-block px-3 py-1 mb-4 text-[10px] font-bold uppercase tracking-wider text-black bg-[#C9A227] rounded-full shadow-[0_0_10px_rgba(201,162,39,0.3)]">
+                    {member.badge}
+                  </span>
+                )}
                 
                 <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 flex-grow text-balance">
                   {member.bio}
                 </p>
 
                 {/* Social / Contact Links */}
-                <div className="flex justify-center items-center gap-4 mt-auto pt-4 border-t border-white/5">
+                <div className="flex justify-center items-center gap-4 mt-auto pt-4 border-t border-white/5 w-full">
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-300 hover:text-[#0A66C2] hover:bg-[#0A66C2]/10 hover:scale-110 transition-all duration-300"
+                      aria-label="LinkedIn"
+                    >
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                  )}
                   {member.whatsapp && (
                     <a
                       href={`https://wa.me/${member.whatsapp}`}
