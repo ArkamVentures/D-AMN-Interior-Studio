@@ -15,7 +15,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       setTimeout(onComplete, 100); // Small buffer to ensure exit animation triggers fully
     }, 3000);
     return () => clearTimeout(timer);
-  }, [onComplete]);
+  }, []); // Empty dependency array prevents timer from resetting
+
 
   if (!isVisible) return null;
 
