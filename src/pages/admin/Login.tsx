@@ -20,7 +20,7 @@ export const Login: React.FC = () => {
       const formData = new URLSearchParams();
       formData.append('username', username);
       formData.append('password', password);
-      const res = await fetch(`${API_BASE}/api/auth/token`, {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData,
