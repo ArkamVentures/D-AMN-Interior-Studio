@@ -186,38 +186,39 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
 
         {/* ─── Masonry Grid ───────────────────────────────────── */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence>
             {visiblePhotos.map((photo, index) => (
               <motion.div
                 key={photo.id}
-                layout
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.4) }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.3), ease: 'easeOut' }}
                 onClick={() => openLightbox(index)}
-                className="group relative overflow-hidden rounded-xl cursor-pointer break-inside-avoid shadow-lg hover:shadow-[0_0_25px_rgba(201,162,39,0.3)] transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-[#C9A227]/30"
+                className="group relative overflow-hidden rounded-xl cursor-pointer break-inside-avoid shadow-lg hover:shadow-[0_0_25px_rgba(201,162,39,0.3)] transition-shadow duration-500 border border-transparent hover:border-[#C9A227]/30 mb-4"
+                style={{ transform: 'translateZ(0)' }}
               >
-                {/* Image with lazy loading */}
+                {/* Image */}
                 <img
                   src={photo.src}
                   alt={photo.title}
                   loading="lazy"
-                  className="w-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-all duration-700 ease-out"
+                  className="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  style={{ willChange: 'transform', display: 'block' }}
                 />
 
                 {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                 {/* Service tag (top-right) */}
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-[-4px] group-hover:translate-y-0">
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                   <span className="px-2.5 py-1 rounded-full bg-accent/90 text-primary text-[10px] sm:text-xs font-semibold uppercase tracking-wider shadow-lg">
                     {photo.service}
                   </span>
                 </div>
 
-                {/* Location badge (bottom) */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                {/* Location badge (slides up on hover) */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out pointer-events-none">
                   <div className="flex items-center gap-1.5">
                     <MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0" />
                     <span className="text-white text-xs sm:text-sm font-medium truncate">
@@ -229,8 +230,8 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                   </p>
                 </div>
 
-                {/* Always-visible location badge (subtle) */}
-                <div className="absolute bottom-2 left-2 group-hover:opacity-0 transition-opacity duration-200">
+                {/* Always-visible subtle location badge */}
+                <div className="absolute bottom-2 left-2 group-hover:opacity-0 transition-opacity duration-200 pointer-events-none">
                   <span className="px-2 py-1 rounded-md bg-black/50 backdrop-blur-sm text-white/80 text-[10px] font-medium">
                     {photo.location}
                   </span>
