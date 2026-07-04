@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -62,3 +63,11 @@ app.include_router(settings_router.router)
 @app.get("/")
 def read_root():
     return {"message": "Welcome to Damn Aluminium Fabrication API"}
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "ok",
+        "time": datetime.now().isoformat(),
+        "service": "D-AMN API"
+    }
