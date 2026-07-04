@@ -174,7 +174,7 @@ export const GoogleReviews: React.FC = () => {
               return (
                 <div
                   key={review.id}
-                  className="review-card flex-shrink-0 w-[300px] rounded-xl border border-gray-100 bg-gray-50 p-5 sm:w-[320px]"
+                  className="review-card flex h-full min-h-[220px] flex-shrink-0 w-[300px] flex-col rounded-xl border border-gray-100 bg-gray-50 p-5 sm:w-[320px]"
                   style={{ scrollSnapAlign: 'start' }}
                 >
                   <div className="mb-3 flex items-start gap-3">
@@ -201,7 +201,7 @@ export const GoogleReviews: React.FC = () => {
                     ))}
                   </div>
 
-                  <p className={`text-sm leading-relaxed text-gray-700 ${review.isLong && !isExpanded ? 'line-clamp-3' : ''}`}>
+                  <p className={`flex-1 text-sm leading-relaxed text-gray-700 ${review.isLong && !isExpanded ? 'line-clamp-3' : ''}`}>
                     {review.text}
                   </p>
 
@@ -209,7 +209,7 @@ export const GoogleReviews: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => toggleExpand(review.id)}
-                      className="mt-2 text-sm text-gray-500 transition hover:text-gray-700"
+                      className="mt-3 text-sm text-gray-500 transition hover:text-gray-700"
                     >
                       {isExpanded ? 'Show less' : 'Read more'}
                     </button>
