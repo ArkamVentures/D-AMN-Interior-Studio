@@ -3,12 +3,33 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from backend.database import engine, Base
+from backend.database import engine, Base, SessionLocal
 from backend.config import settings
 from backend.routers import auth, home, about, services, portfolio, pricing, blog, contact, settings as settings_router
+from backend import models, auth as auth_utils
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
+
+# ── Auto-seed admin user so Railway DB resets don't break logins ──────────────
+def seed_admin():
+    db = SessionLocal()
+    try:
+        admin_password = os.environ.get("ADMIN_PASSWORD", "admin123")
+        existing = db.query(models.User).filter(models.User.username == "admin").first()
+        if not existing:
+            user = models.User(
+                username="admin",
+                password_hash=auth_utils.get_password_hash(admin_password)
+            )
+            db.add(user)
+            db.commit()
+    except Exception:
+        db.rollback()
+    finally:
+        db.close()
+
+seed_admin()
 
 app = FastAPI(title="Damn Aluminium Fabrication API")
 

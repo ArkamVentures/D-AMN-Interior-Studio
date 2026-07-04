@@ -6,11 +6,12 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 _env_file = Path(__file__).parent / ".env"
 
 class Settings(BaseSettings):
-    DATABASE_URL: str = "sqlite:///./damn_aluminium.db"
+    # Use /data/ path on Railway (persistent volume) or local file in dev
+    DATABASE_URL: str = "sqlite:////data/damn_aluminium.db" if os.path.isdir("/data") else "sqlite:///./damn_aluminium.db"
     SECRET_KEY: str = "change-me-in-production-please"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 10080
-    UPLOAD_DIR: str = "uploads"
+    UPLOAD_DIR: str = "/data/uploads" if os.path.isdir("/data") else "uploads"
     MAX_FILE_SIZE: int = 5242880
     ALLOWED_ORIGINS: str = "http://localhost:5173,https://damn-aluminium.vercel.app"
 
