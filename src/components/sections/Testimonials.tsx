@@ -46,15 +46,15 @@ export const Testimonials: React.FC = () => {
         <div className="relative min-h-[300px] flex items-center justify-center">
           <Quote className="absolute top-0 left-0 w-24 h-24 text-accent/5 -translate-x-12 -translate-y-8 select-none animate-pulse" />
           
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.4 }}
-              className="px-6 sm:px-12"
-            >
+<AnimatePresence mode="wait">
+             <motion.div
+               key={index}
+               initial={{ opacity: 0, x: 50 }}
+               animate={{ opacity: 1, x: 0 }}
+               exit={{ opacity: 0, x: -50 }}
+               transition={{ duration: 0.4 }}
+               className="review-card px-6 sm:px-12"
+             >
               <div className="flex justify-center mb-6 space-x-1">
                 {[...Array(testimonials[index].rating)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 text-accent fill-accent" />

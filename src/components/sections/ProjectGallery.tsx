@@ -142,7 +142,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 max-h-72 overflow-y-auto bg-white dark:bg-dark-card rounded-xl shadow-2xl border border-gray-200 dark:border-white/10 z-30"
+                    className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 max-h-72 overflow-y-auto scrollbar-hide bg-white dark:bg-dark-card rounded-xl shadow-2xl border border-gray-200 dark:border-white/10 z-30"
                   >
                     {locations.map((loc) => (
                       <button
