@@ -252,9 +252,11 @@ export const Dashboard: React.FC = () => {
         {/* Publish Bar */}
         <div className="mb-6 flex items-center justify-between bg-[#0f0f0f] border border-white/5 rounded-2xl px-5 py-3">
           <div className="flex items-center gap-2">
-            <div className={`w-2 h-2 rounded-full ${data.apiSynced ? 'bg-green-400' : 'bg-yellow-400'}`} />
+            <div className={`w-2 h-2 rounded-full ${data.apiSynced ? 'bg-green-400' : 'bg-yellow-400 animate-pulse'}`} />
             <span className="text-xs text-gray-400">
-              {data.apiSynced ? 'Synced with live website' : 'Using local data (backend offline)'}
+              {data.apiSynced
+                ? '🟢 Connected to live website'
+                : '🟡 Connecting to server... (may take ~30s on first load)'}
             </span>
           </div>
           <button
