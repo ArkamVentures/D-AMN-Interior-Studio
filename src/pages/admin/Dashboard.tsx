@@ -120,7 +120,6 @@ export const Dashboard: React.FC = () => {
     await data.saveToAPI();
     setPublishing(false);
     showToast('✅ Published! Opening live website to verify...');
-    // Open the live site in a new tab so they can immediately see changes
     setTimeout(() => {
       window.open(window.location.origin.includes('localhost')
         ? 'http://localhost:5173/'
@@ -128,6 +127,34 @@ export const Dashboard: React.FC = () => {
         '_blank'
       );
     }, 1000);
+  };
+
+  const [waking, setWaking] = useState(false);
+  const handleWakeServer = async () => {
+    setWaking(true);
+    try {
+      // Ping backend to wake Railway from sleep (can take 60+ seconds)
+      await fetch(`${API_BASE}/api/settings`, { signal: AbortSignal.timeout(90000) });
+      // Auto-login to get a fresh token
+      const formData = new URLSearchParams();
+      formData.append('username', 'admin');
+      formData.append('password', 'admin123');
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData,
+        signal: AbortSignal.timeout(15000),
+      });
+      if (res.ok) {
+        const d = await res.json();
+        localStorage.setItem('admin_token', d.access_token);
+        showToast('✅ Server connected! You can now publish.');
+      }
+    } catch {
+      showToast('❌ Server still waking up. Try again in 30s.');
+    } finally {
+      setWaking(false);
+    }
   };
 
   // Base64 Image converter utility
@@ -250,23 +277,35 @@ export const Dashboard: React.FC = () => {
       <main className="flex-grow p-6 md:p-10 max-w-5xl mx-auto w-full overflow-y-auto">
 
         {/* Publish Bar */}
-        <div className="mb-6 flex items-center justify-between bg-[#0f0f0f] border border-white/5 rounded-2xl px-5 py-3">
+        <div className="mb-6 flex items-center justify-between bg-[#0f0f0f] border border-white/5 rounded-2xl px-5 py-3 gap-3 flex-wrap">
           <div className="flex items-center gap-2">
             <div className={`w-2 h-2 rounded-full ${data.apiSynced ? 'bg-green-400' : 'bg-yellow-400 animate-pulse'}`} />
             <span className="text-xs text-gray-400">
               {data.apiSynced
                 ? '🟢 Connected to live website'
-                : '🟡 Connecting to server... (may take ~30s on first load)'}
+                : '🟡 Connecting to server... (may take ~60s on first load)'}
             </span>
           </div>
-          <button
-            onClick={handlePublish}
-            disabled={publishing}
-            className="flex items-center gap-2 px-4 py-2 bg-[#C9A227] hover:bg-[#F4D03F] text-black text-sm font-bold rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            <Cloud className="w-4 h-4" />
-            {publishing ? 'Publishing...' : 'Publish to Live Website'}
-          </button>
+          <div className="flex items-center gap-2">
+            {!data.apiSynced && (
+              <button
+                onClick={handleWakeServer}
+                disabled={waking}
+                className="flex items-center gap-1.5 px-3 py-2 border border-white/10 hover:border-white/20 text-gray-300 text-xs font-medium rounded-lg transition-colors disabled:opacity-50"
+              >
+                <RefreshCw className={`w-3 h-3 ${waking ? 'animate-spin' : ''}`} />
+                {waking ? 'Waking server...' : 'Wake Server'}
+              </button>
+            )}
+            <button
+              onClick={handlePublish}
+              disabled={publishing}
+              className="flex items-center gap-2 px-4 py-2 bg-[#C9A227] hover:bg-[#F4D03F] text-black text-sm font-bold rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              <Cloud className="w-4 h-4" />
+              {publishing ? 'Publishing...' : 'Publish to Live Website'}
+            </button>
+          </div>
         </div>
 
         {/* ─── Tab 1: Overview ─────────────────────────────────── */}

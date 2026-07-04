@@ -569,8 +569,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     const loadFromAPI = async () => {
       try {
-        // Increased to 30s to handle Railway cold starts (free tier sleeps)
-        const res = await fetch(`${API_BASE}/api/settings`, { signal: AbortSignal.timeout(30000) });
+        // 90s timeout: Railway free tier can take 50+ seconds to wake from sleep
+        const res = await fetch(`${API_BASE}/api/settings`, { signal: AbortSignal.timeout(90000) });
         if (!res.ok) return;
         const json = await res.json();
         const d = json.data;
