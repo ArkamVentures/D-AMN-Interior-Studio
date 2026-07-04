@@ -5,6 +5,7 @@ import { ProjectGallery } from '../components/sections/ProjectGallery';
 import { Process } from '../components/sections/Process';
 import { Stats } from '../components/sections/Stats';
 import { Testimonials } from '../components/sections/Testimonials';
+import { GoogleReviews } from '../components/sections/GoogleReviews';
 import { Pricing } from '../components/sections/Pricing';
 import { FAQ } from '../components/sections/FAQ';
 import { Contact } from '../components/sections/Contact';
@@ -22,6 +23,7 @@ export const Home: React.FC = () => {
       <ProjectGallery activeLocation={activeLocation} setActiveLocation={setActiveLocation} />
       <Process />
       <Testimonials />
+      <GoogleReviews />
       <Pricing />
       <FAQ />
       <Partners />
