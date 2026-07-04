@@ -169,9 +169,9 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
         {/* Service Area Hashtags */}
         <div className="max-w-3xl mx-auto text-center border-t border-white/5 pt-10">
           <p className="text-xs uppercase tracking-[0.2em] text-[#C9A227] font-bold mb-4">Coverage Areas</p>
-          <p className="text-xs text-[#C9A227]/60 leading-relaxed max-w-2xl mx-auto">
-            #kaluthara #elpitiya #ambalangoda #aluthgama #mathugama #beruwela #uragasmanhandiya #karandeniya #horana #dodangoda #baduraliya #agalawatta #welipenna #bentota
-          </p>
+            <p className="text-xs text-[#C9A227]/60 leading-relaxed max-w-2xl mx-auto">
+              #kaluthara #elpitiya #ambalangoda #aluthgama #mathugama #beruwela #uragasmanhandiya #karandeniya #horana #dodangoda #baduraliya #agalawatta #welipenna #bentota
+            </p>
         </div>
 
       </div>
