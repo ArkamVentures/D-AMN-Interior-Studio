@@ -184,7 +184,7 @@ const initialAboutParagraph = "D-AMN Aluminium Fabrication is a full-service int
 
 const initialTeam: TeamMember[] = [
   {
-    name: "Nowful",
+    name: "Mohamed Nowful",
     role: "Founder & CEO",
     bio: "Visionary founder behind D-AMN Aluminium Fabrication with 20+ years of hands-on experience in aluminium fabrication and interior solutions. Nowful leads the company with deep industry expertise, a passion for modern design, and an unwavering commitment to quality craftsmanship. From concept to completion, he ensures every project reflects durability, innovation, and timeless style.",
     image: "/founder.png",
@@ -193,7 +193,7 @@ const initialTeam: TeamMember[] = [
     badge: "20+ Years Experience"
   },
   {
-    name: "Maajidh",
+    name: "Abdul Maajidh",
     role: "Managing Director",
     bio: "Interior Engineering undergraduate and managing director at D-AMN. Maajidh oversees day-to-day operations, project management, and client relations with hands-on expertise in aluminium fabrication and interior execution. He ensures every installation is delivered on time, within budget, and to the highest standards of finish.",
     image: "/md.png",
