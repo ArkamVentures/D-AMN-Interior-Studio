@@ -102,7 +102,7 @@ export const GoogleReviews: React.FC = () => {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = 380;
+      const scrollAmount = 336;
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -143,7 +143,7 @@ export const GoogleReviews: React.FC = () => {
           <button
             type="button"
             onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition hover:bg-gray-50"
+            className="absolute left-0 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition hover:bg-gray-50 md:flex"
             aria-label="Scroll reviews left"
           >
             <ChevronLeft className="h-5 w-5 text-gray-600" />
@@ -152,7 +152,7 @@ export const GoogleReviews: React.FC = () => {
           <button
             type="button"
             onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition hover:bg-gray-50"
+            className="absolute right-0 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition hover:bg-gray-50 md:flex"
             aria-label="Scroll reviews right"
           >
             <ChevronRight className="h-5 w-5 text-gray-600" />
@@ -160,17 +160,22 @@ export const GoogleReviews: React.FC = () => {
 
           <div
             ref={scrollRef}
-            className="scrollbar-hide flex gap-4 overflow-x-auto px-12 py-4 scroll-smooth"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="scrollbar-hide flex gap-4 overflow-x-auto px-2 py-4 pb-6 scroll-smooth sm:px-3 md:px-14"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch',
+              scrollSnapType: 'x mandatory',
+            }}
           >
             {googleReviews.map((review) => {
               const isExpanded = expandedIds.has(review.id);
-              const displayText = isExpanded || !review.isLong ? review.text : `${review.text.slice(0, 120)}...`;
 
               return (
                 <div
                   key={review.id}
-                  className="review-card flex-shrink-0 w-[340px] rounded-xl border border-gray-100 bg-gray-50 p-5"
+                  className="review-card flex-shrink-0 w-[300px] rounded-xl border border-gray-100 bg-gray-50 p-5 sm:w-[320px]"
+                  style={{ scrollSnapAlign: 'start' }}
                 >
                   <div className="mb-3 flex items-start gap-3">
                     <div
@@ -180,8 +185,8 @@ export const GoogleReviews: React.FC = () => {
                       {review.avatar}
                     </div>
 
-                    <div className="flex-1">
-                      <h4 className="text-sm font-semibold text-gray-900">{review.name}</h4>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="truncate text-sm font-semibold text-gray-900">{review.name}</h4>
                       <p className="text-xs text-gray-500">{review.date}</p>
                     </div>
 
@@ -196,7 +201,9 @@ export const GoogleReviews: React.FC = () => {
                     ))}
                   </div>
 
-                  <p className="text-sm leading-relaxed text-gray-700">{displayText}</p>
+                  <p className={`text-sm leading-relaxed text-gray-700 ${review.isLong && !isExpanded ? 'line-clamp-3' : ''}`}>
+                    {review.text}
+                  </p>
 
                   {review.isLong && (
                     <button
