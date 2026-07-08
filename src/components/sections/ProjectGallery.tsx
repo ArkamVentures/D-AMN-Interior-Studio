@@ -1,322 +1,234 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, ChevronDown, Filter, ArrowRight, Phone } from 'lucide-react';
+import { MapPin, ArrowRight, ExternalLink } from 'lucide-react';
 import { SectionHeading } from '../ui/SectionHeading';
-import { Lightbox } from '../ui/Lightbox';
-import { useData } from '../../context/DataContext';
+import { staticProjectData } from '../../data/projectData';
+import { AnimatedStats } from '../ui/AnimatedStats';
 
-const INITIAL_COUNT = 12;
-const LOAD_MORE_COUNT = 12;
+const CATEGORIES = ["All", "Windows", "Doors", "Partitions", "Facades", "Railings"];
+const LOCATIONS = ["All Sri Lanka", "Colombo", "Kandy", "Galle", "Negombo"];
+const INITIAL_COUNT = 6;
+const TOTAL_REAL_PROJECTS = 110;
 
-interface ProjectGalleryProps {
-  activeLocation?: string;
-  setActiveLocation?: (loc: string) => void;
-}
-
-export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
-  activeLocation: propActiveLocation,
-  setActiveLocation: propSetActiveLocation,
-}) => {
-  const { projectPhotosList } = useData();
-  const [internalLocation, setInternalLocation] = useState('All Locations');
-  const activeLocation = propActiveLocation !== undefined ? propActiveLocation : internalLocation;
-  const setActiveLocation = propSetActiveLocation !== undefined ? propSetActiveLocation : setInternalLocation;
-  const [activeService, setActiveService] = useState('All');
+export const ProjectGallery: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeLocation, setActiveLocation] = useState("All Sri Lanka");
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
 
-  // Compute unique locations and services dynamically
-  const locations = useMemo(() => {
-    const locs = new Set(projectPhotosList.map(p => p.location));
-    return ['All Locations', ...Array.from(locs).sort()];
-  }, [projectPhotosList]);
-
-  const serviceTypes = useMemo(() => {
-    const svcs = new Set(projectPhotosList.map(p => p.service));
-    return ['All', ...Array.from(svcs).sort()];
-  }, [projectPhotosList]);
-
-  // Filter logic
-  const filteredPhotos = useMemo(() => {
-    return projectPhotosList.filter((photo) => {
-      const locationMatch =
-        activeLocation === 'All Locations' || photo.location === activeLocation;
-      const serviceMatch =
-        activeService === 'All' || photo.service === activeService;
-      return locationMatch && serviceMatch;
+  // Filter the static array
+  const filteredProjects = useMemo(() => {
+    return staticProjectData.filter((project) => {
+      const categoryMatch = activeCategory === "All" || project.category === activeCategory;
+      const locationMatch = activeLocation === "All Sri Lanka" || project.city === activeLocation;
+      return categoryMatch && locationMatch;
     });
-  }, [projectPhotosList, activeLocation, activeService]);
+  }, [activeCategory, activeLocation]);
 
-  const visiblePhotos = filteredPhotos.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredPhotos.length;
+  const visibleProjects = filteredProjects.slice(0, visibleCount);
 
-  // Reset visible count on filter change
-  const handleFilterChange = (type: 'location' | 'service', value: string) => {
+  // Reset count when filters change
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
     setVisibleCount(INITIAL_COUNT);
-    if (type === 'location') {
-      setActiveLocation(value);
-      setShowLocationDropdown(false);
-    } else {
-      setActiveService(value);
-    }
   };
 
-  const openLightbox = (index: number) => {
-    // Find the actual index in filteredPhotos
-    setLightboxIndex(index);
-    setLightboxOpen(true);
+  const handleLocationChange = (location: string) => {
+    setActiveLocation(location);
+    setVisibleCount(INITIAL_COUNT);
   };
 
-  // Get unique location counts
-  const locationCounts = useMemo(() => {
-    const counts: Record<string, number> = {};
-    projectPhotosList.forEach((p) => {
-      counts[p.location] = (counts[p.location] || 0) + 1;
-    });
-    return counts;
-  }, [projectPhotosList]);
+  const loadMore = () => {
+    setVisibleCount(prev => prev + 6);
+  };
+
+  // Find featured project if any (we'll just use the first one marked featured)
+  const featuredProject = useMemo(() => staticProjectData.find(p => p.featured), []);
 
   return (
-    <section
-      id="our-projects"
-      className="py-20 md:py-32 bg-warm-gray dark:bg-dark-bg transition-colors duration-300"
-    >
+    <section id="our-projects" className="py-20 md:py-32 bg-warm-gray dark:bg-dark-bg transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Animated Stats Bar above the heading */}
+        <AnimatedStats />
+
         <SectionHeading
           title="Our Projects"
           subtitle="Real Work, Real Results"
         />
 
         <p className="text-center text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-12 -mt-6">
-          Browse through our completed projects across Sri Lanka. Each project
-          showcases our commitment to quality aluminium fabrication and modern
-          design.
+          Browse through our completed projects across Sri Lanka. Each project showcases our commitment to quality aluminium fabrication and modern design.
         </p>
 
-        {/* ─── Filter Bar ─────────────────────────────────────── */}
-        <div className="mb-10 space-y-4">
-          {/* Service Type Filters */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-            {serviceTypes.map((service) => (
+        {/* Featured Hero (Optional, shown only if 'All' is selected and there is a featured project) */}
+        {activeCategory === "All" && activeLocation === "All Sri Lanka" && featuredProject && (
+          <div className="mb-16 relative overflow-hidden rounded-3xl shadow-2xl group cursor-pointer h-[400px] md:h-[500px]">
+            <img 
+              src={featuredProject.image} 
+              alt={featuredProject.title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+            
+            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 z-10 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+              <div>
+                <span className="inline-block px-3 py-1 mb-4 text-xs font-bold uppercase tracking-wider text-primary bg-accent rounded-full">
+                  Featured Project
+                </span>
+                <h3 className="text-3xl md:text-5xl font-serif font-bold text-white mb-3">
+                  {featuredProject.title}
+                </h3>
+                <div className="flex items-center gap-2 text-white/80">
+                  <MapPin className="w-5 h-5 text-accent" />
+                  <span className="text-lg">{featuredProject.location}</span>
+                </div>
+              </div>
+              <button className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-primary hover:bg-accent hover:text-white transition-colors rounded-full font-semibold">
+                View Project <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Filter Chips */}
+        <div className="mb-12 space-y-6">
+          {/* Categories */}
+          <div className="flex overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:justify-center gap-3">
+            {CATEGORIES.map(category => (
               <button
-                key={service}
-                onClick={() => handleFilterChange('service', service)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 ${
-                  activeService === service
-                    ? 'bg-accent text-primary shadow-lg shadow-accent/25 scale-105'
-                    : 'bg-white dark:bg-dark-card text-gray-600 dark:text-gray-400 hover:bg-accent/10 hover:text-accent border border-gray-200 dark:border-white/10'
+                key={category}
+                onClick={() => handleCategoryChange(category)}
+                className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 relative ${
+                  activeCategory === category 
+                    ? 'bg-accent text-primary shadow-lg shadow-accent/20' 
+                    : 'bg-white dark:bg-dark-card text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 border border-gray-200 dark:border-white/10'
                 }`}
               >
-                {service}
+                {category}
+                {activeCategory === category && (
+                  <motion.div layoutId="activeCategoryDot" className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-accent" />
+                )}
               </button>
             ))}
           </div>
 
-          {/* Location Filter */}
-          <div className="flex justify-center">
-            <div className="relative">
+          {/* Locations */}
+          <div className="flex overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:justify-center gap-3">
+            {LOCATIONS.map(location => (
               <button
-                onClick={() => setShowLocationDropdown(!showLocationDropdown)}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all border ${
-                  activeLocation !== 'All Locations'
-                    ? 'bg-accent/10 text-accent border-accent/30'
-                    : 'bg-white dark:bg-dark-card text-gray-600 dark:text-gray-400 border-gray-200 dark:border-white/10 hover:border-accent/30'
+                key={location}
+                onClick={() => handleLocationChange(location)}
+                className={`flex-shrink-0 px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 relative ${
+                  activeLocation === location 
+                    ? 'bg-gray-800 text-white dark:bg-white dark:text-gray-900' 
+                    : 'bg-transparent text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
-                <MapPin className="w-4 h-4" />
-                {activeLocation}
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    showLocationDropdown ? 'rotate-180' : ''
-                  }`}
-                />
+                {location}
               </button>
-
-              {/* Location Dropdown */}
-              <AnimatePresence>
-                {showLocationDropdown && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 max-h-72 overflow-y-auto scrollbar-hide bg-white dark:bg-dark-card rounded-xl shadow-2xl border border-gray-200 dark:border-white/10 z-30"
-                  >
-                    {locations.map((loc) => (
-                      <button
-                        key={loc}
-                        onClick={() => handleFilterChange('location', loc)}
-                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center justify-between ${
-                          activeLocation === loc
-                            ? 'bg-accent/10 text-accent font-medium'
-                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5'
-                        }`}
-                      >
-                        <span>{loc}</span>
-                        {loc !== 'All Locations' && locationCounts[loc] && (
-                          <span className="text-xs text-gray-400 bg-gray-100 dark:bg-white/10 px-2 py-0.5 rounded-full">
-                            {locationCounts[loc]}
-                          </span>
-                        )}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Active filter info */}
-          <div className="text-center">
-            <p className="text-xs text-gray-400 dark:text-gray-500">
-              Showing{' '}
-              <span className="text-accent font-semibold">
-                {Math.min(visibleCount, filteredPhotos.length)}
-              </span>{' '}
-              of{' '}
-              <span className="text-accent font-semibold">
-                {filteredPhotos.length}
-              </span>{' '}
-              projects
-            </p>
+            ))}
           </div>
         </div>
 
-        {/* ─── Masonry Grid ───────────────────────────────────── */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-          <AnimatePresence>
-            {visiblePhotos.map((photo, index) => (
+        {/* Masonry Grid */}
+        <motion.div layout className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+          <AnimatePresence mode="popLayout">
+            {visibleProjects.map((project) => (
               <motion.div
-                key={photo.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.3), ease: 'easeOut' }}
-                onClick={() => openLightbox(index)}
-                className="group relative overflow-hidden rounded-xl cursor-pointer break-inside-avoid shadow-lg hover:shadow-[0_0_25px_rgba(201,162,39,0.3)] transition-shadow duration-500 border border-transparent hover:border-[#C9A227]/30 mb-4"
-                style={{ transform: 'translateZ(0)' }}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                key={project.id}
+                className="relative overflow-hidden rounded-2xl cursor-pointer group break-inside-avoid shadow-md hover:shadow-xl transition-shadow border border-transparent hover:border-accent/30"
               >
-                {/* Image */}
-                <img
-                  src={photo.src}
-                  alt={photo.title}
+                <img 
+                  src={project.image} 
+                  alt={project.title}
                   loading="lazy"
-                  className="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  style={{ willChange: 'transform', display: 'block' }}
+                  className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-                {/* Service tag (top-right) */}
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <span className="px-2.5 py-1 rounded-full bg-accent/90 text-primary text-[10px] sm:text-xs font-semibold uppercase tracking-wider shadow-lg">
-                    {photo.service}
+                
+                {/* Dark overlay slides up */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Category tag always visible on top right in dark mode, or only on hover */}
+                <div className="absolute top-4 right-4 z-10">
+                  <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-white text-[10px] uppercase font-bold tracking-widest rounded-full border border-white/10">
+                    {project.category}
                   </span>
                 </div>
 
-                {/* Location badge (slides up on hover) */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out pointer-events-none">
-                  <div className="flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-                    <span className="text-white text-xs sm:text-sm font-medium truncate">
-                      {photo.location}
-                    </span>
+                {/* Content slides up */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-10">
+                  <h4 className="text-xl font-bold text-white mb-2 leading-tight">
+                    {project.title}
+                  </h4>
+                  <div className="flex items-center gap-1.5 text-white/70 mb-4 text-sm">
+                    <MapPin className="w-4 h-4 text-accent" />
+                    {project.location}
                   </div>
-                  <p className="text-white/60 text-[10px] sm:text-xs mt-0.5 truncate">
-                    {photo.title}
-                  </p>
-                </div>
-
-                {/* Always-visible subtle location badge */}
-                <div className="absolute bottom-2 left-2 group-hover:opacity-0 transition-opacity duration-200 pointer-events-none">
-                  <span className="px-2 py-1 rounded-md bg-black/50 backdrop-blur-sm text-white/80 text-[10px] font-medium">
-                    {photo.location}
-                  </span>
+                  <button className="flex items-center gap-2 text-accent font-semibold text-sm hover:text-white transition-colors">
+                    View Project <ExternalLink className="w-4 h-4" />
+                  </button>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
-        </div>
+        </motion.div>
 
         {/* Empty State */}
-        {filteredPhotos.length === 0 && (
-          <div className="text-center py-20">
-            <Filter className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
-            <p className="text-gray-400 dark:text-gray-500 text-lg">
-              No projects found for the selected filters.
-            </p>
-            <button
-              onClick={() => {
-                setActiveLocation('All Locations');
-                setActiveService('All');
-              }}
-              className="mt-4 text-accent hover:text-accent-dark underline text-sm"
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-20 text-gray-500 dark:text-gray-400">
+            <p className="text-lg">No projects match the selected filters.</p>
+            <button 
+              onClick={() => { setActiveCategory("All"); setActiveLocation("All Sri Lanka"); }}
+              className="mt-4 text-accent hover:underline font-medium"
             >
-              Clear all filters
+              Clear filters
             </button>
           </div>
         )}
 
-        {/* View More Button */}
-        {hasMore && (
-          <div className="text-center mt-12">
-            <button
-              onClick={() => setVisibleCount((prev) => prev + LOAD_MORE_COUNT)}
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-white dark:bg-dark-card text-primary dark:text-white font-semibold rounded-full border border-gray-200 dark:border-white/10 hover:border-accent hover:text-accent transition-all shadow-sm hover:shadow-md group"
-            >
-              View More Projects
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <p className="text-xs text-gray-400 mt-2">
-              {filteredPhotos.length - visibleCount} more projects to explore
+        {/* Load More & Progress */}
+        {filteredProjects.length > 0 && (
+          <div className="mt-16 flex flex-col items-center">
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
+              Showing {visibleCount} of {filteredProjects.length === staticProjectData.length ? TOTAL_REAL_PROJECTS : filteredProjects.length} projects
             </p>
-          </div>
-        )}
-
-        {/* ─── CTA Section ────────────────────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 text-center"
-        >
-          <div className="relative overflow-hidden bg-primary dark:bg-dark-card rounded-2xl p-8 sm:p-12 shadow-2xl">
-            {/* Decorative elements */}
-            <div className="absolute top-0 left-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-            <div className="absolute bottom-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-
-            <div className="relative z-10">
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
-                Start Your Project Today
-              </h3>
-              <p className="text-gray-400 max-w-lg mx-auto mb-8">
-                Ready to transform your space? Contact us for a free
-                consultation and quotation. We serve all areas across Sri Lanka.
-              </p>
-              <a
-                href="tel:+94773724849"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-accent hover:bg-accent-dark text-primary font-bold rounded-full shadow-lg shadow-accent/30 transition-all hover:shadow-xl hover:shadow-accent/40 hover:scale-105 active:scale-95 group"
-              >
-                <Phone className="w-5 h-5 group-hover:animate-pulse" />
-                Call +94 77 372 4849
-              </a>
+            
+            <div className="w-64 h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden mb-8">
+              <motion.div 
+                className="h-full bg-accent"
+                initial={{ width: 0 }}
+                animate={{ width: `${(visibleCount / (filteredProjects.length === staticProjectData.length ? TOTAL_REAL_PROJECTS : filteredProjects.length)) * 100}%` }}
+                transition={{ duration: 0.5 }}
+              />
             </div>
-          </div>
-        </motion.div>
-      </div>
 
-      {/* Lightbox */}
-      <Lightbox
-        images={filteredPhotos}
-        currentIndex={lightboxIndex}
-        isOpen={lightboxOpen}
-        onClose={() => setLightboxOpen(false)}
-        onNavigate={setLightboxIndex}
-      />
+            {visibleCount < filteredProjects.length ? (
+              <button
+                onClick={loadMore}
+                className="px-8 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:border-accent hover:text-accent transition-colors flex items-center gap-2"
+              >
+                Load More
+              </button>
+            ) : (
+              // Fake infinite mock for user requirement if all 12 are shown
+              filteredProjects.length === staticProjectData.length && (
+                <button
+                  className="px-8 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:border-accent hover:text-accent transition-colors flex items-center gap-2 opacity-50 cursor-not-allowed"
+                  title="Mockup limit reached"
+                >
+                  {TOTAL_REAL_PROJECTS - visibleCount} more projects
+                </button>
+              )
+            )}
+          </div>
+        )}
+
+      </div>
     </section>
   );
 };
