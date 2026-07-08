@@ -860,15 +860,13 @@ export const Dashboard: React.FC = () => {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-[10px] uppercase tracking-wider text-gray-500 mb-1">Location</label>
-                        <select 
+                        <input 
+                          type="text"
                           value={editingProject.location}
                           onChange={(e) => setEditingProject({ ...editingProject, location: e.target.value })}
+                          placeholder="Enter location"
                           className="w-full px-3 py-2 bg-black border border-white/10 rounded-lg text-sm text-white"
-                        >
-                          {['Ambalangoda', 'Bandarawala', 'Benthota', 'Dehiwela', 'Dhargatown', 'Dodangoda', 'Elpitiya', 'Horana', 'Kaluthara', 'Kande Vihara', 'Karandeniya', 'Kelaniya', 'Mathugama', 'Pahekanuwa', 'Pelawatta', 'Polgahawela', 'Uragasmanhandiya'].map(l => (
-                            <option key={l} value={l}>{l}</option>
-                          ))}
-                        </select>
+                        />
                       </div>
                       <div>
                         <label className="block text-[10px] uppercase tracking-wider text-gray-500 mb-1">Service Type</label>
