@@ -8,6 +8,7 @@ from backend.database import engine, Base, SessionLocal
 from backend.config import settings
 from backend.routers import auth, home, about, services, portfolio, pricing, blog, contact, settings as settings_router
 from backend import models, auth as auth_utils
+from backend.rate_limiter import limiter, _rate_limit_exceeded_handler, RateLimitExceeded
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -44,6 +45,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # Mount uploads directory for static file serving
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)

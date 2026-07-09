@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from sqlalchemy.orm import Session
 from backend import crud, models, schemas, auth
 from backend.database import get_db
+from backend.rate_limiter import limiter
 
 router = APIRouter(prefix="/api/contact", tags=["contact"])
 
@@ -20,7 +21,9 @@ def update_contact_info(
 # --- Contact Messages Routes ---
 
 @router.post("/messages", response_model=schemas.ContactMessageResponse)
+@limiter.limit("5/minute")
 def create_contact_message(
+    request: Request,
     message: schemas.ContactMessageCreate,
     db: Session = Depends(get_db)
 ):
