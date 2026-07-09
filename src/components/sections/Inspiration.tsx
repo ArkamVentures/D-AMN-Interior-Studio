@@ -84,10 +84,11 @@ export const Inspiration: React.FC = () => {
               className="group bg-slate-100 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
             >
               <div className="relative h-64 overflow-hidden">
-                <img
+<img
                   src={post.image}
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
                 />
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 bg-amber-500 text-slate-950 text-xs font-semibold rounded-full">
@@ -148,7 +149,7 @@ export const Inspiration: React.FC = () => {
                 className="w-full break-inside-avoid rounded-3xl overflow-hidden bg-slate-100 shadow-lg hover:shadow-2xl focus:outline-none"
               >
                 <div className="relative overflow-hidden">
-                  <img src={item.src} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={item.src} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <span className="inline-flex px-3 py-1 rounded-full bg-amber-500/90 text-xs font-semibold text-slate-950 uppercase">

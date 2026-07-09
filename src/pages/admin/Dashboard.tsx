@@ -592,7 +592,7 @@ export const Dashboard: React.FC = () => {
                     <div className="flex items-center gap-4">
                       <label className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-[#C9A227] cursor-pointer group flex-shrink-0">
                         {member.image && member.image.trim() !== '' ? (
-                          <img src={member.image} alt={member.name} className="w-full h-full object-cover group-hover:opacity-50 transition-opacity" />
+                          <img src={member.image} alt={member.name} className="w-full h-full object-cover group-hover:opacity-50 transition-opacity" loading="lazy" />
                         ) : (
                           <div className="w-full h-full bg-[#1a1a1a] flex items-center justify-center group-hover:bg-[#222] transition-colors">
                             <User className="w-6 h-6 text-gray-500" />
@@ -832,7 +832,7 @@ export const Dashboard: React.FC = () => {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {data.projectPhotosList.map((photo) => (
                   <div key={photo.id} className="relative group bg-[#0f0f0f] border border-white/5 rounded-2xl overflow-hidden aspect-video">
-                    <img src={photo.src} alt={photo.title} className="w-full h-full object-cover" />
+                    <img src={photo.src} alt={photo.title} className="w-full h-full object-cover" loading="lazy" />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                       <button onClick={() => setEditingProject(photo)} className="p-2 bg-[#C9A227] text-black rounded-lg">
                         <Edit2 className="w-4 h-4" />
