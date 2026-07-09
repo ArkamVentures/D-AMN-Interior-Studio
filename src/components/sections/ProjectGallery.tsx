@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, ArrowRight, ExternalLink } from 'lucide-react';
 import { SectionHeading } from '../ui/SectionHeading';
 import { staticProjectData } from '../../data/projectData';
-import { AnimatedStats } from '../ui/AnimatedStats';
 
 const CATEGORIES = ["All", "Windows", "Doors", "Partitions", "Facades", "Railings"];
 const LOCATIONS = ["All Sri Lanka", "Colombo", "Kandy", "Galle", "Negombo"];
@@ -60,9 +59,6 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
     <section id="our-projects" className="py-20 md:py-32 bg-warm-gray dark:bg-dark-bg transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Animated Stats Bar above the heading */}
-        <AnimatedStats />
-
         <SectionHeading
           title="Our Projects"
           subtitle="OUR PROJECTS ACROSS SRI LANKA"
