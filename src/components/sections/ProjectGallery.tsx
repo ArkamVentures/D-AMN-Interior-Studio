@@ -10,9 +10,21 @@ const LOCATIONS = ["All Sri Lanka", "Colombo", "Kandy", "Galle", "Negombo"];
 const INITIAL_COUNT = 6;
 const TOTAL_REAL_PROJECTS = 110;
 
-export const ProjectGallery: React.FC = () => {
+export interface ProjectGalleryProps {
+  activeLocation?: string;
+  setActiveLocation?: (loc: string) => void;
+}
+
+export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
+  activeLocation: propActiveLocation,
+  setActiveLocation: propSetActiveLocation,
+}) => {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [activeLocation, setActiveLocation] = useState("All Sri Lanka");
+  const [internalLocation, setInternalLocation] = useState("All Sri Lanka");
+  
+  const activeLocation = propActiveLocation !== undefined ? propActiveLocation : internalLocation;
+  const setActiveLocation = propSetActiveLocation !== undefined ? propSetActiveLocation : setInternalLocation;
+
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
 
   // Filter the static array

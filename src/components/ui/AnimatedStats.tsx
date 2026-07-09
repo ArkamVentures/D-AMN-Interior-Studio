@@ -19,6 +19,7 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ value, suffix = '', l
       const controls = animate(count, value, { duration: 2, ease: "easeOut" });
       return controls.stop;
     }
+    return undefined;
   }, [isInView, count, value]);
 
   return (
