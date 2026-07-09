@@ -2,21 +2,44 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SectionHeading } from '../ui/SectionHeading';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
+const contactSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  phone: z.string().regex(/^[0-9+\-\s()]{10,}$/, 'Please enter a valid phone number'),
+  email: z.string().email('Please enter a valid email').optional().or(z.literal('')),
+  service: z.string().min(1, 'Please select a service'),
+  message: z.string().min(10, 'Message must be at least 10 characters'),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 export const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    getValues,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      service: '',
+      message: '',
+    },
   });
 
-  const sendViaWhatsApp = (data: typeof formData) => {
+  const sendViaWhatsApp = (data: ContactFormData) => {
     const serviceName = data.service || 'General Enquiry';
     const text = encodeURIComponent(
       `*New Enquiry from Website*\n\n` +
@@ -29,31 +52,30 @@ export const Contact: React.FC = () => {
     window.open(`https://wa.me/94773724849?text=${text}`, '_blank');
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: ContactFormData) => {
     setSubmitting(true);
     try {
       const response = await fetch(`${API_BASE}/api/contact/messages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
-          email: formData.email || undefined,
-          service: formData.service || 'General Enquiry',
-          message: formData.message,
+          name: data.name,
+          phone: data.phone,
+          email: data.email || undefined,
+          service: data.service || 'General Enquiry',
+          message: data.message,
         }),
         signal: AbortSignal.timeout(5000), // 5 second timeout
       });
       if (!response.ok) throw new Error('Server error');
       setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+      reset();
       setTimeout(() => setSubmitted(false), 5000);
     } catch {
       // Backend unreachable — silently fall back to WhatsApp
-      sendViaWhatsApp(formData);
+      sendViaWhatsApp(data);
       setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+      reset();
       setTimeout(() => setSubmitted(false), 5000);
     } finally {
       setSubmitting(false);
@@ -178,7 +200,7 @@ export const Contact: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="bg-white dark:bg-dark-card p-8 rounded-2xl border border-gray-100 dark:border-white/5 shadow-lg">
+            <form onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-dark-card p-8 rounded-2xl border border-gray-100 dark:border-white/5 shadow-lg">
               {submitted ? (
                 <div className="text-center py-12">
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
@@ -192,23 +214,21 @@ export const Contact: React.FC = () => {
                       <label className="block text-sm font-medium text-primary dark:text-white mb-2">Full Name</label>
                       <input
                         type="text"
-                        required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
+                        {...register('name')}
+                        className={`w-full px-4 py-3 rounded-lg border ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-white/10'} bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all`}
                         placeholder="Your name"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       />
+                      {errors.name && <span className="text-red-500 text-xs mt-1 block">{errors.name.message}</span>}
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-primary dark:text-white mb-2">Phone</label>
                       <input
                         type="tel"
-                        required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
+                        {...register('phone')}
+                        className={`w-full px-4 py-3 rounded-lg border ${errors.phone ? 'border-red-500' : 'border-gray-200 dark:border-white/10'} bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all`}
                         placeholder="+94 7X XXX XXXX"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       />
+                      {errors.phone && <span className="text-red-500 text-xs mt-1 block">{errors.phone.message}</span>}
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
@@ -216,18 +236,17 @@ export const Contact: React.FC = () => {
                       <label className="block text-sm font-medium text-primary dark:text-white mb-2">Email (Optional)</label>
                       <input
                         type="email"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
+                        {...register('email')}
+                        className={`w-full px-4 py-3 rounded-lg border ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-white/10'} bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all`}
                         placeholder="your@email.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       />
+                      {errors.email && <span className="text-red-500 text-xs mt-1 block">{errors.email.message}</span>}
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-primary dark:text-white mb-2">Service Interest</label>
                       <select
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
-                        value={formData.service}
-                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                        {...register('service')}
+                        className={`w-full px-4 py-3 rounded-lg border ${errors.service ? 'border-red-500' : 'border-gray-200 dark:border-white/10'} bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all`}
                       >
                         <option value="">Select a service</option>
                         <option value="aluminium-doors-windows">Aluminium Doors & Windows</option>
@@ -235,17 +254,18 @@ export const Contact: React.FC = () => {
                         <option value="tempered-glass">Tempered Glass Works</option>
                         <option value="other">Other</option>
                       </select>
+                      {errors.service && <span className="text-red-500 text-xs mt-1 block">{errors.service.message}</span>}
                     </div>
                   </div>
                   <div className="mb-6">
                     <label className="block text-sm font-medium text-primary dark:text-white mb-2">Message</label>
                     <textarea
                       rows={4}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all resize-none"
+                      {...register('message')}
+                      className={`w-full px-4 py-3 rounded-lg border ${errors.message ? 'border-red-500' : 'border-gray-200 dark:border-white/10'} bg-transparent text-primary dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all resize-none`}
                       placeholder="Tell us about your project..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     />
+                    {errors.message && <span className="text-red-500 text-xs mt-1 block">{errors.message.message}</span>}
                   </div>
 
                   <button
