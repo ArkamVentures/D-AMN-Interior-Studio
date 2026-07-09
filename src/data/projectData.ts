@@ -11,7 +11,7 @@ export interface Project {
 export const staticProjectData: Project[] = [
   {
     "id": "p-1",
-    "title": "Ambalangoda_WhatsApp_Image_2026-06-29_at_16.14.55",
+    "title": "Ambalangoda Whatsapp Image",
     "location": "Ambalangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Ambalangoda Whatsapp Image",
@@ -19,7 +19,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-2",
-    "title": "Polgahawela_WhatsApp_Image_2026-06-29_at_16.19.48_(1)",
+    "title": "Polgahawela Whatsapp Image",
     "location": "Polgahawela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Polgahawela Whatsapp Image",
@@ -27,7 +27,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-3",
-    "title": "Kelaniya_WhatsApp_Image_2026-06-29_at_15.36.01",
+    "title": "Kelaniya Whatsapp Image",
     "location": "Kelaniya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kelaniya Whatsapp Image",
@@ -35,7 +35,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-4",
-    "title": "Kaluthara_WhatsApp_Image_2026-06-29_at_14.26.50_(1)",
+    "title": "Kaluthara Whatsapp Image",
     "location": "Kaluthara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kaluthara Whatsapp Image",
@@ -43,7 +43,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-5",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.36.12",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -51,7 +51,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-6",
-    "title": "Benthota_WhatsApp_Image_2026-06-29_at_15.36.33",
+    "title": "Benthota Whatsapp Image",
     "location": "Benthota Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Benthota Whatsapp Image",
@@ -59,7 +59,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-7",
-    "title": "elpitiya2",
+    "title": "Elpitiya",
     "location": "Elpitiya",
     "category": "Kitchen Cabinets",
     "city": "Elpitiya",
@@ -67,7 +67,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-8",
-    "title": "Kaluthara_WhatsApp_Image_2026-06-29_at_14.23.25",
+    "title": "Kaluthara Whatsapp Image",
     "location": "Kaluthara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kaluthara Whatsapp Image",
@@ -75,7 +75,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-9",
-    "title": "Polgahawela_WhatsApp_Image_2026-06-29_at_16.19.46",
+    "title": "Polgahawela Whatsapp Image",
     "location": "Polgahawela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Polgahawela Whatsapp Image",
@@ -83,7 +83,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-10",
-    "title": "Ambalangoda_WhatsApp_Image_2026-06-29_at_14.34.133",
+    "title": "Ambalangoda Whatsapp Image",
     "location": "Ambalangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Ambalangoda Whatsapp Image",
@@ -91,7 +91,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-11",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_16.01.55",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -99,7 +99,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-12",
-    "title": "Kande_vihara_WhatsApp_Image_2026-06-29_at_15.23.48",
+    "title": "Kande Vihara Whatsapp Image",
     "location": "Kande Vihara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kande Vihara Whatsapp Image",
@@ -107,7 +107,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-13",
-    "title": "Horana_WhatsApp_Image_2026-06-29_at_14.36.30",
+    "title": "Horana Whatsapp Image",
     "location": "Horana Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Horana Whatsapp Image",
@@ -115,7 +115,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-14",
-    "title": "Kande_vihara_WhatsApp_Image_2026-06-29_at_15.27.31",
+    "title": "Kande Vihara Whatsapp Image",
     "location": "Kande Vihara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kande Vihara Whatsapp Image",
@@ -123,7 +123,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-15",
-    "title": "Pahekanuwa_PahekanuwaWhatsApp_Image_2026-06-29_at_14.21.44",
+    "title": "Pahekanuwa Pahekanuwawhatsapp Image",
     "location": "Pahekanuwa Pahekanuwawhatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Pahekanuwa Pahekanuwawhatsapp Image",
@@ -131,7 +131,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-16",
-    "title": "Ambalangoda_WhatsApp_Image_2026-06-29_at_16.14.55_(1)",
+    "title": "Ambalangoda Whatsapp Image",
     "location": "Ambalangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Ambalangoda Whatsapp Image",
@@ -139,7 +139,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-17",
-    "title": "Ambalangoda_WhatsApp_Image_2026-06-29_at_16.14.54_(1)",
+    "title": "Ambalangoda Whatsapp Image",
     "location": "Ambalangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Ambalangoda Whatsapp Image",
@@ -147,7 +147,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-18",
-    "title": "Kaluthara_WhatsApp_Image_2026-06-29_at_16.08.29_(1)",
+    "title": "Kaluthara Whatsapp Image",
     "location": "Kaluthara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kaluthara Whatsapp Image",
@@ -155,7 +155,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-19",
-    "title": "Kaluthara_WhatsApp_Image_2026-06-29_at_14.26.50",
+    "title": "Kaluthara Whatsapp Image",
     "location": "Kaluthara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kaluthara Whatsapp Image",
@@ -163,7 +163,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-20",
-    "title": "Bandarawala_WhatsApp_Image_2026-06-29_at_16.07.13",
+    "title": "Bandarawala Whatsapp Image",
     "location": "Bandarawala Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Bandarawala Whatsapp Image",
@@ -171,7 +171,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-21",
-    "title": "Ambalangoda_WhatsApp_Image_2026-06-29_at_14.34.13_(1)3",
+    "title": "Ambalangoda Whatsapp Image",
     "location": "Ambalangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Ambalangoda Whatsapp Image",
@@ -179,7 +179,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-22",
-    "title": "Horana_WhatsApp_Image_2026-06-29_at_14.48.45",
+    "title": "Horana Whatsapp Image",
     "location": "Horana Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Horana Whatsapp Image",
@@ -187,7 +187,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-23",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.36.09",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -195,7 +195,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-24",
-    "title": "Polgahawela_WhatsApp_Image_2026-06-29_at_16.19.47",
+    "title": "Polgahawela Whatsapp Image",
     "location": "Polgahawela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Polgahawela Whatsapp Image",
@@ -203,7 +203,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-25",
-    "title": "Dhargatown_WhatsApp_Image_2026-06-29_at_16.06.24",
+    "title": "Dhargatown Whatsapp Image",
     "location": "Dhargatown Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dhargatown Whatsapp Image",
@@ -211,7 +211,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-26",
-    "title": "Kaluthara_WhatsApp_Image_2026-06-29_at_14.23.24",
+    "title": "Kaluthara Whatsapp Image",
     "location": "Kaluthara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kaluthara Whatsapp Image",
@@ -219,7 +219,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-27",
-    "title": "elpitiya3",
+    "title": "Elpitiya",
     "location": "Elpitiya",
     "category": "Kitchen Cabinets",
     "city": "Elpitiya",
@@ -227,7 +227,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-28",
-    "title": "Ambalangoda1",
+    "title": "Ambalangoda",
     "location": "Ambalangoda",
     "category": "Kitchen Cabinets",
     "city": "Ambalangoda",
@@ -235,7 +235,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-29",
-    "title": "Dhargatown_WhatsApp_Image_2026-06-29_at_16.06.23_(2)",
+    "title": "Dhargatown Whatsapp Image",
     "location": "Dhargatown Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dhargatown Whatsapp Image",
@@ -243,7 +243,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-30",
-    "title": "Karandeniya_WhatsApp_Image_2026-06-29_at_16.04.13_(2)",
+    "title": "Karandeniya Whatsapp Image",
     "location": "Karandeniya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Karandeniya Whatsapp Image",
@@ -251,7 +251,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-31",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.29.32_(1)",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -259,7 +259,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-32",
-    "title": "Ambalangoda_WhatsApp_Image_2026-06-29_at_16.14.54",
+    "title": "Ambalangoda Whatsapp Image",
     "location": "Ambalangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Ambalangoda Whatsapp Image",
@@ -267,7 +267,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-33",
-    "title": "Horana_WhatsApp_Image_2026-06-29_at_14.48.49",
+    "title": "Horana Whatsapp Image",
     "location": "Horana Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Horana Whatsapp Image",
@@ -275,7 +275,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-34",
-    "title": "Bandarawala_WhatsApp_Image_2026-06-29_at_16.07.14",
+    "title": "Bandarawala Whatsapp Image",
     "location": "Bandarawala Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Bandarawala Whatsapp Image",
@@ -283,7 +283,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-35",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_16.01.56_(1)",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -291,7 +291,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-36",
-    "title": "Kande_vihara_WhatsApp_Image_2026-06-29_at_15.36.08",
+    "title": "Kande Vihara Whatsapp Image",
     "location": "Kande Vihara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kande Vihara Whatsapp Image",
@@ -299,7 +299,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-37",
-    "title": "Benthota_WhatsApp_Image_2026-06-29_at_15.36.54",
+    "title": "Benthota Whatsapp Image",
     "location": "Benthota Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Benthota Whatsapp Image",
@@ -307,7 +307,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-38",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.36.57",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -315,7 +315,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-39",
-    "title": "Kaluthara_WhatsApp_Image_2026-06-29_at_16.08.29_(2)",
+    "title": "Kaluthara Whatsapp Image",
     "location": "Kaluthara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kaluthara Whatsapp Image",
@@ -323,7 +323,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-40",
-    "title": "Kaluthara_WhatsApp_Image_2026-06-29_at_16.08.29",
+    "title": "Kaluthara Whatsapp Image",
     "location": "Kaluthara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kaluthara Whatsapp Image",
@@ -331,7 +331,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-41",
-    "title": "Mathugama_WhatsApp_Image_2026-06-29_at_16.05.07",
+    "title": "Mathugama Whatsapp Image",
     "location": "Mathugama Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Mathugama Whatsapp Image",
@@ -339,7 +339,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-42",
-    "title": "elpitiya4",
+    "title": "Elpitiya",
     "location": "Elpitiya",
     "category": "Kitchen Cabinets",
     "city": "Elpitiya",
@@ -347,7 +347,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-43",
-    "title": "Kaluthara_WhatsApp_Image_2026-06-29_at_14.23.23",
+    "title": "Kaluthara Whatsapp Image",
     "location": "Kaluthara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kaluthara Whatsapp Image",
@@ -355,7 +355,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-44",
-    "title": "Beruwela_WhatsApp_Image_2026-06-29_at_16.05.40_(1)",
+    "title": "Beruwela Whatsapp Image",
     "location": "Beruwela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Beruwela Whatsapp Image",
@@ -363,7 +363,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-45",
-    "title": "Dhargatown_WhatsApp_Image_2026-06-29_at_16.06.23",
+    "title": "Dhargatown Whatsapp Image",
     "location": "Dhargatown Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dhargatown Whatsapp Image",
@@ -371,7 +371,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-46",
-    "title": "Ambalangoda_WhatsApp_Image_2026-06-29_at_14.34.143",
+    "title": "Ambalangoda Whatsapp Image",
     "location": "Ambalangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Ambalangoda Whatsapp Image",
@@ -379,7 +379,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-47",
-    "title": "Dhargatown_WhatsApp_Image_2026-06-29_at_16.06.22",
+    "title": "Dhargatown Whatsapp Image",
     "location": "Dhargatown Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dhargatown Whatsapp Image",
@@ -387,7 +387,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-48",
-    "title": "elpitiya5",
+    "title": "Elpitiya",
     "location": "Elpitiya",
     "category": "Kitchen Cabinets",
     "city": "Elpitiya",
@@ -395,7 +395,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-49",
-    "title": "Beruwela_WhatsApp_Image_2026-06-29_at_16.05.39",
+    "title": "Beruwela Whatsapp Image",
     "location": "Beruwela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Beruwela Whatsapp Image",
@@ -411,7 +411,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-51",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.36.58_(1)",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -419,7 +419,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-52",
-    "title": "Pelawatta_WhatsApp_Image_2026-06-29_at_16.05.59",
+    "title": "Pelawatta Whatsapp Image",
     "location": "Pelawatta Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Pelawatta Whatsapp Image",
@@ -427,7 +427,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-53",
-    "title": "Dhargatown_WhatsApp_Image_2026-06-29_at_16.06.23_(1)",
+    "title": "Dhargatown Whatsapp Image",
     "location": "Dhargatown Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dhargatown Whatsapp Image",
@@ -435,7 +435,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-54",
-    "title": "Dhargatown_WhatsApp_Image_2026-06-29_at_16.06.22_(1)",
+    "title": "Dhargatown Whatsapp Image",
     "location": "Dhargatown Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dhargatown Whatsapp Image",
@@ -443,7 +443,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-55",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.36.13",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -451,7 +451,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-56",
-    "title": "Bandarawala_WhatsApp_Image_2026-06-29_at_16.07.15",
+    "title": "Bandarawala Whatsapp Image",
     "location": "Bandarawala Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Bandarawala Whatsapp Image",
@@ -459,7 +459,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-57",
-    "title": "Karandeniya_WhatsApp_Image_2026-06-29_at_16.04.13_(1)",
+    "title": "Karandeniya Whatsapp Image",
     "location": "Karandeniya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Karandeniya Whatsapp Image",
@@ -467,7 +467,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-58",
-    "title": "Pahekanuwa_PahekanuwaWhatsApp_Image_2026-06-29_at_14.21.43",
+    "title": "Pahekanuwa Pahekanuwawhatsapp Image",
     "location": "Pahekanuwa Pahekanuwawhatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Pahekanuwa Pahekanuwawhatsapp Image",
@@ -475,7 +475,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-59",
-    "title": "Dehiwela_WhatsApp_Image_2026-06-29_at_15.36.05",
+    "title": "Dehiwela Whatsapp Image",
     "location": "Dehiwela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dehiwela Whatsapp Image",
@@ -483,7 +483,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-60",
-    "title": "Horana_WhatsApp_Image_2026-06-29_at_14.48.49_(1)",
+    "title": "Horana Whatsapp Image",
     "location": "Horana Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Horana Whatsapp Image",
@@ -491,7 +491,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-61",
-    "title": "Kelaniya_WhatsApp_Image_2026-06-29_at_15.36.01_(2)",
+    "title": "Kelaniya Whatsapp Image",
     "location": "Kelaniya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kelaniya Whatsapp Image",
@@ -499,7 +499,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-62",
-    "title": "Kande_vihara_WhatsApp_Image_2026-06-29_at_15.36.08_(2)",
+    "title": "Kande Vihara Whatsapp Image",
     "location": "Kande Vihara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kande Vihara Whatsapp Image",
@@ -507,7 +507,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-63",
-    "title": "Bandarawala_WhatsApp_Image_2026-06-29_at_16.07.16",
+    "title": "Bandarawala Whatsapp Image",
     "location": "Bandarawala Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Bandarawala Whatsapp Image",
@@ -515,7 +515,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-64",
-    "title": "Pelawatta_WhatsApp_Image_2026-06-29_at_16.05.59_(2)",
+    "title": "Pelawatta Whatsapp Image",
     "location": "Pelawatta Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Pelawatta Whatsapp Image",
@@ -523,7 +523,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-65",
-    "title": "Dehiwela_WhatsApp_Image_2026-06-29_at_15.36.06",
+    "title": "Dehiwela Whatsapp Image",
     "location": "Dehiwela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dehiwela Whatsapp Image",
@@ -531,7 +531,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-66",
-    "title": "elpitiya6",
+    "title": "Elpitiya",
     "location": "Elpitiya",
     "category": "Kitchen Cabinets",
     "city": "Elpitiya",
@@ -539,7 +539,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-67",
-    "title": "Ambalangoda4",
+    "title": "Ambalangoda",
     "location": "Ambalangoda",
     "category": "Kitchen Cabinets",
     "city": "Ambalangoda",
@@ -547,7 +547,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-68",
-    "title": "Kande_vihara_WhatsApp_Image_2026-06-29_at_15.27.39",
+    "title": "Kande Vihara Whatsapp Image",
     "location": "Kande Vihara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kande Vihara Whatsapp Image",
@@ -555,7 +555,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-69",
-    "title": "Beruwela_WhatsApp_Image_2026-06-29_at_16.05.41",
+    "title": "Beruwela Whatsapp Image",
     "location": "Beruwela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Beruwela Whatsapp Image",
@@ -563,7 +563,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-70",
-    "title": "Dodangoda_WhatsApp_Image_2026-06-29_at_14.30.42_(1)",
+    "title": "Dodangoda Whatsapp Image",
     "location": "Dodangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dodangoda Whatsapp Image",
@@ -571,7 +571,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-71",
-    "title": "Bandarawala_WhatsApp_Image_2026-06-29_at_16.07.14_(2)",
+    "title": "Bandarawala Whatsapp Image",
     "location": "Bandarawala Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Bandarawala Whatsapp Image",
@@ -579,7 +579,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-72",
-    "title": "Beruwela_WhatsApp_Image_2026-06-29_at_16.05.40",
+    "title": "Beruwela Whatsapp Image",
     "location": "Beruwela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Beruwela Whatsapp Image",
@@ -587,7 +587,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-73",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.36.57_(1)",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -595,7 +595,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-74",
-    "title": "Dehiwela_WhatsApp_Image_2026-06-29_at_15.36.07",
+    "title": "Dehiwela Whatsapp Image",
     "location": "Dehiwela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dehiwela Whatsapp Image",
@@ -603,7 +603,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-75",
-    "title": "Pahekanuwa_PahekanuwaWhatsApp_Image_2026-06-29_at_14.21.43_(1)",
+    "title": "Pahekanuwa Pahekanuwawhatsapp Image",
     "location": "Pahekanuwa Pahekanuwawhatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Pahekanuwa Pahekanuwawhatsapp Image",
@@ -611,7 +611,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-76",
-    "title": "Kaluthara_WhatsApp_Image_2026-06-29_at_16.08.30",
+    "title": "Kaluthara Whatsapp Image",
     "location": "Kaluthara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kaluthara Whatsapp Image",
@@ -619,7 +619,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-77",
-    "title": "Mathugama_WhatsApp_Image_2026-06-29_at_16.04.48",
+    "title": "Mathugama Whatsapp Image",
     "location": "Mathugama Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Mathugama Whatsapp Image",
@@ -627,7 +627,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-78",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.36.58",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -635,7 +635,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-79",
-    "title": "Elpitiya_WhatsApp_Image_2026-06-29_at_16.07.45_(1)",
+    "title": "Elpitiya Whatsapp Image",
     "location": "Elpitiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Elpitiya Whatsapp Image",
@@ -643,7 +643,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-80",
-    "title": "Elpitiya_WhatsApp_Image_2026-06-29_at_16.07.44_(1)",
+    "title": "Elpitiya Whatsapp Image",
     "location": "Elpitiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Elpitiya Whatsapp Image",
@@ -651,7 +651,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-81",
-    "title": "Karandeniya_WhatsApp_Image_2026-06-29_at_16.04.13",
+    "title": "Karandeniya Whatsapp Image",
     "location": "Karandeniya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Karandeniya Whatsapp Image",
@@ -659,7 +659,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-82",
-    "title": "Bandarawala_WhatsApp_Image_2026-06-29_at_16.07.17",
+    "title": "Bandarawala Whatsapp Image",
     "location": "Bandarawala Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Bandarawala Whatsapp Image",
@@ -667,7 +667,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-83",
-    "title": "Mathugama_WhatsApp_Image_2026-06-29_at_16.05.08",
+    "title": "Mathugama Whatsapp Image",
     "location": "Mathugama Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Mathugama Whatsapp Image",
@@ -675,7 +675,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-84",
-    "title": "Dehiwela_WhatsApp_Image_2026-06-29_at_15.36.06_(1)",
+    "title": "Dehiwela Whatsapp Image",
     "location": "Dehiwela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dehiwela Whatsapp Image",
@@ -683,7 +683,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-85",
-    "title": "Dehiwela_WhatsApp_Image_2026-06-29_at_15.36.07_(1)",
+    "title": "Dehiwela Whatsapp Image",
     "location": "Dehiwela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dehiwela Whatsapp Image",
@@ -691,7 +691,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-86",
-    "title": "Polgahawela_WhatsApp_Image_2026-06-29_at_16.19.47_(1)",
+    "title": "Polgahawela Whatsapp Image",
     "location": "Polgahawela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Polgahawela Whatsapp Image",
@@ -699,7 +699,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-87",
-    "title": "Benthota_WhatsApp_Image_2026-06-29_at_15.29.35_(1)",
+    "title": "Benthota Whatsapp Image",
     "location": "Benthota Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Benthota Whatsapp Image",
@@ -707,7 +707,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-88",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.29.32",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -715,7 +715,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-89",
-    "title": "Kande_vihara_WhatsApp_Image_2026-06-29_at_15.36.08_(1)",
+    "title": "Kande Vihara Whatsapp Image",
     "location": "Kande Vihara Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kande Vihara Whatsapp Image",
@@ -723,7 +723,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-90",
-    "title": "Kelaniya_WhatsApp_Image_2026-06-29_at_15.36.01_(1)",
+    "title": "Kelaniya Whatsapp Image",
     "location": "Kelaniya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Kelaniya Whatsapp Image",
@@ -731,7 +731,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-91",
-    "title": "Elpitiya_WhatsApp_Image_2026-06-29_at_16.07.45",
+    "title": "Elpitiya Whatsapp Image",
     "location": "Elpitiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Elpitiya Whatsapp Image",
@@ -739,7 +739,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-92",
-    "title": "Pelawatta_WhatsApp_Image_2026-06-29_at_16.05.59_(1)",
+    "title": "Pelawatta Whatsapp Image",
     "location": "Pelawatta Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Pelawatta Whatsapp Image",
@@ -747,7 +747,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-93",
-    "title": "Pahekanuwa_PahekanuwaWhatsApp_Image_2026-06-29_at_14.21.44_(1)",
+    "title": "Pahekanuwa Pahekanuwawhatsapp Image",
     "location": "Pahekanuwa Pahekanuwawhatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Pahekanuwa Pahekanuwawhatsapp Image",
@@ -755,7 +755,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-94",
-    "title": "Polgahawela_WhatsApp_Image_2026-06-29_at_16.19.48",
+    "title": "Polgahawela Whatsapp Image",
     "location": "Polgahawela Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Polgahawela Whatsapp Image",
@@ -763,7 +763,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-95",
-    "title": "Dodangoda_WhatsApp_Image_2026-06-29_at_14.29.55",
+    "title": "Dodangoda Whatsapp Image",
     "location": "Dodangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dodangoda Whatsapp Image",
@@ -771,7 +771,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-96",
-    "title": "Benthota_WhatsApp_Image_2026-06-29_at_15.29.34",
+    "title": "Benthota Whatsapp Image",
     "location": "Benthota Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Benthota Whatsapp Image",
@@ -779,7 +779,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-97",
-    "title": "Dodangoda_WhatsApp_Image_2026-06-29_at_14.30.42_(2)",
+    "title": "Dodangoda Whatsapp Image",
     "location": "Dodangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dodangoda Whatsapp Image",
@@ -787,7 +787,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-98",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.36.12_2",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -795,7 +795,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-99",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_16.01.56",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -803,7 +803,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-100",
-    "title": "Bandarawala_WhatsApp_Image_2026-06-29_at_16.07.14_(1)",
+    "title": "Bandarawala Whatsapp Image",
     "location": "Bandarawala Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Bandarawala Whatsapp Image",
@@ -811,7 +811,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-101",
-    "title": "Karandeniya_WhatsApp_Image_2026-06-29_at_16.03.46",
+    "title": "Karandeniya Whatsapp Image",
     "location": "Karandeniya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Karandeniya Whatsapp Image",
@@ -819,7 +819,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-102",
-    "title": "Bandarawala_WhatsApp_Image_2026-06-29_at_16.07.15_(1)",
+    "title": "Bandarawala Whatsapp Image",
     "location": "Bandarawala Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Bandarawala Whatsapp Image",
@@ -827,7 +827,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-103",
-    "title": "Benthota_WhatsApp_Image_2026-06-29_at_15.29.35",
+    "title": "Benthota Whatsapp Image",
     "location": "Benthota Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Benthota Whatsapp Image",
@@ -835,7 +835,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-104",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.36.56",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -843,7 +843,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-105",
-    "title": "Elpitiya_WhatsApp_Image_2026-06-29_at_16.07.44",
+    "title": "Elpitiya Whatsapp Image",
     "location": "Elpitiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Elpitiya Whatsapp Image",
@@ -851,7 +851,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-106",
-    "title": "Uragasmanhandiya_WhatsApp_Image_2026-06-29_at_15.36.11",
+    "title": "Uragasmanhandiya Whatsapp Image",
     "location": "Uragasmanhandiya Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Uragasmanhandiya Whatsapp Image",
@@ -859,7 +859,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-107",
-    "title": "Pahekanuwa_PahekanuwaWhatsApp_Image_2026-06-29_at_14.21.43_(2)",
+    "title": "Pahekanuwa Pahekanuwawhatsapp Image",
     "location": "Pahekanuwa Pahekanuwawhatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Pahekanuwa Pahekanuwawhatsapp Image",
@@ -867,7 +867,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-108",
-    "title": "elpitiya1",
+    "title": "Elpitiya",
     "location": "Elpitiya",
     "category": "Kitchen Cabinets",
     "city": "Elpitiya",
@@ -875,7 +875,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-109",
-    "title": "Ambalangoda3",
+    "title": "Ambalangoda",
     "location": "Ambalangoda",
     "category": "Kitchen Cabinets",
     "city": "Ambalangoda",
@@ -883,7 +883,7 @@ export const staticProjectData: Project[] = [
   },
   {
     "id": "p-110",
-    "title": "Dodangoda_WhatsApp_Image_2026-06-29_at_14.30.42",
+    "title": "Dodangoda Whatsapp Image",
     "location": "Dodangoda Whatsapp Image",
     "category": "Kitchen Cabinets",
     "city": "Dodangoda Whatsapp Image",
