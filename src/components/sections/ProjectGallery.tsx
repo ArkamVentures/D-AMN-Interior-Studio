@@ -220,21 +220,30 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
             </div>
 
             {visibleCount < filteredProjects.length ? (
-              <button
-                onClick={loadMore}
-                className="px-8 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:border-accent hover:text-accent transition-colors flex items-center gap-2"
-              >
-                Load More
-              </button>
-            ) : (
-              // Fake infinite mock for user requirement if all 12 are shown
-              filteredProjects.length === staticProjectData.length && (
+              <div className="mt-8 flex flex-col items-center gap-4">
                 <button
-                  className="px-8 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:border-accent hover:text-accent transition-colors flex items-center gap-2 opacity-50 cursor-not-allowed"
-                  title="Mockup limit reached"
+                  onClick={loadMore}
+                  className="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-accent transition"
                 >
-                  {TOTAL_REAL_PROJECTS - visibleCount} more projects
+                  Load More Projects
                 </button>
+                <a href="/portfolio" className="text-gray-400 hover:text-primary transition text-sm">
+                  View complete portfolio →
+                </a>
+              </div>
+            ) : (
+              filteredProjects.length === staticProjectData.length && (
+                <div className="mt-8 flex flex-col items-center gap-4">
+                  <button
+                    className="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-accent transition opacity-50 cursor-not-allowed"
+                    title="Mockup limit reached"
+                  >
+                    {TOTAL_REAL_PROJECTS - visibleCount} more projects
+                  </button>
+                  <a href="/portfolio" className="text-gray-400 hover:text-primary transition text-sm">
+                    View complete portfolio →
+                  </a>
+                </div>
               )
             )}
           </div>

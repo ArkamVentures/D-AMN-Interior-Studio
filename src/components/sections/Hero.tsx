@@ -165,7 +165,7 @@ export const Hero: React.FC = () => {
           className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-wide drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
         >
           {heroTitle.includes('<br />') ? (
-            <span dangerouslySetInnerHTML={{ __html: heroTitle }} />
+            <span>{heroTitle}</span>
           ) : (
             heroTitle
           )}
