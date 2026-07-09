@@ -7,7 +7,7 @@ import { staticProjectData } from '../../data/projectData';
 const CATEGORIES = ["All", "Kitchen Cabinets", "Windows", "Doors", "Partitions", "Facades", "Railings"];
 const LOCATIONS = ["All Sri Lanka", "Ambalangoda", "Benthota", "Kaluthara", "Uragasmanhandiya", "Dehiwela", "Horana", "Dodangoda", "Pahekanuwa", "Kelaniya", "Elpitiya", "Mathugama", "Karandeniya", "Bandarawala", "Polgahawela", "Pelawatta"];
 const INITIAL_COUNT = 6;
-const TOTAL_REAL_PROJECTS = 94;
+const TOTAL_REAL_PROJECTS = 110;
 
 export interface ProjectGalleryProps {
   activeLocation?: string;
