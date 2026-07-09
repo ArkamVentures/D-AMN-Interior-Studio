@@ -862,11 +862,17 @@ export const Dashboard: React.FC = () => {
                         <label className="block text-[10px] uppercase tracking-wider text-gray-500 mb-1">Location</label>
                         <input 
                           type="text"
+                          list="locations-list"
                           value={editingProject.location}
                           onChange={(e) => setEditingProject({ ...editingProject, location: e.target.value })}
-                          placeholder="Enter location"
+                          placeholder="Select or enter location"
                           className="w-full px-3 py-2 bg-black border border-white/10 rounded-lg text-sm text-white"
                         />
+                        <datalist id="locations-list">
+                          {Array.from(new Set(data.projectPhotosList.map(p => p.location))).sort().map(loc => (
+                            <option key={loc} value={loc} />
+                          ))}
+                        </datalist>
                       </div>
                       <div>
                         <label className="block text-[10px] uppercase tracking-wider text-gray-500 mb-1">Service Type</label>
