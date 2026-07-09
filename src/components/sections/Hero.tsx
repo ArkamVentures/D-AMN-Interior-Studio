@@ -47,7 +47,7 @@ export const Hero: React.FC = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       particles.forEach((p) => {
         p.x += p.speedX;
         p.y += p.speedY;
@@ -220,7 +220,7 @@ export const Hero: React.FC = () => {
         >
           {/* Subtle gold glow behind CTA */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#C9A227] to-[#F4D03F] rounded-full blur-md opacity-30 group-hover:opacity-60 transition-opacity duration-300" />
-          
+
           <a
             href={`tel:${contact.phone.replace(/\s+/g, '')}`}
             className="relative flex items-center justify-center px-10 py-5 bg-gradient-to-r from-[#C9A227] to-[#F4D03F] text-black font-bold text-sm tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(201,162,39,0.5)] transition-all duration-300 transform hover:scale-105 active:scale-95"
