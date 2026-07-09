@@ -75,9 +75,9 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
         {/* Featured Hero (Optional, shown only if 'All' is selected and there is a featured project) */}
         {activeCategory === "All" && activeLocation === "All Sri Lanka" && featuredProject && (
           <div className="mb-16 relative overflow-hidden rounded-3xl shadow-2xl group cursor-pointer h-[400px] md:h-[500px]">
-            <img 
+<img 
               src={featuredProject.image} 
-              alt={featuredProject.title}
+              alt={`${featuredProject.title} in ${featuredProject.location}`}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
@@ -95,7 +95,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                   <span className="text-lg">{featuredProject.location}</span>
                 </div>
               </div>
-              <button className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-primary hover:bg-accent hover:text-white transition-colors rounded-full font-semibold">
+              <button className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-primary hover:bg-accent hover:text-white transition-colors rounded-full font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg">
                 View Project <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -110,7 +110,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               <button
                 key={category}
                 onClick={() => handleCategoryChange(category)}
-                className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 relative ${
+                className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg ${
                   activeCategory === category 
                     ? 'bg-accent text-primary shadow-lg shadow-accent/20' 
                     : 'bg-white dark:bg-dark-card text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 border border-gray-200 dark:border-white/10'
@@ -130,7 +130,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               <button
                 key={location}
                 onClick={() => handleLocationChange(location)}
-                className={`flex-shrink-0 px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 relative ${
+                className={`flex-shrink-0 px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg ${
                   activeLocation === location 
                     ? 'bg-gray-800 text-white dark:bg-white dark:text-gray-900' 
                     : 'bg-transparent text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
@@ -155,9 +155,9 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 key={project.id}
                 className="relative overflow-hidden rounded-2xl cursor-pointer group break-inside-avoid shadow-md hover:shadow-xl transition-shadow border border-transparent hover:border-accent/30"
               >
-                <img 
+<img 
                   src={project.image} 
-                  alt={project.title}
+                  alt={`${project.title} in ${project.location}`}
                   loading="lazy"
                   className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
@@ -181,7 +181,10 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                     <MapPin className="w-4 h-4 text-accent" />
                     {project.location}
                   </div>
-                  <button className="flex items-center gap-2 text-accent font-semibold text-sm hover:text-white transition-colors">
+                  <button 
+                    className="flex items-center gap-2 text-accent font-semibold text-sm hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-lg"
+                    aria-label={`View ${project.title} project`}
+                  >
                     View Project <ExternalLink className="w-4 h-4" />
                   </button>
                 </div>
@@ -196,7 +199,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
             <p className="text-lg">No projects match the selected filters.</p>
             <button 
               onClick={() => { setActiveCategory("All"); setActiveLocation("All Sri Lanka"); }}
-              className="mt-4 text-accent hover:underline font-medium"
+              className="mt-4 text-accent hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg rounded"
             >
               Clear filters
             </button>
@@ -219,15 +222,15 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               />
             </div>
 
-            {visibleCount < filteredProjects.length ? (
+{visibleCount < filteredProjects.length ? (
               <div className="mt-8 flex flex-col items-center gap-4">
                 <button
                   onClick={loadMore}
-                  className="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-accent active:scale-95 transition-all"
+                  className="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-accent transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg"
                 >
                   Load More Projects
                 </button>
-                <a href="/portfolio" className="text-gray-400 hover:text-primary transition text-sm">
+                <a href="/portfolio" className="text-gray-400 hover:text-primary transition text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg rounded">
                   View complete portfolio →
                 </a>
               </div>
@@ -235,12 +238,12 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               filteredProjects.length === staticProjectData.length && (
                 <div className="mt-8 flex flex-col items-center gap-4">
                   <button
-                    className="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-accent transition opacity-50 cursor-not-allowed"
+                    className="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-accent transition opacity-50 cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg"
                     title="Mockup limit reached"
                   >
                     {TOTAL_REAL_PROJECTS - visibleCount} more projects
                   </button>
-                  <a href="/portfolio" className="text-gray-400 hover:text-primary transition text-sm">
+                  <a href="/portfolio" className="text-gray-400 hover:text-primary transition text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg rounded">
                     View complete portfolio →
                   </a>
                 </div>
