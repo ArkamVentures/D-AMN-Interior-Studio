@@ -14,6 +14,7 @@ import { NotFound } from './pages/NotFound';
 import { DataProvider } from './context/DataContext';
 import { Login } from './pages/admin/Login';
 import { Dashboard } from './pages/admin/Dashboard';
+import { ProtectedRoute } from './components/auth/ProtectedRoute';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -39,7 +40,11 @@ function App() {
           <Routes>
             {/* Admin Routes (Without Layout header/footer) */}
             <Route path="/admin/login" element={<Login />} />
-            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/dashboard" element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
 
             {/* Public Routes (With Layout) */}
             <Route path="/" element={<Layout><Home /></Layout>} />
