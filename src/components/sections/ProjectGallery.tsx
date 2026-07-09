@@ -223,7 +223,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               <div className="mt-8 flex flex-col items-center gap-4">
                 <button
                   onClick={loadMore}
-                  className="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-accent transition"
+                  className="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-accent active:scale-95 transition-all"
                 >
                   Load More Projects
                 </button>

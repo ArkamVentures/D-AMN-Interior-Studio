@@ -818,27 +818,39 @@ export const Dashboard: React.FC = () => {
             </div>
 
             {/* Photo Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {data.projectPhotosList.map((photo) => (
-                <div key={photo.id} className="relative group bg-[#0f0f0f] border border-white/5 rounded-2xl overflow-hidden aspect-video">
-                  <img src={photo.src} alt={photo.title} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                    <button onClick={() => setEditingProject(photo)} className="p-2 bg-[#C9A227] text-black rounded-lg">
-                      <Edit2 className="w-4 h-4" />
-                    </button>
-                    <button 
-                      onClick={() => {
-                        data.setProjectPhotosList(data.projectPhotosList.filter(p => p.id !== photo.id));
-                        showToast('Project removed');
-                      }}
-                      className="p-2 bg-red-500 text-white rounded-lg"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+            {data.projectPhotosList.length === 0 ? (
+              <div className="text-center py-12 bg-[#0f0f0f] border border-white/5 rounded-2xl">
+                <p className="text-gray-400">No projects yet.</p>
+                <button 
+                  onClick={() => setEditingProject({ id: 'temp-' + Date.now(), src: '', location: 'Ambalangoda', service: 'Kitchen', title: '' })}
+                  className="mt-4 text-[#C9A227] hover:underline transition"
+                >
+                  Add your first project
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {data.projectPhotosList.map((photo) => (
+                  <div key={photo.id} className="relative group bg-[#0f0f0f] border border-white/5 rounded-2xl overflow-hidden aspect-video">
+                    <img src={photo.src} alt={photo.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                      <button onClick={() => setEditingProject(photo)} className="p-2 bg-[#C9A227] text-black rounded-lg">
+                        <Edit2 className="w-4 h-4" />
+                      </button>
+                      <button 
+                        onClick={() => {
+                          data.setProjectPhotosList(data.projectPhotosList.filter(p => p.id !== photo.id));
+                          showToast('Project removed');
+                        }}
+                        className="p-2 bg-red-500 text-white rounded-lg"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
             {/* Modal project edit */}
             {editingProject && (

@@ -271,7 +271,7 @@ export const Contact: React.FC = () => {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full flex items-center justify-center px-6 py-4 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors shadow-lg shadow-accent/25 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center px-6 py-4 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark active:scale-95 transition-all shadow-lg shadow-accent/25 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
                   >
                     {submitting ? (
                       <><span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white inline-block" />Sending...</>
