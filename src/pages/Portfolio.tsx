@@ -38,61 +38,8 @@ export const PortfolioPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-20 md:py-32 bg-white dark:bg-dark-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading title="Project Gallery" subtitle="Recent Fabrication Work" />
-
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                  activeCategory === cat ? 'bg-[#C9A227] text-black' : 'bg-gray-100 dark:bg-dark-card text-gray-600 dark:text-gray-400'
-                }`}
-              >
-                {cat.charAt(0).toUpperCase() + cat.slice(1)}
-              </button>
-            ))}
-          </div>
-
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-            <AnimatePresence mode="popLayout">
-              {filteredImages.map((image, index) => (
-                <motion.div
-                  key={image.id}
-                  layout
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onClick={() => setSelectedImageIndex(index)}
-                  className="group relative overflow-hidden rounded-xl cursor-pointer break-inside-avoid"
-                >
-                  <img src={image.src} alt={image.title} className="w-full object-cover" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform">
-                    <span className="text-accent text-xs uppercase">{image.service}</span>
-                    <h4 className="text-white font-semibold">{image.title}</h4>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-
-        </div>
-      </section>
-
       {/* Real Project Gallery */}
       <ProjectGallery />
-
-      {/* Lightbox for gallery images */}
-      <Lightbox
-        images={lightboxImages}
-        currentIndex={selectedImageIndex ?? 0}
-        isOpen={selectedImageIndex !== null}
-        onClose={() => setSelectedImageIndex(null)}
-        onNavigate={setSelectedImageIndex}
-      />
 
       {/* Project Modal */}
       <AnimatePresence>
