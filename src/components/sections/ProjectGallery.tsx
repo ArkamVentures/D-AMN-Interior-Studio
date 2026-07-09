@@ -65,7 +65,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
 
         <SectionHeading
           title="Our Projects"
-          subtitle="Real Work, Real Results"
+          subtitle="OUR PROJECTS ACROSS SRI LANKA"
         />
 
         <p className="text-center text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-12 -mt-6">
