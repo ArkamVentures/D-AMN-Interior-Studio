@@ -5,9 +5,9 @@ import { SectionHeading } from '../ui/SectionHeading';
 import { staticProjectData } from '../../data/projectData';
 
 const CATEGORIES = ["All", "Kitchen Cabinets", "Windows", "Doors", "Partitions", "Facades", "Railings"];
-const LOCATIONS = ["All Sri Lanka", "Dehiwela", "Kelaniya", "Benthota", "Uragasmanhandiya", "Kande Vihara", "Horana", "Ambalangoda", "Dodangoda", "Kaluthara", "Pahekanuwa"];
+const LOCATIONS = ["All Sri Lanka", "Ambalangoda", "Benthota", "Kaluthara", "Uragasmanhandiya", "Dehiwela", "Horana", "Dodangoda", "Pahekanuwa", "Kelaniya", "Elpitiya", "Mathugama", "Karandeniya", "Bandarawala", "Polgahawela", "Pelawatta"];
 const INITIAL_COUNT = 6;
-const TOTAL_REAL_PROJECTS = 44;
+const TOTAL_REAL_PROJECTS = 94;
 
 export interface ProjectGalleryProps {
   activeLocation?: string;
@@ -28,11 +28,17 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
 
   // Filter the static array
   const filteredProjects = useMemo(() => {
-    return staticProjectData.filter((project) => {
+    let filtered = staticProjectData.filter((project) => {
       const categoryMatch = activeCategory === "All" || project.category === activeCategory;
       const locationMatch = activeLocation === "All Sri Lanka" || project.city === activeLocation;
       return categoryMatch && locationMatch;
     });
+    
+    if (activeLocation === "All Sri Lanka") {
+      filtered = [...filtered].sort(() => Math.random() - 0.5);
+    }
+    
+    return filtered;
   }, [activeCategory, activeLocation]);
 
   const visibleProjects = filteredProjects.slice(0, visibleCount);
