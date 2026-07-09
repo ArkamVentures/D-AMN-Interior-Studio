@@ -4,10 +4,10 @@ import { MapPin, ArrowRight, ExternalLink } from 'lucide-react';
 import { SectionHeading } from '../ui/SectionHeading';
 import { staticProjectData } from '../../data/projectData';
 
-const CATEGORIES = ["All", "Windows", "Doors", "Partitions", "Facades", "Railings"];
-const LOCATIONS = ["All Sri Lanka", "Colombo", "Kandy", "Galle", "Negombo"];
+const CATEGORIES = ["All", "Kitchen Cabinets", "Windows", "Doors", "Partitions", "Facades", "Railings"];
+const LOCATIONS = ["All Sri Lanka", "Dehiwela", "Kelaniya", "Benthota", "Uragasmanhandiya", "Kande Vihara", "Horana", "Ambalangoda", "Dodangoda", "Kaluthara", "Pahekanuwa"];
 const INITIAL_COUNT = 6;
-const TOTAL_REAL_PROJECTS = 110;
+const TOTAL_REAL_PROJECTS = 44;
 
 export interface ProjectGalleryProps {
   activeLocation?: string;
