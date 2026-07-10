@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, ArrowRight } from 'lucide-react';
 import { SectionHeading } from '../ui/SectionHeading';
 import { useData } from '../../context/DataContext';
+import { staticProjectData } from '../../data/projectData';
 
 interface PortfolioProps {
   onSelectLocation?: (location: string) => void;
@@ -70,14 +71,14 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5 mb-16 max-w-6xl mx-auto">
           {locationsData.map((loc, index) => {
             // Count actual photos for this location
-            const locPhotos = projectPhotosList.filter(p => p.location.toLowerCase() === loc.name.toLowerCase());
+            const locPhotos = staticProjectData.filter(p => p.location.toLowerCase() === loc.name.toLowerCase());
             const realCount = locPhotos.length;
             const hasProjects = realCount > 0;
             const isActive = activeLocation === loc.name;
             
-            // Dynamically query a preview image from projectPhotosList
+            // Dynamically query a preview image from staticProjectData
             const previewPhoto = hasProjects 
-              ? locPhotos[0].src 
+              ? locPhotos[0].image 
               : null;
 
             return (
@@ -120,13 +121,13 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-52 bg-[#121212] border border-[#C9A227]/30 rounded-2xl p-3 shadow-2xl z-50 pointer-events-none"
+                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 bg-[#121212] border border-[#C9A227]/30 rounded-2xl p-4 shadow-2xl z-50 pointer-events-none"
                     >
                       {previewPhoto ? (
                         <img
                           src={previewPhoto}
                           alt={`${loc.name} project preview`}
-                          className="w-full h-28 object-cover rounded-xl mb-2.5"
+                          className="w-full h-48 object-cover rounded-xl mb-3"
                           loading="lazy"
                         />
                       ) : (
@@ -161,7 +162,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
             onClick={() => handleLocationClick('All Locations')}
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#C9A227] hover:bg-white text-black hover:text-black font-bold rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(201,162,39,0.2)] group"
           >
-            View All {projectPhotosList.length}+ Projects
+            View All {staticProjectData.length}+ Projects
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
