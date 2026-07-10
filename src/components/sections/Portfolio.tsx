@@ -38,6 +38,7 @@ const locationsData = [
 export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLocation }) => {
   const { projectPhotosList } = useData();
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
+  const [randomImage, setRandomImage] = useState<string | null>(null);
 
   const handleLocationClick = (locName: string) => {
     if (onSelectLocation) {
@@ -88,7 +89,15 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  onMouseEnter={() => setHoveredLocation(loc.name)}
+                  onMouseEnter={() => {
+                    setHoveredLocation(loc.name);
+                    if (hasProjects) {
+                      const randomIdx = Math.floor(Math.random() * locPhotos.length);
+                      setRandomImage(locPhotos[randomIdx].image);
+                    } else {
+                      setRandomImage(null);
+                    }
+                  }}
                   onMouseLeave={() => setHoveredLocation(null)}
                   onClick={() => handleLocationClick(loc.name)}
                   className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 text-left ${
@@ -123,9 +132,9 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
                       transition={{ duration: 0.2 }}
                       className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 bg-[#121212] border border-[#C9A227]/30 rounded-2xl p-4 shadow-2xl z-50 pointer-events-none"
                     >
-                      {previewPhoto ? (
+                      {randomImage ? (
                         <img
-                          src={previewPhoto}
+                          src={randomImage}
                           alt={`${loc.name} project preview`}
                           className="w-full h-48 object-cover rounded-xl mb-3"
                           loading="lazy"
