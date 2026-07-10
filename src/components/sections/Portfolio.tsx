@@ -168,7 +168,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectLocation, activeLo
         {/* View All Button */}
         <div className="text-center mb-16">
           <button
-            onClick={() => handleLocationClick('All Locations')}
+            onClick={() => handleLocationClick('All Sri Lanka')}
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#C9A227] hover:bg-white text-black hover:text-black font-bold rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(201,162,39,0.2)] group"
           >
             View All {staticProjectData.length}+ Projects

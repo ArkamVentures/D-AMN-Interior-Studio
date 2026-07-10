@@ -12,7 +12,7 @@ import { Awards } from '../components/sections/Awards';
 import { Partners } from '../components/sections/Partners';
 
 export const Home: React.FC = () => {
-  const [activeLocation, setActiveLocation] = React.useState('All Locations');
+  const [activeLocation, setActiveLocation] = React.useState('All Sri Lanka');
 
   return (
     <>
