@@ -90,11 +90,7 @@ export const Inspiration: React.FC = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-amber-500 text-slate-950 text-xs font-semibold rounded-full">
-                    {post.category}
-                  </span>
-                </div>
+
               </div>
               <div className="p-8">
                 <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 mb-4">
@@ -152,9 +148,7 @@ export const Inspiration: React.FC = () => {
                   <img src={item.src} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <span className="inline-flex px-3 py-1 rounded-full bg-amber-500/90 text-xs font-semibold text-slate-950 uppercase">
-                      {item.category}
-                    </span>
+
                     <h4 className="mt-3 text-lg font-semibold text-white">{item.title}</h4>
                   </div>
                 </div>

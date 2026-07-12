@@ -167,12 +167,6 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 {/* Dark overlay slides up */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                {/* Category tag always visible on top right in dark mode, or only on hover */}
-                <div className="absolute top-4 right-4 z-10">
-                  <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-white text-[10px] uppercase font-bold tracking-widest rounded-full border border-white/10">
-                    {project.category}
-                  </span>
-                </div>
 
                 {/* Content slides up */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-10">

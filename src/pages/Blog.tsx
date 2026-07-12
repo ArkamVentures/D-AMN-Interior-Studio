@@ -33,9 +33,7 @@ export const Blog: React.FC = () => {
               >
                 <div className="relative h-52 overflow-hidden">
                   <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-[#C9A227] text-black text-xs font-bold rounded-full">{post.category}</span>
-                  </div>
+
                 </div>
                 <div className="p-6">
                   <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3 space-x-4">
