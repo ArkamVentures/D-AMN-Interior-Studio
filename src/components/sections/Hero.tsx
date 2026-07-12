@@ -242,7 +242,7 @@ export const Hero: React.FC = () => {
           delay: 2.6,
         }}
         onClick={handleScrollDown}
-        className="absolute bottom-8 left-[54%] -translate-x-1/2 flex flex-col items-center cursor-pointer group z-10"
+        className="absolute bottom-8 left-[45%] -translate-x-1/2 flex flex-col items-center cursor-pointer group z-10"
       >
         <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-[#C9A227] transition-colors mb-2">
           Scroll to explore
