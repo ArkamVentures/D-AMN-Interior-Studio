@@ -219,10 +219,10 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
             </div>
 
 {visibleCount < filteredProjects.length ? (
-              <div className="mt-8 flex flex-col items-center gap-4">
+              <div className="sticky bottom-0 left-0 right-0 mt-8 flex flex-col items-center gap-4 bg-warm-gray dark:bg-dark-bg py-6 z-50">
                 <button
                   onClick={loadMore}
-                  className="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-accent transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg"
+                  className="px-8 py-3 bg-accent text-black font-semibold rounded-full hover:bg-[#e8d48b] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg"
                 >
                   Load More Projects
                 </button>
@@ -232,9 +232,9 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               </div>
             ) : (
               filteredProjects.length === staticProjectData.length && (
-                <div className="mt-8 flex flex-col items-center gap-4">
+                <div className="sticky bottom-0 left-0 right-0 mt-8 flex flex-col items-center gap-4 bg-warm-gray dark:bg-dark-bg py-6 z-50">
                   <button
-                    className="px-8 py-3 bg-primary text-black font-semibold rounded-full hover:bg-accent transition opacity-50 cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg"
+                    className="px-8 py-3 bg-accent text-black font-semibold rounded-full hover:bg-[#e8d48b] transition opacity-50 cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-warm-gray dark:focus-visible:ring-offset-dark-bg"
                     title="Mockup limit reached"
                   >
                     {TOTAL_REAL_PROJECTS - visibleCount} more projects

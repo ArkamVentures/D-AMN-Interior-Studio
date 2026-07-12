@@ -168,7 +168,7 @@ export const Services: React.FC<ServicesProps> = ({ limit }) => {
         {/* Service Area Hashtags (Only show on full services page to save space on home) */}
         {!limit && (
           <div className="max-w-4xl mx-auto text-center border-t border-white/10 pt-12">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#C9A227] font-semibold mb-4">Service Areas</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-[#C9A227] font-semibold mb-4">Covered Areas</p>
               <p className="text-sm text-gray-500 leading-relaxed text-balance">
               #kaluthara #elpitiya #ambalangoda #aluthgama #mathugama #beruwela #uragasmanhandiya #karandeniya #horana #dodangoda #baduraliya #agalawatta #welipenna #bentota
             </p>
